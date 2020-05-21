@@ -8,6 +8,7 @@ export class GameScene extends Phaser.Scene {
   fpsText: Phaser.GameObjects.Text;
   hero: Hero;
   spawner: MonsterSpawner;
+  platforms: PlatformController;
 
   spawnedMonsters: number = 0;
 
@@ -29,15 +30,15 @@ export class GameScene extends Phaser.Scene {
     this.hero = new Hero(this, this.cameras.main.width / 2, 0);
     this.hero.hands.equip(new Gun({ key: 'weapon.gun' }));
 
-    const platforms = new PlatformController(this);
-    platforms.createPlatform(this.cameras.main.width / 2, 500);
+    this.platforms = new PlatformController(this);
+    this.platforms.createPlatform(this.cameras.main.width / 2, 500);
 
     const monsterSpawner = new MonsterSpawner(this);
-    // monsterSpawner.spawnMonster(500, 0);
+    monsterSpawner.spawnMonster(500, 0);
     this.spawner = monsterSpawner;
 
-    this.physics.add.collider(this.hero, platforms.group);
-    this.physics.add.collider(monsterSpawner.group, platforms.group);
+    this.physics.add.collider(this.hero, this.platforms.group);
+    this.physics.add.collider(monsterSpawner.group, this.platforms.group);
     this.physics.add.collider(monsterSpawner.group, this.hero);
   }
 
@@ -45,7 +46,7 @@ export class GameScene extends Phaser.Scene {
     this.fpsText.update(time, delta);
     if (time > this.spawnedMonsters * 2000) {
       this.spawnedMonsters++;
-      // this.spawner.spawnMonster(Phaser.Math.Between(300, 900), 0);
+      this.spawner.spawnMonster(Phaser.Math.Between(300, 900), 0);
     }
   }
 }

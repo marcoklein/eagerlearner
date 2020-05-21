@@ -1,6 +1,7 @@
 import { Wearable, HandPositions } from './Wearable';
 import { HandComponent } from './HandComponent';
-import { TextureKey } from '../../Globals';
+import { TextureKey, Globals } from '../../Globals';
+import { Bullet } from './Bullet';
 
 /**
  * Shoots stuff.
@@ -8,6 +9,12 @@ import { TextureKey } from '../../Globals';
 export class Gun extends Wearable {
   gunSprite: Phaser.GameObjects.Sprite;
   texture: TextureKey;
+
+  fireBullet = false;
+  cooldown = Globals.weapons.gunCooldown;
+  currentCooldown = 0;
+  shootAnimationTime = 50;
+  shootAnimation = 0;
 
   constructor(texture: TextureKey) {
     super();
@@ -23,17 +30,28 @@ export class Gun extends Wearable {
   }
 
   useAction() {
-    console.log('boom');
+    if (!this.hands) return;
+    const body = this.hands.body;
+    if (this.currentCooldown <= 0) {
+      // fire
+      this.shootAnimation = this.shootAnimationTime;
+      this.currentCooldown = this.cooldown;
+      const vel = new Phaser.Math.Vector2(body.flipX ? -Globals.bullets.speed : Globals.bullets.speed, 0);
+      new Bullet(this.hands.scene, this.gunSprite.x, this.gunSprite.y, vel, {key: 'weapon.bullet'});
+    }
   }
 
   update(hands: HandComponent, time: number, delta: number) {
     if (!this.hands) return;
     const body = this.hands.body;
     const bodyCenter = this.hands.body.getCenter();
-    const gunX = 14;
+    const gunX = 14 + (this.shootAnimation > 0 ? -4 : 0);
     const gunY = 10;
     this.gunSprite.x = bodyCenter.x + (body.flipX ? -gunX : gunX);
     this.gunSprite.y = bodyCenter.y + gunY;
+
+    this.currentCooldown -= delta;
+    this.shootAnimation -= delta;
   }
 
   calculateHandPositions(hands: HandComponent, body: Phaser.Physics.Arcade.Sprite): HandPositions {

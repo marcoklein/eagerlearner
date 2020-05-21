@@ -1,12 +1,13 @@
 import { TextureKey } from '../../Globals';
 import { Wearable } from './Wearable';
 import { Punch } from './Punch';
+import { GameScene } from '../../scenes/GameScene';
 
 /**
  * Controls hands.
  */
 export class HandComponent {
-  scene: Phaser.Scene;
+  scene: GameScene;
 
   leftHand: Phaser.GameObjects.Sprite;
   rightHand: Phaser.GameObjects.Sprite;
@@ -20,7 +21,7 @@ export class HandComponent {
 
   defaultWearable = new Punch();
 
-  constructor(scene: Phaser.Scene, body: Phaser.Physics.Arcade.Sprite, texture: TextureKey) {
+  constructor(scene: GameScene, body: Phaser.Physics.Arcade.Sprite, texture: TextureKey) {
     this.scene = scene;
     this.body = body;
     this.initHands(texture);

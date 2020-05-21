@@ -7,6 +7,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('player.body', 'assets/sprites/player.png');
     this.load.image('player.hand', 'assets/sprites/hand.png');
     this.load.image('weapon.gun', 'assets/sprites/gun.png');
+    this.load.image('weapon.bullet', 'assets/sprites/bullet.png');
     this.load.image('monster.1', 'assets/sprites/monster-1.png');
     this.load.image('monster.hand', 'assets/sprites/monster-hand.png');
 

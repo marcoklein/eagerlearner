@@ -1,14 +1,15 @@
 import { DestroyOnFallDownComponent } from './components/DestroyOnFallDownComponent';
 import { HandComponent } from './components/HandComponent';
 import { PlayerControlComponent } from './components/PlayerControlComponent';
+import { GameScene } from '../scenes/GameScene';
 
 export class Hero extends Phaser.Physics.Arcade.Sprite {
-  scene: Phaser.Scene;
+  scene: GameScene;
   hands: HandComponent;
   control: PlayerControlComponent;
   fallDownDestroy: DestroyOnFallDownComponent;
 
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  constructor(scene: GameScene, x: number, y: number) {
     super(scene, x, y, 'player.body');
     this.scene = scene;
     this.hands = new HandComponent(this.scene, this, { key: 'player.hand' });

@@ -1,5 +1,5 @@
 import { Monster } from '../Monster';
-import { globals } from '../../Globals';
+import { Globals } from '../../Globals';
 
 export class MonsterLogic {
   monster: Monster;
@@ -16,7 +16,7 @@ export class MonsterLogic {
     const isFlipped = this.monster.flipX;
 
     // move
-    const maxSpeed = globals.monsters.speed;
+    const maxSpeed = Globals.monsters.speed;
     // range where speed can be directly adjusted
     // movement speed may be adjusted from 110 directly to -110 for example
     const controllableSpeedRange = maxSpeed * 1.2;

@@ -2,7 +2,6 @@ import { Wearable, HandPositions } from './Wearable';
 import { HandComponent } from './HandComponent';
 
 export class Punch extends Wearable {
-  
   // temp vectors
   private rightHandCenter = new Phaser.Math.Vector2();
 
@@ -38,13 +37,8 @@ export class Punch extends Wearable {
       if (this.hitTime < this.hitDuration / 2) {
         rightHand.getCenter(this.rightHandCenter);
         const hits = <Phaser.Physics.Arcade.Body[]>(
-          scene.physics.overlapCirc(
-            this.rightHandCenter.x,
-            this.rightHandCenter.y,
-            leftHand.width / 2,
-            true,
-            false
-          )
+          // TODO just check with a rectangle if we hit something
+          scene.physics.overlapCirc(this.rightHandCenter.x, this.rightHandCenter.y, leftHand.width / 2, true, false)
         );
         hits.forEach((body) => {
           if (body === hands.body.body) return; // own body
@@ -80,7 +74,7 @@ export class Punch extends Wearable {
       },
     };
   }
-  
+
   private calculateHitHandPosition(time: number, maxX: number, duration: number) {
     const turnTime = duration / 2;
     const opening = -maxX / (turnTime * turnTime);

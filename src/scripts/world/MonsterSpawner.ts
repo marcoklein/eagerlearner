@@ -1,6 +1,6 @@
 import { Monster } from '../actors/Monster';
 import { GameScene } from '../scenes/GameScene';
-import { globals } from '../Globals';
+import { Globals } from '../Globals';
 
 export class MonsterSpawner {
   scene: GameScene;
@@ -9,9 +9,9 @@ export class MonsterSpawner {
   constructor(scene: GameScene) {
     this.scene = scene;
     this.group = this.scene.physics.add.group({
-      dragX: globals.monsters.dragX,
+      dragX: Globals.monsters.dragX,
       angularDrag: 200,
-      mass: globals.monsters.mass,
+      mass: Globals.monsters.mass,
     });
   }
 
