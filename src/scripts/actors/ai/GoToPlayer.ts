@@ -1,20 +1,14 @@
-import { MonsterLogic } from "./MonsterLogic";
-import { Monster } from "../Monster";
-import { Globals } from "../../Globals";
+import { MonsterLogic } from './MonsterLogic';
+import { Monster } from '../Monster';
+import { Globals } from '../../Globals';
 
 /**
  * Follows player, always moving to his position.
  */
 export class GoToPlayer extends MonsterLogic {
+  onAttach(monster: Monster) {}
+  onDetach(monster: Monster) {}
 
-
-  onAttach(monster: Monster) {
-
-  }
-  onDetach(monster: Monster) {
-
-  }
-  
   update(monster: Monster, time: number, delta: number) {
     const player = monster.scene.hero;
 

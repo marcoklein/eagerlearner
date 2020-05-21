@@ -1,14 +1,14 @@
-import { GameScene } from "../../scenes/GameScene";
-import { ProjectileController } from "../../world/ProjectileController";
-import { Projectile } from "./Projectile";
-import { TextureKey } from "../../Globals";
-import { ProjectileType } from "./ProjectileType";
+import { GameScene } from '../../scenes/GameScene';
+import { ProjectileController } from '../../world/ProjectileController';
+import { Projectile } from './Projectile';
+import { TextureKey } from '../../Globals';
+import { ProjectileType } from './ProjectileType';
 
 export class ProjectileBuilder {
   readonly controller: ProjectileController;
   private _type: ProjectileType | undefined;
   private _texture: TextureKey | undefined;
-  
+
   constructor(projectileController: ProjectileController) {
     this.controller = projectileController;
   }
@@ -23,7 +23,7 @@ export class ProjectileBuilder {
     this._type = type;
     return this;
   }
-  
+
   texture(texture: TextureKey) {
     this._texture = texture;
     return this;

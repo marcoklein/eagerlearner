@@ -42,7 +42,7 @@ export class MonsterBuilder {
     if (!this._texture) throw new Error('Texture needed');
     const monster = new Monster(this.spawner.scene, x, y, this._texture);
     if (this.wearable) monster.hands.equip(this.wearable);
-    this._logics.forEach(logic => monster.addLogic(logic));
+    this._logics.forEach((logic) => monster.addLogic(logic));
     this.spawner.spawnMonster(monster);
   }
 }

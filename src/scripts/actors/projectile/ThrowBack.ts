@@ -1,11 +1,10 @@
-import { Actor } from "../Actor";
-import { Hero } from "../Hero";
-import { Monster } from "../Monster";
-import { Projectile } from "./Projectile";
-import { ProjectileEffect } from "./ProjectileEffect";
+import { Actor } from '../Actor';
+import { Hero } from '../Hero';
+import { Monster } from '../Monster';
+import { Projectile } from './Projectile';
+import { ProjectileEffect } from './ProjectileEffect';
 
 export class ThrowBack extends ProjectileEffect {
-
   applyToHero(projectile: Projectile, hero: Hero) {
     return this.throwBack(projectile, hero);
   }
@@ -20,5 +19,4 @@ export class ThrowBack extends ProjectileEffect {
 
     return true;
   }
-
 }

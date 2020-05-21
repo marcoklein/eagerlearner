@@ -16,10 +16,10 @@ export class Bullet extends ProjectileType {
   }
 
   setupPhysicalAttributes(projectile: Projectile): void {
+    console.log('bullet')
     projectile.flipX = this.velocity.x < 0;
     projectile.depth = -1;
     projectile.setVelocity(this.velocity.x, this.velocity.y);
     projectile.setGravityY(-projectile.scene.physics.world.gravity.y); // shoot straight
   }
-  
 }

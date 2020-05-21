@@ -12,11 +12,9 @@ export abstract class MonsterLogic {
     this.monster = undefined;
   }
 
-
   abstract onAttach(monster: Monster): void;
 
   abstract onDetach(monster: Monster): void;
 
   abstract update(monster: Monster, time: number, delta: number): void;
 }
-

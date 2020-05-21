@@ -37,16 +37,13 @@ export class GameScene extends Phaser.Scene {
     this.platforms = new PlatformController(this);
     this.platforms.createPlatform(this.cameras.main.width / 2, 500);
 
-
     const monsterSpawner = new MonsterSpawner(this);
     monsterSpawner.spawnWeakMonster(500, 0);
     this.spawner = monsterSpawner;
-    
+
     this.projectiles = new ProjectileController(this);
 
     this.collisions = new CollisionController(this);
-
-    
   }
 
   update(time: number, delta: number) {

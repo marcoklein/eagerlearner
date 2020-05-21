@@ -1,9 +1,5 @@
-import { Projectile } from "./Projectile";
+import { Projectile } from './Projectile';
 
 export class ProjectileType {
-
-  setupPhysicalAttributes(projectile: Projectile) {
-
-  }
-  
+  setupPhysicalAttributes(projectile: Projectile) {}
 }

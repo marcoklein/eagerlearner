@@ -17,6 +17,9 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: GameScene, x: number, y: number, texture: TextureKey, type: ProjectileType) {
     super(scene, x, y, texture.key, texture.frame);
     this.projectileType = type;
+
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
   }
 
   setupPhysicalAttributes() {
@@ -24,14 +27,14 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   }
 
   onHeroCollision(hero: Hero) {
-    this.effects = this.effects.filter(effect => !effect.applyToHero(this, hero));
+    this.effects = this.effects.filter((effect) => !effect.applyToHero(this, hero));
   }
 
   onMonsterCollision(monster: Monster) {
-    this.effects = this.effects.filter(effect => !effect.applyToMonster(this, monster));
+    this.effects = this.effects.filter((effect) => !effect.applyToMonster(this, monster));
   }
-  
+
   onWallCollision(wall: Phaser.Physics.Arcade.StaticBody) {
-    this.effects = this.effects.filter(effect => !effect.applyToWall(this, wall));
+    this.effects = this.effects.filter((effect) => !effect.applyToWall(this, wall));
   }
 }

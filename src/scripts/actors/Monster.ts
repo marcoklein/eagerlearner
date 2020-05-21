@@ -31,7 +31,7 @@ export class Monster extends Actor {
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
     this.hands.update(time, delta);
-    this.controls.forEach(control => control.update(this, time, delta));
+    this.controls.forEach((control) => control.update(this, time, delta));
     this.fallDownDestroy.update(time, delta);
   }
 }
