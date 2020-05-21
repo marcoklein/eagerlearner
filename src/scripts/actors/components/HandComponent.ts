@@ -20,6 +20,10 @@ export class HandComponent {
   private hitTime = 0;
   private hitDuration = 200;
   private hitMaxX = 50;
+  /**
+   * Avoid double hits.
+   */
+  private hits: Phaser.Physics.Arcade.Body[];
 
   constructor(scene: Phaser.Scene, body: Phaser.Physics.Arcade.Sprite, texture: TextureKey) {
     this.scene = scene;
@@ -45,10 +49,6 @@ export class HandComponent {
     if (this.hitting) {
       // update hit
       this.hitTime += delta;
-      if (this.hitTime > this.hitDuration) {
-        this.hitTime = 0;
-        this.hitting = false;
-      }
 
       // check for collision/hit
       // avoid hitting while our hand is moving back
@@ -65,10 +65,17 @@ export class HandComponent {
         );
         hits.forEach((body) => {
           if (body === this.body.body) return; // own body
+          if (this.hits.indexOf(body) !== -1) return; // already hit
+          this.hits.push(body);
           let vel = 300;
-          if (this.body.flipX) vel *= -1;
-          body.setVelocityX(vel);
+          body.velocity.x += this.body.flipX ? -vel : vel;
+          body.velocity.y += -vel * 0.1;
+          // body.angularVelocity += this.body.flipX ? -45 : 45;
         });
+      }
+      if (this.hitTime > this.hitDuration) {
+        this.hitTime = 0;
+        this.hitting = false;
       }
     }
 
@@ -101,6 +108,9 @@ export class HandComponent {
   }
 
   hit() {
-    this.hitting = true;
+    if (!this.hitting) {
+      this.hitting = true;
+      this.hits = [];
+    }
   }
 }

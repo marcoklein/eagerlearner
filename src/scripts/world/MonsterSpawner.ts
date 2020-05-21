@@ -10,6 +10,7 @@ export class MonsterSpawner {
     this.group = this.scene.physics.add.group({
       dragX: 200,
       collideWorldBounds: true,
+      angularDrag: 200,
     });
   }
 
