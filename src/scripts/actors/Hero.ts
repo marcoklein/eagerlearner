@@ -13,7 +13,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
     this.scene = scene;
     this.hands = new HandComponent(this.scene, this, { key: 'player.hand' });
     this.control = new PlayerControlComponent(this.scene, this);
-    
+
     this.fallDownDestroy = new DestroyOnFallDownComponent(scene, this);
 
     scene.add.existing(this);

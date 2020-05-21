@@ -1,5 +1,3 @@
-
-
 export const globals = {
   player: {
     speed: 400,
@@ -9,8 +7,8 @@ export const globals = {
     mass: 2,
     dragX: 200,
     speed: 200,
-  }
-}
+  },
+};
 
 export interface TextureKey {
   key: string;

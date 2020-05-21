@@ -1,20 +1,18 @@
-import { Monster } from "../Monster";
-import { globals } from "../../Globals";
+import { Monster } from '../Monster';
+import { globals } from '../../Globals';
 
 export class MonsterLogic {
-
   monster: Monster;
 
   constructor(monster: Monster) {
     this.monster = monster;
   }
 
-
   update(time: number, delta: number) {
     const player = this.monster.scene.player;
-    
+
     // move into player direction
-    this.monster.flipX = player.x < this.monster.x
+    this.monster.flipX = player.x < this.monster.x;
     const isFlipped = this.monster.flipX;
 
     // move
@@ -29,8 +27,6 @@ export class MonsterLogic {
       this.monster.setVelocityX(moveVel);
     }
 
-
-
     // "stand up"
     // if negative angle rotate to left
     // if positive angle rotate to right
@@ -41,7 +37,6 @@ export class MonsterLogic {
     // this.monstear.body.setAngularVelocity(PhaserUtils.setValueWithMax(rotVel, this.monster.body.angularVelocity));
     // console.log(this.monster.body.angularVelocity, curAngle);
   }
-
 }
 
 export class PhaserUtils {

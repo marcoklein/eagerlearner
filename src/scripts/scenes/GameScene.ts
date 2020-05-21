@@ -36,12 +36,10 @@ export class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, platforms.group);
     this.physics.add.collider(monsterSpawner.group, platforms.group);
     this.physics.add.collider(monsterSpawner.group, this.player);
-
   }
 
   update(time: number, delta: number) {
-    // this.fpsText.update(time, delta);
-    // this.player.update(time, delta);
+    this.fpsText.update(time, delta);
     if (time > this.spawnedMonsters * 2000) {
       this.spawnedMonsters++;
       this.spawner.spawnMonster(Phaser.Math.Between(300, 900), 0);

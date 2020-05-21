@@ -1,4 +1,4 @@
-import { TextureKey } from "../../Globals";
+import { TextureKey } from '../../Globals';
 
 /**
  * Controls hands.
@@ -80,24 +80,15 @@ export class HandComponent {
     }
 
     // move left hand
-    let leftHandX = 
-      this.body.width / 3.5 +
-      this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration);
+    let leftHandX = this.body.width / 3.5 + this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration);
     if (this.body.flipX) leftHandX *= -1;
-    this.leftHand.setPosition(
-      this.bodyCenter.x + leftHandX,
-      this.bodyCenter.y + 1
-    );
+    this.leftHand.setPosition(this.bodyCenter.x + leftHandX, this.bodyCenter.y + 1);
 
     // move right hand
     let rightHandX =
-      this.body.width / 1.8 +
-      this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration)
-      if (this.body.flipX) rightHandX *= -1;
-    this.rightHand.setPosition(
-      this.bodyCenter.x + rightHandX,
-      this.bodyCenter.y - 3
-    );
+      this.body.width / 1.8 + this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration);
+    if (this.body.flipX) rightHandX *= -1;
+    this.rightHand.setPosition(this.bodyCenter.x + rightHandX, this.bodyCenter.y - 3);
   }
 
   private calculateHitHandPosition(time: number, maxX: number, duration: number) {

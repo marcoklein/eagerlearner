@@ -28,6 +28,5 @@ export class Monster extends Phaser.Physics.Arcade.Sprite {
     this.hands.update(time, delta);
     this.control.update(time, delta);
     this.fallDownDestroy.update(time, delta);
-    
   }
 }
