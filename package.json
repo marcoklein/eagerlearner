@@ -11,7 +11,7 @@
     "format": "prettier --write src"
   },
   "lint-staged": {
-    "src/**/*.ts": "npm run format"
+    "src/**/*.ts": "prettier --write"
   },
   "husky": {
     "hooks": {
