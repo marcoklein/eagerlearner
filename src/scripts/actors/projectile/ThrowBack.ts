@@ -14,6 +14,7 @@ export class ThrowBack extends ProjectileEffect {
   }
 
   private throwBack(projectile: Projectile, actor: Actor) {
+    console.log('throw back');
     const physicsBody = actor.body;
     physicsBody.velocity.y += -50;
 

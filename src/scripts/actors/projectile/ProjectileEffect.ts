@@ -19,7 +19,7 @@ export abstract class ProjectileEffect {
    */
   abstract applyToMonster(projectile: Projectile, monster: Monster): boolean;
 
-  applyToWall(projectile: Projectile, wall: Phaser.Physics.Arcade.StaticBody) {
+  applyToWall(projectile: Projectile, wall: Phaser.Physics.Arcade.Sprite) {
     return true; // destroy per default
   }
 }

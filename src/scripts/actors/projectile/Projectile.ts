@@ -26,6 +26,10 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
     this.projectileType.setupPhysicalAttributes(this);
   }
 
+  addEffect(effect: ProjectileEffect) {
+    this.effects.push(effect);
+  }
+
   onHeroCollision(hero: Hero) {
     this.effects = this.effects.filter((effect) => !effect.applyToHero(this, hero));
   }
@@ -34,7 +38,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
     this.effects = this.effects.filter((effect) => !effect.applyToMonster(this, monster));
   }
 
-  onWallCollision(wall: Phaser.Physics.Arcade.StaticBody) {
+  onWallCollision(wall: Phaser.Physics.Arcade.Sprite) {
     this.effects = this.effects.filter((effect) => !effect.applyToWall(this, wall));
   }
 }

@@ -1,6 +1,3 @@
-import { GameScene } from '../../scenes/GameScene';
-import { TextureKey } from '../../Globals';
-import { Monster } from '../Monster';
 import { Projectile } from './Projectile';
 import { ProjectileType } from './ProjectileType';
 
@@ -16,7 +13,6 @@ export class Bullet extends ProjectileType {
   }
 
   setupPhysicalAttributes(projectile: Projectile): void {
-    console.log('bullet')
     projectile.flipX = this.velocity.x < 0;
     projectile.depth = -1;
     projectile.setVelocity(this.velocity.x, this.velocity.y);

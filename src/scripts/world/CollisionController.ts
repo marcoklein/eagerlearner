@@ -19,9 +19,9 @@ export class CollisionController {
 
     scene.physics.add.overlap(this.scene.projectiles.group, scene.platforms.group, (a, b) => {
       // collided with wall
-      if (a instanceof Phaser.Physics.Arcade.StaticBody && b instanceof Projectile) {
+      if (a instanceof Phaser.Physics.Arcade.Sprite && b instanceof Projectile) {
         b.onWallCollision(a);
-      } else if (b instanceof Phaser.Physics.Arcade.StaticBody && a instanceof Projectile) {
+      } else if (b instanceof Phaser.Physics.Arcade.Sprite && a instanceof Projectile) {
         a.onWallCollision(b);
       } else {
         throw new Error('Wrong type during collision');
