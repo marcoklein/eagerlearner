@@ -1,4 +1,5 @@
 import { Hero } from '../Hero';
+import { globals } from '../../Globals';
 
 export type ControlNames = 'left' | 'right';
 
@@ -63,12 +64,13 @@ export class PlayerControlComponent {
     //   const val = this.controlKeys[key];
 
     // })
+    const speed = globals.player.speed;
     let directionVel = 0;
     if (this.controlKeys.left.isDown) {
-      directionVel -= 160;
+      directionVel -= speed;
     }
     if (this.controlKeys.right.isDown) {
-      directionVel += 160;
+      directionVel += speed;
     }
     this.player.setVelocityX(directionVel);
 
@@ -77,7 +79,7 @@ export class PlayerControlComponent {
     }
 
     if (this.controlKeys.jump.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-330);
+      this.player.setVelocityY(-globals.player.jumpVelocity);
     }
 
     if (this.controlKeys.primary.isDown) {

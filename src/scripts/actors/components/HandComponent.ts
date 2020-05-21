@@ -1,4 +1,4 @@
-import { BodyComponent, TextureKey } from './BodyComponent';
+import { TextureKey } from "../../Globals";
 
 /**
  * Controls hands.
