@@ -13,11 +13,11 @@ export class CollisionController {
 
   private init() {
     const scene = this.scene;
-    scene.physics.add.collider(scene.hero, scene.platforms.group);
-    scene.physics.add.collider(scene.spawner.group, scene.platforms.group);
-    scene.physics.add.collider(scene.spawner.group, scene.hero);
+    scene.physics.add.collider(scene.level.hero, scene.level.platforms.group);
+    scene.physics.add.collider(scene.level.spawner.group, scene.level.platforms.group);
+    scene.physics.add.collider(scene.level.spawner.group, scene.level.hero);
 
-    scene.physics.add.overlap(this.scene.projectiles.group, scene.platforms.group, (a, b) => {
+    scene.physics.add.overlap(scene.level.projectiles.group, scene.level.platforms.group, (a, b) => {
       // collided with wall
       if (a instanceof Phaser.Physics.Arcade.Sprite && b instanceof Projectile) {
         b.onWallCollision(a);
@@ -28,7 +28,7 @@ export class CollisionController {
       }
     });
 
-    scene.physics.add.overlap(scene.projectiles.group, scene.spawner.group, (a, b) => {
+    scene.physics.add.overlap(scene.level.projectiles.group, scene.level.spawner.group, (a, b) => {
       // collided with monster
       if (a instanceof Monster && b instanceof Projectile) {
         b.onMonsterCollision(a);
@@ -39,9 +39,8 @@ export class CollisionController {
       }
     });
 
-    scene.physics.add.overlap(this.scene.projectiles.group, scene.hero, (a, b) => {
+    scene.physics.add.overlap(scene.level.projectiles.group, scene.level.hero, (a, b) => {
       // collided with hero
-      console.log('projectile hero');
       if (a instanceof Hero && b instanceof Projectile) {
         b.onHeroCollision(a);
       } else if (b instanceof Hero && a instanceof Projectile) {

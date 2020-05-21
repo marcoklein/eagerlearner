@@ -6,7 +6,7 @@ export class LookToPlayerLogic extends MonsterLogic {
   onDetach(monster: Monster) {}
 
   update(monster: Monster, time: number, delta: number) {
-    const player = monster.scene.hero;
+    const player = monster.scene.level.hero;
 
     // move into player direction
     monster.flipX = player.x < monster.x;

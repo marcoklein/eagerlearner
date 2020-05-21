@@ -1,12 +1,11 @@
-import { Monster } from '../actors/Monster';
-import { GameScene } from '../scenes/GameScene';
-import { GlobalConfig } from '../Globals';
-import { MonsterBuilder } from './MonsterBuilder';
-import { Gun } from '../actors/wearables/Gun';
 import { DumbShootLogic } from '../actors/ai/DumbShootLogic';
-import { LookToPlayerLogic } from '../actors/ai/LookToPlayerLogic';
-import { Punch } from '../actors/wearables/Punch';
 import { FollowPlayerLogic } from '../actors/ai/GoToPlayer';
+import { LookToPlayerLogic } from '../actors/ai/LookToPlayerLogic';
+import { Monster } from '../actors/Monster';
+import { Gun } from '../actors/wearables/Gun';
+import { GlobalConfig } from '../Globals';
+import { GameScene } from '../scenes/GameScene';
+import { MonsterBuilder } from './MonsterBuilder';
 
 export class MonsterSpawner {
   scene: GameScene;

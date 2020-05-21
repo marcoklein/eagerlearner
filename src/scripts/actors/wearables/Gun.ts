@@ -37,7 +37,7 @@ export class Gun extends Wearable {
       this.shootAnimation = this.shootAnimationTime;
       this.currentCooldown = this.cooldown;
       const vel = new Phaser.Math.Vector2(body.flipX ? -GlobalConfig.bullets.speed : GlobalConfig.bullets.speed, 0);
-      this.hands.scene.projectiles.fireBullet(
+      this.hands.scene.level.projectiles.fireBullet(
         this.gunSprite.x + (body.flipX ? -body.width / 2 : body.width / 2),
         this.gunSprite.y,
         vel,

@@ -42,7 +42,6 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   }
 
   onHeroCollision(hero: Hero) {
-    console.log('projectile hero col', this.effects.length);
     let destroy = false;
     this.effects = this.effects.filter((effect) => {
       const status = effect.applyToHero(this, hero);

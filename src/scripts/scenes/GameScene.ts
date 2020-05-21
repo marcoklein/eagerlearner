@@ -5,16 +5,11 @@ import { PlatformController } from '../world/PlatformController';
 import { Gun } from '../actors/wearables/Gun';
 import { ProjectileController } from '../world/ProjectileController';
 import { CollisionController } from '../world/CollisionController';
+import { LevelController } from '../world/LevelController';
 
 export class GameScene extends Phaser.Scene {
   fpsText: Phaser.GameObjects.Text;
-  hero: Hero;
-  spawner: MonsterSpawner;
-  platforms: PlatformController;
-  projectiles: ProjectileController;
-  collisions: CollisionController;
-
-  spawnedMonsters: number = 0;
+  level: LevelController;
 
   constructor() {
     super({ key: 'GameScene' });
@@ -31,27 +26,13 @@ export class GameScene extends Phaser.Scene {
       })
       .setOrigin(1, 0);
 
-    this.hero = new Hero(this, this.cameras.main.width / 2, 0);
-    this.hero.hands.equip(new Gun({ key: 'weapon.gun' }));
-
-    this.platforms = new PlatformController(this);
-    this.platforms.createPlatform(this.cameras.main.width / 2, 500);
-
-    this.spawner = new MonsterSpawner(this);
-    this.spawner.spawnWeakMonster(500, 0);
-
-    this.projectiles = new ProjectileController(this);
-
-    this.collisions = new CollisionController(this);
-    this.cameras.main.startFollow(this.hero);
+    this.level = new LevelController(this);
+    this.level.init();
+    this.level.createLevel1();
   }
 
   update(time: number, delta: number) {
     this.fpsText.update(time, delta);
-    if (time > this.spawnedMonsters * 10000) {
-      this.spawnedMonsters++;
-      this.spawner.spawnWeakMonster(Phaser.Math.Between(300, 900), 0);
-      this.spawner.spawnPunchingMonster(Phaser.Math.Between(300, 900), 0);
-    }
+    this.level.update(time, delta);
   }
 }
