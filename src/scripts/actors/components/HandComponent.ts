@@ -65,25 +65,31 @@ export class HandComponent {
         );
         hits.forEach((body) => {
           if (body === this.body.body) return; // own body
-          body.setVelocityX(300);
+          let vel = 300;
+          if (this.body.flipX) vel *= -1;
+          body.setVelocityX(vel);
         });
       }
     }
 
     // move left hand
+    let leftHandX = 
+      this.body.width / 3.5 +
+      this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration);
+    if (this.body.flipX) leftHandX *= -1;
     this.leftHand.setPosition(
-      this.bodyCenter.x -
-        this.body.width / 4 +
-        this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration),
+      this.bodyCenter.x + leftHandX,
       this.bodyCenter.y + 1
     );
 
     // move right hand
+    let rightHandX =
+      this.body.width / 1.8 +
+      this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration)
+      if (this.body.flipX) rightHandX *= -1;
     this.rightHand.setPosition(
-      this.bodyCenter.x +
-        this.body.width / 2 +
-        this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration),
-      this.bodyCenter.y
+      this.bodyCenter.x + rightHandX,
+      this.bodyCenter.y - 3
     );
   }
 

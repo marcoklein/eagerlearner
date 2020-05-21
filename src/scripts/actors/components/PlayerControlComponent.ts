@@ -63,7 +63,6 @@ export class PlayerControlComponent {
     //   const val = this.controlKeys[key];
 
     // })
-    console.log('update');
     let directionVel = 0;
     if (this.controlKeys.left.isDown) {
       directionVel -= 160;
