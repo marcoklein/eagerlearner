@@ -1,6 +1,6 @@
 import { Monster } from '../actors/Monster';
 import { GameScene } from '../scenes/GameScene';
-import { Globals } from '../Globals';
+import { GlobalConfig } from '../Globals';
 import { MonsterBuilder } from './MonsterBuilder';
 import { Gun } from '../actors/wearables/Gun';
 import { DumbShootLogic } from '../actors/ai/DumbShootLogic';
@@ -15,9 +15,9 @@ export class MonsterSpawner {
   constructor(scene: GameScene) {
     this.scene = scene;
     this.group = this.scene.physics.add.group({
-      dragX: Globals.monsters.dragX,
+      dragX: GlobalConfig.monsters.dragX,
       angularDrag: 200,
-      mass: Globals.monsters.mass,
+      mass: GlobalConfig.monsters.mass,
     });
   }
 

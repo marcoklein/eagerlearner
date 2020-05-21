@@ -41,6 +41,7 @@ export class CollisionController {
 
     scene.physics.add.overlap(this.scene.projectiles.group, scene.hero, (a, b) => {
       // collided with hero
+      console.log('projectile hero');
       if (a instanceof Hero && b instanceof Projectile) {
         b.onHeroCollision(a);
       } else if (b instanceof Hero && a instanceof Projectile) {

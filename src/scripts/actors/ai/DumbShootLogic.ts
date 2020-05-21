@@ -1,6 +1,6 @@
 import { MonsterLogic } from './MonsterLogic';
 import { Monster } from '../Monster';
-import { Globals } from '../../Globals';
+import { GlobalConfig } from '../../Globals';
 
 /**
  * Shoots :)

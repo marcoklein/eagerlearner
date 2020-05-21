@@ -3,6 +3,7 @@ import { HandComponent } from './components/HandComponent';
 import { PlayerControlComponent } from './components/PlayerControlComponent';
 import { GameScene } from '../scenes/GameScene';
 import { Actor } from './Actor';
+import { GlobalConfig } from '../Globals';
 
 export class Hero extends Actor {
   scene: GameScene;
@@ -20,6 +21,9 @@ export class Hero extends Actor {
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
+
+    this.setDragX(GlobalConfig.player.dragX);
+    this.setMass(GlobalConfig.player.mass);
   }
 
   preUpdate(time: number, delta: number) {

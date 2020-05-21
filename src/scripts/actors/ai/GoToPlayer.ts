@@ -1,6 +1,6 @@
 import { MonsterLogic } from './MonsterLogic';
 import { Monster } from '../Monster';
-import { Globals } from '../../Globals';
+import { GlobalConfig } from '../../Globals';
 
 /**
  * Follows player, always moving to his position.
@@ -17,7 +17,7 @@ export class GoToPlayer extends MonsterLogic {
     const isFlipped = monster.flipX;
 
     // move
-    const maxSpeed = Globals.monsters.speed;
+    const maxSpeed = GlobalConfig.monsters.speed;
     // range where speed can be directly adjusted
     // movement speed may be adjusted from 110 directly to -110 for example
     const controllableSpeedRange = maxSpeed * 1.2;

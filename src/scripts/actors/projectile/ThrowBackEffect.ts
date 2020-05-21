@@ -2,9 +2,9 @@ import { Actor } from '../Actor';
 import { Hero } from '../Hero';
 import { Monster } from '../Monster';
 import { Projectile } from './Projectile';
-import { ProjectileEffect } from './ProjectileEffect';
+import { ProjectileEffect, EffectStatus } from './ProjectileEffect';
 
-export class ThrowBack extends ProjectileEffect {
+export class ThrowBackEffect extends ProjectileEffect {
   applyToHero(projectile: Projectile, hero: Hero) {
     return this.throwBack(projectile, hero);
   }
@@ -14,10 +14,9 @@ export class ThrowBack extends ProjectileEffect {
   }
 
   private throwBack(projectile: Projectile, actor: Actor) {
-    console.log('throw back');
     const physicsBody = actor.body;
-    physicsBody.velocity.y += -50;
+    physicsBody.velocity.x += projectile.flipX ? -250 : 250;
 
-    return true;
+    return EffectStatus.DESTROY;
   }
 }

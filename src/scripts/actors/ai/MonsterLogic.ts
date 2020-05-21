@@ -1,5 +1,5 @@
 import { Monster } from '../Monster';
-import { Globals } from '../../Globals';
+import { GlobalConfig } from '../../Globals';
 
 export abstract class MonsterLogic {
   monster: Monster | undefined;

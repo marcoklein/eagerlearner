@@ -1,9 +1,9 @@
-import { GameScene } from '../scenes/GameScene';
-import { Globals, TextureKey } from '../Globals';
-import { Projectile } from '../actors/projectile/Projectile';
 import { Bullet } from '../actors/projectile/Bullet';
-import { Hero } from '../actors/Hero';
+import { Projectile } from '../actors/projectile/Projectile';
 import { ProjectileBuilder } from '../actors/projectile/ProjectileBuilder';
+import { ThrowBackEffect } from '../actors/projectile/ThrowBackEffect';
+import { GlobalConfig, TextureKey } from '../Globals';
+import { GameScene } from '../scenes/GameScene';
 
 /**
  * Manages everything that generally flys around in the world and has some effect on actors.
@@ -16,8 +16,6 @@ export class ProjectileController {
   constructor(scene: GameScene) {
     this.scene = scene;
     this.group = this.scene.physics.add.group({
-      dragX: Globals.monsters.dragX,
-      angularDrag: 200,
       allowGravity: false,
     });
   }
@@ -28,6 +26,6 @@ export class ProjectileController {
   }
 
   fireBullet(x: number, y: number, velocity: Phaser.Math.Vector2, texture: TextureKey) {
-    this.builder.reset().texture(texture).type(new Bullet(velocity)).spawn(x, y);
+    this.builder.reset().effect(new ThrowBackEffect()).texture(texture).type(new Bullet(velocity)).spawn(x, y);
   }
 }

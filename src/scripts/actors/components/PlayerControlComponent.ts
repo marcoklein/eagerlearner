@@ -1,5 +1,5 @@
 import { Hero } from '../Hero';
-import { Globals } from '../../Globals';
+import { GlobalConfig } from '../../Globals';
 
 export type ControlNames = 'left' | 'right';
 
@@ -60,26 +60,30 @@ export class PlayerControlComponent {
 
   update(time: number, delta: number) {
     // handle input
-    // Object.keys(this.controlKeys).forEach(key => {
-    //   const val = this.controlKeys[key];
-
-    // })
-    const speed = Globals.player.speed;
+    const maxSpeed = GlobalConfig.player.speed;
+    // range where speed can be directly adjusted
+    // movement speed may be adjusted from 110 directly to -110 for example
+    const controllableSpeedRange = maxSpeed * 1.2;
     let directionVel = 0;
     if (this.controlKeys.left.isDown) {
-      directionVel -= speed;
+      directionVel -= maxSpeed;
     }
     if (this.controlKeys.right.isDown) {
-      directionVel += speed;
+      directionVel += maxSpeed;
     }
-    this.player.setVelocityX(directionVel);
+
+    const curVel = this.player.body.velocity.x;
+    if (directionVel !== 0 && Math.abs(curVel) < controllableSpeedRange) {
+      // we can set the velocity :)
+      this.player.setVelocityX(directionVel);
+    }
 
     if (directionVel !== 0) {
       this.player.flipX = directionVel < 0 ? true : false;
     }
 
     if (this.controlKeys.jump.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-Globals.player.jumpVelocity);
+      this.player.setVelocityY(-GlobalConfig.player.jumpVelocity);
     }
 
     if (this.controlKeys.primary.isDown) {
