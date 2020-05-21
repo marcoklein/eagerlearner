@@ -5,6 +5,8 @@ import { MonsterBuilder } from './MonsterBuilder';
 import { Gun } from '../actors/wearables/Gun';
 import { DumbShootLogic } from '../actors/ai/DumbShootLogic';
 import { LookToPlayerLogic } from '../actors/ai/LookToPlayerLogic';
+import { Punch } from '../actors/wearables/Punch';
+import { FollowPlayerLogic } from '../actors/ai/GoToPlayer';
 
 export class MonsterSpawner {
   scene: GameScene;
@@ -39,6 +41,17 @@ export class MonsterSpawner {
       .logic(new LookToPlayerLogic())
       .logic(new DumbShootLogic())
       .equip(new Gun({ key: 'weapon.gun' }))
+      .spawn(x, y);
+  }
+
+  spawnPunchingMonster(x: number, y: number) {
+    this.builder
+      .reset()
+      .texture({ key: 'monster.5' })
+      .logic(new LookToPlayerLogic())
+      .logic(new FollowPlayerLogic())
+      // .logic(new DumbShootLogic())
+      // .equip(new Punch())
       .spawn(x, y);
   }
 }

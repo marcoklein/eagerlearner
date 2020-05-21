@@ -5,7 +5,7 @@ import { GlobalConfig } from '../../Globals';
 /**
  * Follows player, always moving to his position.
  */
-export class GoToPlayer extends MonsterLogic {
+export class FollowPlayerLogic extends MonsterLogic {
   onAttach(monster: Monster) {}
   onDetach(monster: Monster) {}
 
