@@ -2,7 +2,9 @@ import { Monster } from '../actors/Monster';
 import { GameScene } from '../scenes/GameScene';
 import { Globals } from '../Globals';
 import { MonsterBuilder } from './MonsterBuilder';
-import { Gun } from '../actors/components/Gun';
+import { Gun } from '../actors/wearables/Gun';
+import { DumbShootLogic } from '../actors/ai/DumbShootLogic';
+import { LookToPlayerLogic } from '../actors/ai/LookToPlayerLogic';
 
 export class MonsterSpawner {
   scene: GameScene;
@@ -31,12 +33,12 @@ export class MonsterSpawner {
   }
 
   spawnWeakMonster(x: number, y: number) {
-    this.builder.reset()
-     .texture({key: 'monster.1'})
-      .equip(new Gun({key: 'weapon.gun'}))
+    this.builder
+      .reset()
+      .texture({ key: 'monster.1' })
+      .logic(new LookToPlayerLogic())
+      .logic(new DumbShootLogic())
+      .equip(new Gun({ key: 'weapon.gun' }))
       .spawn(x, y);
-
   }
-
-
 }

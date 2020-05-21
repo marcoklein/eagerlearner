@@ -83,7 +83,7 @@ export class PlayerControlComponent {
     }
 
     if (this.controlKeys.primary.isDown) {
-      this.player.hands.hit();
+      this.player.hands.action();
     }
   }
 }

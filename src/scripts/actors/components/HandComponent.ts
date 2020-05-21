@@ -1,6 +1,6 @@
 import { TextureKey } from '../../Globals';
-import { Wearable } from './Wearable';
-import { Punch } from './Punch';
+import { Wearable } from '../wearables/Wearable';
+import { Punch } from '../wearables/Punch';
 import { GameScene } from '../../scenes/GameScene';
 
 /**
@@ -63,7 +63,7 @@ export class HandComponent {
     this.rightHand.y = this.body.y + positions.right.y;
   }
 
-  hit() {
+  action() {
     this.wearable.useAction();
   }
 }

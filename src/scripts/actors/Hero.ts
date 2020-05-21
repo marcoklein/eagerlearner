@@ -2,8 +2,9 @@ import { DestroyOnFallDownComponent } from './components/DestroyOnFallDownCompon
 import { HandComponent } from './components/HandComponent';
 import { PlayerControlComponent } from './components/PlayerControlComponent';
 import { GameScene } from '../scenes/GameScene';
+import { Actor } from './Actor';
 
-export class Hero extends Phaser.Physics.Arcade.Sprite {
+export class Hero extends Actor {
   scene: GameScene;
   hands: HandComponent;
   control: PlayerControlComponent;

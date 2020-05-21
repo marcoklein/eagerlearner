@@ -2,13 +2,17 @@ import { Hero } from '../actors/Hero';
 import FpsText from '../objects/fpsText';
 import { MonsterSpawner } from '../world/MonsterSpawner';
 import { PlatformController } from '../world/PlatformController';
-import { Gun } from '../actors/components/Gun';
+import { Gun } from '../actors/wearables/Gun';
+import { ProjectileController } from '../world/ProjectileController';
+import { CollisionController } from '../world/CollisionController';
 
 export class GameScene extends Phaser.Scene {
   fpsText: Phaser.GameObjects.Text;
   hero: Hero;
   spawner: MonsterSpawner;
   platforms: PlatformController;
+  projectiles: ProjectileController;
+  collisions: CollisionController;
 
   spawnedMonsters: number = 0;
 
@@ -33,18 +37,21 @@ export class GameScene extends Phaser.Scene {
     this.platforms = new PlatformController(this);
     this.platforms.createPlatform(this.cameras.main.width / 2, 500);
 
+
     const monsterSpawner = new MonsterSpawner(this);
     monsterSpawner.spawnWeakMonster(500, 0);
     this.spawner = monsterSpawner;
+    
+    this.projectiles = new ProjectileController(this);
 
-    this.physics.add.collider(this.hero, this.platforms.group);
-    this.physics.add.collider(monsterSpawner.group, this.platforms.group);
-    this.physics.add.collider(monsterSpawner.group, this.hero);
+    this.collisions = new CollisionController(this);
+
+    
   }
 
   update(time: number, delta: number) {
     this.fpsText.update(time, delta);
-    if (time > this.spawnedMonsters * 2000) {
+    if (time > this.spawnedMonsters * 10000) {
       this.spawnedMonsters++;
       this.spawner.spawnWeakMonster(Phaser.Math.Between(300, 900), 0);
     }

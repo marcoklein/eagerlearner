@@ -1,46 +1,47 @@
-import { Monster } from '../Monster';
-import { Globals } from '../../Globals';
+import { MonsterLogic } from "./MonsterLogic";
+import { Monster } from "../Monster";
+import { Globals } from "../../Globals";
 
-export class MonsterLogic {
-  monster: Monster;
+/**
+ * Follows player, always moving to his position.
+ */
+export class GoToPlayer extends MonsterLogic {
 
-  constructor(monster: Monster) {
-    this.monster = monster;
+
+  onAttach(monster: Monster) {
+
   }
+  onDetach(monster: Monster) {
 
-  update(time: number, delta: number) {
-    const player = this.monster.scene.hero;
+  }
+  
+  update(monster: Monster, time: number, delta: number) {
+    const player = monster.scene.hero;
 
     // move into player direction
-    this.monster.flipX = player.x < this.monster.x;
-    const isFlipped = this.monster.flipX;
+    monster.flipX = player.x < monster.x;
+    const isFlipped = monster.flipX;
 
     // move
     const maxSpeed = Globals.monsters.speed;
     // range where speed can be directly adjusted
     // movement speed may be adjusted from 110 directly to -110 for example
     const controllableSpeedRange = maxSpeed * 1.2;
-    const curVel = this.monster.body.velocity.x;
+    const curVel = monster.body.velocity.x;
     if (Math.abs(curVel) < controllableSpeedRange) {
       // we can set the velocity :)
       const moveVel = isFlipped ? -maxSpeed : maxSpeed;
-      this.monster.setVelocityX(moveVel);
+      monster.setVelocityX(moveVel);
     }
 
     // "stand up"
     // if negative angle rotate to left
     // if positive angle rotate to right
     let rotVel = 1;
-    const curAngle = this.monster.angle;
+    const curAngle = monster.angle;
     // const controllableAngleSpeedRange;
     if (curAngle < 0) rotVel = -rotVel;
     // this.monstear.body.setAngularVelocity(PhaserUtils.setValueWithMax(rotVel, this.monster.body.angularVelocity));
     // console.log(this.monster.body.angularVelocity, curAngle);
-  }
-}
-
-export class PhaserUtils {
-  static setValueWithMax(val: number, cur: number) {
-    return val > 0 ? Math.min(val, cur) : Math.max(val, cur);
   }
 }

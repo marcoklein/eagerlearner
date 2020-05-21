@@ -1,4 +1,4 @@
-import { HandComponent } from './HandComponent';
+import { HandComponent } from '../components/HandComponent';
 
 export interface HandPositions {
   left: { x: number; y: number };
