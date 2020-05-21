@@ -9,9 +9,5 @@ export class WearableComponent {
     this.actor = actor;
   }
 
-  use() {
-    
-  }
-
-
+  use() {}
 }

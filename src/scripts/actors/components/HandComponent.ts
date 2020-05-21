@@ -1,5 +1,6 @@
 import { TextureKey } from '../../Globals';
 import { Wearable } from './Wearable';
+import { Punch } from './Punch';
 
 /**
  * Controls hands.
@@ -15,26 +16,15 @@ export class HandComponent {
   /**
    * Something held in the hands.
    */
-  wearable: Wearable | undefined;
+  wearable: Wearable;
 
-  // temp vectors
-  private bodyCenter = new Phaser.Math.Vector2();
-  private rightHandCenter = new Phaser.Math.Vector2();
-
-  // action
-  hitting = false;
-  private hitTime = 0;
-  private hitDuration = 200;
-  private hitMaxX = 50;
-  /**
-   * Avoid double hits.
-   */
-  private hits: Phaser.Physics.Arcade.Body[];
+  defaultWearable = new Punch();
 
   constructor(scene: Phaser.Scene, body: Phaser.Physics.Arcade.Sprite, texture: TextureKey) {
     this.scene = scene;
     this.body = body;
     this.initHands(texture);
+    this.equip(this.defaultWearable);
   }
 
   private initHands(texture: TextureKey) {
@@ -51,92 +41,28 @@ export class HandComponent {
 
   equip(wearable: Wearable) {
     if (this.wearable) {
-      console.error('Hand has already a wearable.');
-      return;
+      // change wearable
+      this.wearable.unequip(this);
     }
     this.wearable = wearable;
-    this.wearable?.equip(this);
+    this.wearable.equip(this);
   }
 
   unequip() {
     if (this.wearable) this.wearable.unequip(this);
-    this.wearable = undefined;
+    this.equip(this.defaultWearable);
   }
 
   update(time: number, delta: number) {
-    this.updateNonEquiped(time, delta);
-    if (this.wearable) {
-      this.wearable?.update(time, delta);
-      const positions = this.wearable.calculateHandPositions(this, this.body);
-      this.leftHand.x = this.body.x + (this.body.flipX ? -positions.left.x : positions.left.x);
-      this.leftHand.y = this.body.y + positions.left.y;
-      this.rightHand.x = this.body.x + (this.body.flipX ? -positions.right.x : positions.right.x);
-      this.rightHand.y = this.body.y + positions.right.y;
-    }
-  }
-
-  private updateNonEquiped(time: number, delta: number) {
-    this.body.getCenter(this.bodyCenter);
-    if (this.hitting) {
-      // update hit
-      this.hitTime += delta;
-
-      // check for collision/hit
-      // avoid hitting while our hand is moving back
-      if (this.hitTime < this.hitDuration / 2) {
-        this.rightHand.getCenter(this.rightHandCenter);
-        const hits = <Phaser.Physics.Arcade.Body[]>(
-          this.scene.physics.overlapCirc(
-            this.rightHandCenter.x,
-            this.rightHandCenter.y,
-            this.leftHand.width / 2,
-            true,
-            false
-          )
-        );
-        hits.forEach((body) => {
-          if (body === this.body.body) return; // own body
-          if (this.hits.indexOf(body) !== -1) return; // already hit
-          this.hits.push(body);
-          let vel = 300;
-          body.velocity.x += this.body.flipX ? -vel : vel;
-          body.velocity.y += -vel * 0.1;
-          // body.angularVelocity += this.body.flipX ? -45 : 45;
-        });
-      }
-      if (this.hitTime > this.hitDuration) {
-        this.hitTime = 0;
-        this.hitting = false;
-      }
-    }
-
-    // move left hand
-    let leftHandX = this.body.width / 3.5 + this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration);
-    if (this.body.flipX) leftHandX *= -1;
-    this.leftHand.setPosition(this.bodyCenter.x + leftHandX, this.bodyCenter.y + 1);
-
-    // move right hand
-    let rightHandX =
-      this.body.width / 1.8 + this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration);
-    if (this.body.flipX) rightHandX *= -1;
-    this.rightHand.setPosition(this.bodyCenter.x + rightHandX, this.bodyCenter.y - 3);
-  }
-
-  private calculateHitHandPosition(time: number, maxX: number, duration: number) {
-    const turnTime = duration / 2;
-    const opening = -maxX / (turnTime * turnTime);
-    const inner = time - turnTime;
-    return opening * (inner * inner) + maxX;
+    this.wearable.update(this, time, delta);
+    const positions = this.wearable.calculateHandPositions(this, this.body);
+    this.leftHand.x = this.body.x + (this.body.flipX ? -positions.left.x : positions.left.x);
+    this.leftHand.y = this.body.y + positions.left.y;
+    this.rightHand.x = this.body.x + (this.body.flipX ? -positions.right.x : positions.right.x);
+    this.rightHand.y = this.body.y + positions.right.y;
   }
 
   hit() {
-    if (this.wearable) {
-      this.wearable.useAction();
-    } else {
-      if (!this.hitting) {
-        this.hitting = true;
-        this.hits = [];
-      }
-    }
+    this.wearable.useAction();
   }
 }

@@ -27,8 +27,7 @@ export class GameScene extends Phaser.Scene {
       .setOrigin(1, 0);
 
     this.hero = new Hero(this, this.cameras.main.width / 2, 0);
-    this.hero.hands.equip(new Gun({key: 'weapon.gun'}));
-
+    this.hero.hands.equip(new Gun({ key: 'weapon.gun' }));
 
     const platforms = new PlatformController(this);
     platforms.createPlatform(this.cameras.main.width / 2, 500);

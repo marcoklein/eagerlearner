@@ -1,23 +1,19 @@
-import { Wearable, HandPositions } from "./Wearable";
-import { HandComponent } from "./HandComponent";
-import { TextureKey } from "../../Globals";
-
+import { Wearable, HandPositions } from './Wearable';
+import { HandComponent } from './HandComponent';
+import { TextureKey } from '../../Globals';
 
 /**
  * Shoots stuff.
  */
 export class Gun extends Wearable {
-
   gunSprite: Phaser.GameObjects.Sprite;
   texture: TextureKey;
-
 
   constructor(texture: TextureKey) {
     super();
     this.texture = texture;
   }
 
-  
   onEquip(hands: HandComponent): void {
     const bodyCenter = hands.body.getCenter();
     this.gunSprite = hands.scene.add.sprite(bodyCenter.x, bodyCenter.y, this.texture.key, this.texture.frame);
@@ -30,7 +26,7 @@ export class Gun extends Wearable {
     console.log('boom');
   }
 
-  update(time: number, delta: number) {
+  update(hands: HandComponent, time: number, delta: number) {
     if (!this.hands) return;
     const body = this.hands.body;
     const bodyCenter = this.hands.body.getCenter();
@@ -39,7 +35,7 @@ export class Gun extends Wearable {
     this.gunSprite.x = bodyCenter.x + (body.flipX ? -gunX : gunX);
     this.gunSprite.y = bodyCenter.y + gunY;
   }
-  
+
   calculateHandPositions(hands: HandComponent, body: Phaser.Physics.Arcade.Sprite): HandPositions {
     return {
       left: {
@@ -49,9 +45,7 @@ export class Gun extends Wearable {
       right: {
         x: 14,
         y: 14,
-      }
+      },
     };
   }
-
-  
 }
