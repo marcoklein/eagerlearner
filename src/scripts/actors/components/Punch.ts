@@ -36,10 +36,8 @@ export class Punch extends Wearable {
       // avoid hitting while our hand is moving back
       if (this.hitTime < this.hitDuration / 2) {
         rightHand.getCenter(this.rightHandCenter);
-        const hits = <Phaser.Physics.Arcade.Body[]>(
-          // TODO just check with a rectangle if we hit something
-          scene.physics.overlapCirc(this.rightHandCenter.x, this.rightHandCenter.y, leftHand.width / 2, true, false)
-        );
+        const hits = <Phaser.Physics.Arcade.Body[]>// TODO just check with a rectangle if we hit something
+        scene.physics.overlapCirc(this.rightHandCenter.x, this.rightHandCenter.y, leftHand.width / 2, true, false);
         hits.forEach((body) => {
           if (body === hands.body.body) return; // own body
           if (this.hits.indexOf(body) !== -1) return; // already hit

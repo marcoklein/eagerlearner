@@ -34,7 +34,7 @@ export class GameScene extends Phaser.Scene {
     this.platforms.createPlatform(this.cameras.main.width / 2, 500);
 
     const monsterSpawner = new MonsterSpawner(this);
-    monsterSpawner.spawnMonster(500, 0);
+    monsterSpawner.spawnWeakMonster(500, 0);
     this.spawner = monsterSpawner;
 
     this.physics.add.collider(this.hero, this.platforms.group);
@@ -46,7 +46,7 @@ export class GameScene extends Phaser.Scene {
     this.fpsText.update(time, delta);
     if (time > this.spawnedMonsters * 2000) {
       this.spawnedMonsters++;
-      this.spawner.spawnMonster(Phaser.Math.Between(300, 900), 0);
+      this.spawner.spawnWeakMonster(Phaser.Math.Between(300, 900), 0);
     }
   }
 }

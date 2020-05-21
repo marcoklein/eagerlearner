@@ -1,12 +1,11 @@
-import { GameScene } from "../../scenes/GameScene";
-import { TextureKey } from "../../Globals";
-import { Monster } from "../Monster";
+import { GameScene } from '../../scenes/GameScene';
+import { TextureKey } from '../../Globals';
+import { Monster } from '../Monster';
 
 /**
  * Something that flys and has an effect on collision.
  */
 export class Bullet extends Phaser.Physics.Arcade.Sprite {
-
   constructor(scene: GameScene, x: number, y: number, velocity: Phaser.Math.Vector2, texture: TextureKey) {
     super(scene, x, y, texture.key, texture.frame);
 
@@ -20,14 +19,11 @@ export class Bullet extends Phaser.Physics.Arcade.Sprite {
 
     scene.physics.add.overlap(this, scene.platforms.group, () => {
       // collided with wall
-
     });
     scene.physics.add.overlap(this, scene.spawner.group, (bullet, other) => {
       // collided with monster
       const physicsBody = other.body as Phaser.Physics.Arcade.Body;
       physicsBody.velocity.y += -600;
     });
-
   }
-
 }
