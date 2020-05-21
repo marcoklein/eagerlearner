@@ -1,7 +1,6 @@
-
 export interface TextureKey {
-  key: string,
-  frame?: string,
+  key: string;
+  frame?: string;
 }
 
 export class BodyComponent {
@@ -24,7 +23,5 @@ export class BodyComponent {
     return sprite;
   }
 
-  update(time: number, delta: number) {
-  }
-
+  update(time: number, delta: number) {}
 }

@@ -1,3 +1,1 @@
-export abstract class Breed {
-
-}
+export abstract class Breed {}

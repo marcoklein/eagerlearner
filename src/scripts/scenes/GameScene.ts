@@ -7,7 +7,6 @@ export class GameScene extends Phaser.Scene {
   fpsText: Phaser.GameObjects.Text;
   player: Hero;
 
-
   constructor() {
     super({ key: 'GameScene' });
   }
@@ -22,11 +21,11 @@ export class GameScene extends Phaser.Scene {
         fontSize: 24,
       })
       .setOrigin(1, 0);
-    
+
     this.player = new Hero(this, this.cameras.main.width / 2, 0);
     const platforms = new PlatformController(this);
     platforms.createPlatform(this.cameras.main.width / 2, 500);
-    
+
     const monsterSpawner = new MonsterSpawner(this);
     monsterSpawner.spawnMonster(500, 0);
 
@@ -39,6 +38,5 @@ export class GameScene extends Phaser.Scene {
   update(time: number, delta: number) {
     // this.fpsText.update(time, delta);
     // this.player.update(time, delta);
-
   }
 }

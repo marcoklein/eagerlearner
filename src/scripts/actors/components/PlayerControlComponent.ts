@@ -1,20 +1,18 @@
-import { Hero } from "../Hero";
-
+import { Hero } from '../Hero';
 
 export type ControlNames = 'left' | 'right';
 
 export interface IControlKeys {
-  left: Phaser.Input.Keyboard.Key,
-  right: Phaser.Input.Keyboard.Key,
-  jump: Phaser.Input.Keyboard.Key,
-  primary: Phaser.Input.Keyboard.Key,
-  secondary: Phaser.Input.Keyboard.Key,
-};
+  left: Phaser.Input.Keyboard.Key;
+  right: Phaser.Input.Keyboard.Key;
+  jump: Phaser.Input.Keyboard.Key;
+  primary: Phaser.Input.Keyboard.Key;
+  secondary: Phaser.Input.Keyboard.Key;
+}
 
 export type ControlActionsType = {
   [P in keyof IControlKeys]: () => void;
 };
-
 
 /**
  * Controls a player.
@@ -75,7 +73,10 @@ export class PlayerControlComponent {
     }
     this.player.setVelocityX(directionVel);
 
-    
+    if (directionVel !== 0) {
+      this.player.flipX = directionVel < 0 ? true : false;
+    }
+
     if (this.controlKeys.jump.isDown && this.player.body.touching.down) {
       this.player.setVelocityY(-330);
     }

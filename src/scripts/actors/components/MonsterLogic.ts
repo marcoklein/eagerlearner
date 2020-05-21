@@ -1,3 +1,1 @@
-export class MonsterLogic {
-  
-}
+export class MonsterLogic {}

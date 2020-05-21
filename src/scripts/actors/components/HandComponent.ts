@@ -1,11 +1,11 @@
-import { BodyComponent, TextureKey } from "./BodyComponent";
+import { BodyComponent, TextureKey } from './BodyComponent';
 
 /**
  * Controls hands.
  */
 export class HandComponent {
   scene: Phaser.Scene;
-  
+
   leftHand: Phaser.GameObjects.Sprite;
   rightHand: Phaser.GameObjects.Sprite;
 
@@ -54,27 +54,37 @@ export class HandComponent {
       // avoid hitting while our hand is moving back
       if (this.hitTime < this.hitDuration / 2) {
         this.rightHand.getCenter(this.rightHandCenter);
-        const hits = <Phaser.Physics.Arcade.Body[]> this.scene.physics.overlapCirc(this.rightHandCenter.x, this.rightHandCenter.y, this.leftHand.width / 2, true, false);
-        hits.forEach(body => {
+        const hits = <Phaser.Physics.Arcade.Body[]>(
+          this.scene.physics.overlapCirc(
+            this.rightHandCenter.x,
+            this.rightHandCenter.y,
+            this.leftHand.width / 2,
+            true,
+            false
+          )
+        );
+        hits.forEach((body) => {
           if (body === this.body.body) return; // own body
           body.setVelocityX(300);
         });
       }
     }
-    
+
     // move left hand
     this.leftHand.setPosition(
-      this.bodyCenter.x - this.body.width / 4 + this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration),
+      this.bodyCenter.x -
+        this.body.width / 4 +
+        this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration),
       this.bodyCenter.y + 1
     );
 
     // move right hand
     this.rightHand.setPosition(
-      this.bodyCenter.x + this.body.width / 2 + this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration),
+      this.bodyCenter.x +
+        this.body.width / 2 +
+        this.calculateHitHandPosition(this.hitTime, this.hitMaxX, this.hitDuration),
       this.bodyCenter.y
     );
-
-    
   }
 
   private calculateHitHandPosition(time: number, maxX: number, duration: number) {
@@ -87,6 +97,4 @@ export class HandComponent {
   hit() {
     this.hitting = true;
   }
-
-
 }

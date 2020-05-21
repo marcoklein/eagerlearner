@@ -9,7 +9,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('weapon.gun', 'assets/sprites/gun.png');
     this.load.image('monster.1', 'assets/sprites/monster-1.png');
     this.load.image('monster.hand', 'assets/sprites/monster-hand.png');
-    
+
     this.load.image('world.platform', 'assets/sprites/platform.png');
   }
 

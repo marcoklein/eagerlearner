@@ -1,8 +1,6 @@
-
 export class PlatformController {
   scene: Phaser.Scene;
   group: Phaser.Physics.Arcade.StaticGroup;
-  
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;

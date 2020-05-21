@@ -1,8 +1,7 @@
-
-import { Actor } from "./Actor";
-import { BodyComponent } from "./components/BodyComponent";
-import { HandComponent } from "./components/HandComponent";
-import { PlayerControlComponent } from "./components/PlayerControlComponent";
+import { Actor } from './Actor';
+import { BodyComponent } from './components/BodyComponent';
+import { HandComponent } from './components/HandComponent';
+import { PlayerControlComponent } from './components/PlayerControlComponent';
 
 export class Hero extends Phaser.Physics.Arcade.Sprite {
   scene: Phaser.Scene;
@@ -12,9 +11,8 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'player.body');
     this.scene = scene;
-    this.hands = new HandComponent(this.scene, this, {key: 'player.hand'});
+    this.hands = new HandComponent(this.scene, this, { key: 'player.hand' });
     this.control = new PlayerControlComponent(this.scene, this);
-
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -26,6 +24,4 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
     this.hands.update(time, delta);
     this.control.update(time, delta);
   }
-
-
 }
