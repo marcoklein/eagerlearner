@@ -1,4 +1,5 @@
 import { TextureKey } from '../../Globals';
+import { Wearable } from './Wearable';
 
 /**
  * Controls hands.
@@ -10,6 +11,11 @@ export class HandComponent {
   rightHand: Phaser.GameObjects.Sprite;
 
   body: Phaser.Physics.Arcade.Sprite;
+
+  /**
+   * Something held in the hands.
+   */
+  wearable: Wearable | undefined;
 
   // temp vectors
   private bodyCenter = new Phaser.Math.Vector2();
@@ -43,9 +49,34 @@ export class HandComponent {
     return sprite;
   }
 
-  update(time: number, delta: number) {
-    this.body.getCenter(this.bodyCenter);
+  equip(wearable: Wearable) {
+    if (this.wearable) {
+      console.error('Hand has already a wearable.');
+      return;
+    }
+    this.wearable = wearable;
+    this.wearable?.equip(this);
+  }
 
+  unequip() {
+    if (this.wearable) this.wearable.unequip(this);
+    this.wearable = undefined;
+  }
+
+  update(time: number, delta: number) {
+    this.updateNonEquiped(time, delta);
+    if (this.wearable) {
+      this.wearable?.update(time, delta);
+      const positions = this.wearable.calculateHandPositions(this, this.body);
+      this.leftHand.x = this.body.x + (this.body.flipX ? -positions.left.x : positions.left.x);
+      this.leftHand.y = this.body.y + positions.left.y;
+      this.rightHand.x = this.body.x + (this.body.flipX ? -positions.right.x : positions.right.x);
+      this.rightHand.y = this.body.y + positions.right.y;
+    }
+  }
+
+  private updateNonEquiped(time: number, delta: number) {
+    this.body.getCenter(this.bodyCenter);
     if (this.hitting) {
       // update hit
       this.hitTime += delta;
@@ -99,9 +130,13 @@ export class HandComponent {
   }
 
   hit() {
-    if (!this.hitting) {
-      this.hitting = true;
-      this.hits = [];
+    if (this.wearable) {
+      this.wearable.useAction();
+    } else {
+      if (!this.hitting) {
+        this.hitting = true;
+        this.hits = [];
+      }
     }
   }
 }

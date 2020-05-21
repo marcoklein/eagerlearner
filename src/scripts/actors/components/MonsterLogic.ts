@@ -9,7 +9,7 @@ export class MonsterLogic {
   }
 
   update(time: number, delta: number) {
-    const player = this.monster.scene.player;
+    const player = this.monster.scene.hero;
 
     // move into player direction
     this.monster.flipX = player.x < this.monster.x;
