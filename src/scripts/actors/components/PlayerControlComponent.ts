@@ -1,4 +1,5 @@
-import Player from "./Player";
+import { Hero } from "../Hero";
+
 
 export type ControlNames = 'left' | 'right';
 
@@ -18,15 +19,15 @@ export type ControlActionsType = {
 /**
  * Controls a player.
  */
-export default class PlayerControlComponent {
+export class PlayerControlComponent {
   scene: Phaser.Scene;
-  player: Player;
+  player: Hero;
 
   controlKeys: IControlKeys;
 
   actions: ControlActionsType;
 
-  constructor(scene: Phaser.Scene, player: Player) {
+  constructor(scene: Phaser.Scene, player: Hero) {
     this.scene = scene;
     this.player = player;
     this.initKeyboard();
@@ -72,11 +73,11 @@ export default class PlayerControlComponent {
     if (this.controlKeys.right.isDown) {
       directionVel += 160;
     }
-    this.player.body.sprite.setVelocityX(directionVel);
+    this.player.setVelocityX(directionVel);
 
     
-    if (this.controlKeys.jump.isDown && !this.player.body.sprite.body.touching.down) {
-      this.player.body.sprite.setVelocityY(-330);
+    if (this.controlKeys.jump.isDown && this.player.body.touching.down) {
+      this.player.setVelocityY(-330);
     }
 
     if (this.controlKeys.primary.isDown) {

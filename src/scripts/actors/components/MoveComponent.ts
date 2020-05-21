@@ -1,21 +1,21 @@
-import Player from "./BodyComponent";
+import { BodyComponent } from "./BodyComponent";
 
 /**
  * Performs actions on a body like moving or jumping.
  */
-export default class MoveComponent {
+export class MoveComponent {
   scene: Phaser.Scene;
   
   leftHand: Phaser.Physics.Arcade.Sprite;
   rightHand: Phaser.Physics.Arcade.Sprite;
 
-  body: Player;
+  body: BodyComponent;
 
   // temp vectors
   private tempVec = new Phaser.Math.Vector2();
   private tempVec2 = new Phaser.Math.Vector2();
 
-  constructor(scene: Phaser.Scene, body: Player) {
+  constructor(scene: Phaser.Scene, body: BodyComponent) {
     this.scene = scene;
     this.body = body;
     this.initHands();
