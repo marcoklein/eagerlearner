@@ -18,4 +18,6 @@ export class Bullet extends ProjectileType {
     projectile.setVelocity(this.velocity.x, this.velocity.y);
     projectile.setGravityY(-projectile.scene.physics.world.gravity.y); // shoot straight
   }
+
+  onDestroy(projectile: Projectile): void {}
 }

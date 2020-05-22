@@ -1,7 +1,7 @@
-import { Actor } from '../Actor';
-import { Hero } from '../Hero';
-import { Monster } from '../Monster';
-import { Projectile } from './Projectile';
+import { Actor } from '../../Actor';
+import { Hero } from '../../Hero';
+import { Monster } from '../../Monster';
+import { Projectile } from '../Projectile';
 import { ProjectileEffect, EffectStatus } from './ProjectileEffect';
 
 export class ThrowBackEffect extends ProjectileEffect {

@@ -30,7 +30,7 @@ export class LevelController {
   learningRoomGenerator = new LearningRoomGenerator();
   actionLevelGenerator = new ActionLevelGenerator();
 
-  gameIsActionLevel = false;
+  gameIsActionLevel = true;
 
   constructor(scene: GameScene) {
     this.scene = scene;
@@ -45,9 +45,13 @@ export class LevelController {
     this.projectiles = new ProjectileController(this.scene);
     this.collisions = new CollisionController(this.scene);
 
-    this.scene.cameras.main.startFollow(this.hero);
+    this.setCameraOffset(0, this.hero.height / 2);
 
     this.createNextLevel();
+  }
+
+  setCameraOffset(x: number, y: number) {
+    this.scene.cameras.main.startFollow(this.hero, false, 1, 1, x, y);
   }
 
   /**

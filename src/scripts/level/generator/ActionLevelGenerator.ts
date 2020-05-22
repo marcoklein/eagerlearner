@@ -14,7 +14,7 @@ export class ActionLevelGenerator extends LevelGenerator {
     // player start position
     level.hero.x = 0;
     level.hero.y = 0;
-    level.hero.hands.equip(new Gun({ key: 'weapon.gun' }));
+    // level.hero.hands.equip(new Gun({ key: 'weapon.gun' }));
     // add platforms
     level.platforms.createPlatform(0, 100, 100);
     level.platforms.createPlatform(120, 140, 200);
@@ -35,6 +35,8 @@ export class ActionLevelGenerator extends LevelGenerator {
       .spawn(1100, 100)
       .spawn(1150, 100);
     level.platforms.createPlatform(1000, 180, 500);
+
+    level.setCameraOffset(0, level.hero.height / 2);
 
     level.addDoor(1200, 180);
   }

@@ -1,6 +1,6 @@
 import { TextureKey, GlobalConfig } from '../../Globals';
 import { GameScene } from '../../scenes/GameScene';
-import { ProjectileEffect, EffectStatus } from './ProjectileEffect';
+import { ProjectileEffect, EffectStatus } from './effects/ProjectileEffect';
 import { ProjectileType } from './ProjectileType';
 import { Hero } from '../Hero';
 import { Monster } from '../Monster';
@@ -75,5 +75,10 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
     if (destroy || !this.effects.length) {
       this.destroy();
     }
+  }
+
+  destroy() {
+    this.projectileType.onDestroy(this);
+    super.destroy();
   }
 }

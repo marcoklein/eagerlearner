@@ -9,7 +9,7 @@ export class PlatformController {
 
   createPlatform(x: number, y: number, width?: number, height?: number) {
     const platform = this.scene.physics.add.staticSprite(x, y, 'world.platform');
-    platform.setOrigin(0, 0);
+    platform.setOrigin(0.5, 0);
     if (width) platform.displayWidth = width;
     if (height) platform.displayHeight = height;
     platform.refreshBody();

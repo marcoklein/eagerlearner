@@ -1,7 +1,7 @@
 import { Bullet } from './Bullet';
 import { Projectile } from './Projectile';
 import { ProjectileBuilder } from './ProjectileBuilder';
-import { ThrowBackEffect } from './ThrowBackEffect';
+import { ThrowBackEffect } from './effects/ThrowBackEffect';
 import { GlobalConfig, TextureKey } from '../../Globals';
 import { GameScene } from '../../scenes/GameScene';
 

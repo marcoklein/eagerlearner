@@ -1,9 +1,8 @@
-import { GameScene } from '../../scenes/GameScene';
-import { ProjectileController } from './ProjectileController';
+import { GlobalConfig, TextureKey } from '../../Globals';
 import { Projectile } from './Projectile';
-import { TextureKey, GlobalConfig } from '../../Globals';
+import { ProjectileController } from './ProjectileController';
+import { ProjectileEffect } from './effects/ProjectileEffect';
 import { ProjectileType } from './ProjectileType';
-import { ProjectileEffect } from './ProjectileEffect';
 
 export class ProjectileBuilder {
   readonly controller: ProjectileController;
@@ -47,10 +46,10 @@ export class ProjectileBuilder {
   spawn(x: number, y: number) {
     if (!this._texture) throw new Error('Texture needed');
     if (!this._type) throw new Error('Type needed');
-    const projectile = new Projectile(this.controller.scene, x, y, this._texture, this._type);
+    const projectile = new Projectile(this.controller.scene, x, y, this._texture, Object.create(this._type));
     projectile.lifetime = this._lifetime;
-    this.effects.forEach((effect) => projectile.addEffect(effect));
+    this.effects.forEach((effect) => projectile.addEffect(Object.create(effect)));
     this.controller.addProjectile(projectile);
-    return this;
+    return projectile;
   }
 }

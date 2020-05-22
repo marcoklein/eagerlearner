@@ -1,5 +1,6 @@
 import { Projectile } from './Projectile';
 
-export class ProjectileType {
-  setupPhysicalAttributes(projectile: Projectile) {}
+export abstract class ProjectileType {
+  abstract setupPhysicalAttributes(projectile: Projectile): void;
+  abstract onDestroy(projectile: Projectile): void;
 }
