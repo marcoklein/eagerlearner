@@ -23,6 +23,7 @@ export class GameScene extends Phaser.Scene {
 
     this.level = new LevelController(this);
     this.level.init();
+    this.level.createNextLevel();
   }
 
   update(time: number, delta: number) {

@@ -34,4 +34,9 @@ export class Monster extends Actor {
     this.controls.forEach((control) => control.update(this, time, delta));
     this.fallDownDestroy.update(time, delta);
   }
+
+  destroy() {
+    super.destroy();
+    this.hands.destroy();
+  }
 }

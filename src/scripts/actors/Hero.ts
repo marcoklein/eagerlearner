@@ -32,4 +32,9 @@ export class Hero extends Actor {
     this.control.update(time, delta);
     this.fallDownDestroy.update(time, delta);
   }
+
+  destroy() {
+    super.destroy();
+    this.hands.destroy();
+  }
 }

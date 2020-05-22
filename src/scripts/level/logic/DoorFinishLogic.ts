@@ -33,9 +33,9 @@ export class DoorFinishLogic extends LevelLogic {
   }
 
   update(level: LevelController, time: number, delta: number) {
-    this.door.getBounds(this.doorBounds);
-    level.hero.getBounds(this.playerBounds);
-    this.doorBounds.width * 0.5; // make door smaller so player has to walk into it
+    this.doorBounds.setTo(this.door.x, this.door.y, this.door.width * 0.5, this.door.height * 0.5);
+    this.playerBounds.setTo(level.hero.x, level.hero.y, level.hero.width * 0.5, level.hero.height * 0.5);
+    // make door smaller so player has to walk into it
     if (Phaser.Geom.Intersects.RectangleToRectangle(this.doorBounds, this.playerBounds)) {
       // level finished
       // TODO we may check if the door is closed - feature for later :)

@@ -48,11 +48,13 @@ export class LevelController {
    */
   newLevel() {
     if (!this.initialized) throw Error('Not initialized.');
-    this.platforms.group.children.each((child) => child.destroy());
     this.spawner.group.children.each((child) => child.destroy());
     this.projectiles.group.children.each((child) => child.destroy());
     this.clearLogics();
-    this.createNextLevel();
+    setTimeout(() => {
+      this.platforms.group.children.each((child) => child.destroy());
+      this.createNextLevel();
+    }, 3000);
   }
 
   createNextLevel() {

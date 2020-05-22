@@ -66,4 +66,10 @@ export class HandComponent {
   action() {
     this.wearable.useAction();
   }
+
+  destroy() {
+    this.wearable.unequip(this);
+    this.leftHand.destroy();
+    this.rightHand.destroy();
+  }
 }
