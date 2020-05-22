@@ -1,3 +1,5 @@
+import { GameScene } from './GameScene';
+
 export class PreloadScene extends Phaser.Scene {
   constructor() {
     super({ key: 'PreloadScene' });
@@ -17,7 +19,7 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('GameScene');
+    this.scene.add('GameScene', GameScene, true);
 
     /**
      * This is how you would dynamically import the mainScene class (with code splitting),

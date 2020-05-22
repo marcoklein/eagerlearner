@@ -1,17 +1,16 @@
-import FpsText from '../objects/fpsText';
 import { LevelController } from '../level/LevelController';
-import { HudScene } from './HudScene';
+import FpsText from '../objects/fpsText';
 
-export class GameScene extends Phaser.Scene {
+export class LearningScene extends Phaser.Scene {
+  fpsText: Phaser.GameObjects.Text;
   level: LevelController;
 
   constructor() {
-    super({ key: 'GameScene' });
+    super({ key: 'LearningScene' });
   }
 
   create() {
-    // show hud scene
-    this.scene.add('HudScene', HudScene, true);
+    this.fpsText = new FpsText(this);
 
     // display the Phaser.VERSION
     this.add
@@ -27,6 +26,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   update(time: number, delta: number) {
+    this.fpsText.update(time, delta);
     this.level.update(time, delta);
   }
 }
