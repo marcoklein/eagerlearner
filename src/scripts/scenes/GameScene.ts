@@ -22,8 +22,7 @@ export class GameScene extends Phaser.Scene {
       .setOrigin(1, 0);
 
     this.level = new LevelController(this);
-    // this.level.init();
-    this.level.createLevel1();
+    this.level.init();
   }
 
   update(time: number, delta: number) {

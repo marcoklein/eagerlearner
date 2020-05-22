@@ -1,5 +1,5 @@
 import { LevelLogic } from './LevelLogic';
-import { LevelController } from './LevelController';
+import { LevelController } from '../LevelController';
 
 export class SimpleSpawner extends LevelLogic {
   spawnedMonsters: number = 0;
@@ -7,6 +7,8 @@ export class SimpleSpawner extends LevelLogic {
   onAttach(level: LevelController) {
     this.spawnedMonsters = 0;
   }
+
+  onDetach(level: LevelController): void {}
 
   update(level: LevelController, time: number, delta: number) {
     if (time > this.spawnedMonsters * 10000) {
