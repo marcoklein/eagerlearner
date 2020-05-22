@@ -1,5 +1,5 @@
 import { GameScene } from '../../scenes/GameScene';
-import { ProjectileController } from '../../world/ProjectileController';
+import { ProjectileController } from './ProjectileController';
 import { Projectile } from './Projectile';
 import { TextureKey, GlobalConfig } from '../../Globals';
 import { ProjectileType } from './ProjectileType';

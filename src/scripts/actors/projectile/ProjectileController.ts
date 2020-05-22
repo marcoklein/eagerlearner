@@ -1,9 +1,9 @@
-import { Bullet } from '../actors/projectile/Bullet';
-import { Projectile } from '../actors/projectile/Projectile';
-import { ProjectileBuilder } from '../actors/projectile/ProjectileBuilder';
-import { ThrowBackEffect } from '../actors/projectile/ThrowBackEffect';
-import { GlobalConfig, TextureKey } from '../Globals';
-import { GameScene } from '../scenes/GameScene';
+import { Bullet } from './Bullet';
+import { Projectile } from './Projectile';
+import { ProjectileBuilder } from './ProjectileBuilder';
+import { ThrowBackEffect } from './ThrowBackEffect';
+import { GlobalConfig, TextureKey } from '../../Globals';
+import { GameScene } from '../../scenes/GameScene';
 
 /**
  * Manages everything that generally flys around in the world and has some effect on actors.

@@ -1,17 +1,17 @@
-import { DumbShootLogic } from '../actors/ai/DumbShootLogic';
-import { FollowPlayerLogic } from '../actors/ai/GoToPlayer';
-import { LookToPlayerLogic } from '../actors/ai/LookToPlayerLogic';
-import { Monster } from '../actors/Monster';
-import { Gun } from '../actors/wearables/Gun';
-import { GlobalConfig } from '../Globals';
-import { GameScene } from '../scenes/GameScene';
-import { MonsterBuilder } from './MonsterBuilder';
+import { DumbShootLogic } from './ai/DumbShootLogic';
+import { FollowPlayerLogic } from './ai/GoToPlayer';
+import { LookToPlayerLogic } from './ai/LookToPlayerLogic';
+import { Monster } from '../Monster';
+import { Gun } from '../wearables/Gun';
+import { GlobalConfig } from '../../Globals';
+import { GameScene } from '../../scenes/GameScene';
+import { MonsterSpawner } from './MonsterSpawner';
 
-export class MonsterSpawner {
+export class MonsterController {
   scene: GameScene;
   group: Phaser.Physics.Arcade.Group;
 
-  builder = new MonsterBuilder(this);
+  builder = new MonsterSpawner(this);
 
   constructor(scene: GameScene) {
     this.scene = scene;
@@ -34,7 +34,7 @@ export class MonsterSpawner {
   }
 
   spawnWeakMonster(x: number, y: number) {
-    this.builder
+    return this.builder
       .reset()
       .texture({ key: 'monster.1' })
       .logic(new LookToPlayerLogic())
@@ -44,13 +44,15 @@ export class MonsterSpawner {
   }
 
   spawnPunchingMonster(x: number, y: number) {
-    this.builder
-      .reset()
-      .texture({ key: 'monster.5' })
-      .logic(new LookToPlayerLogic())
-      .logic(new FollowPlayerLogic())
-      // .logic(new DumbShootLogic())
-      // .equip(new Punch())
-      .spawn(x, y);
+    return (
+      this.builder
+        .reset()
+        .texture({ key: 'monster.5' })
+        .logic(new LookToPlayerLogic())
+        .logic(new FollowPlayerLogic())
+        // .logic(new DumbShootLogic())
+        // .equip(new Punch())
+        .spawn(x, y)
+    );
   }
 }

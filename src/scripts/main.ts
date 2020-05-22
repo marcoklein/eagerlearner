@@ -1,5 +1,5 @@
 import 'phaser';
-import PreloadScene from './scenes/preloadScene';
+import { PreloadScene } from './scenes/PreloadScene';
 import { GameScene } from './scenes/GameScene';
 
 const DEFAULT_WIDTH = 1280;
@@ -20,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
     default: 'arcade',
     arcade: {
       debug: false,
-      gravity: { y: 400 },
+      gravity: { y: 981 },
     },
   },
 };

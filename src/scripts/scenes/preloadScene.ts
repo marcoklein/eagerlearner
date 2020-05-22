@@ -1,4 +1,4 @@
-export default class PreloadScene extends Phaser.Scene {
+export class PreloadScene extends Phaser.Scene {
   constructor() {
     super({ key: 'PreloadScene' });
   }
@@ -12,6 +12,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('monster.5', 'assets/sprites/monster-5.png');
     this.load.image('monster.hand', 'assets/sprites/monster-hand.png');
 
+    this.load.image('world.door', 'assets/sprites/door.png');
     this.load.image('world.platform', 'assets/sprites/platform.png');
   }
 

@@ -1,5 +1,5 @@
 import { MonsterLogic } from './MonsterLogic';
-import { Monster } from '../Monster';
+import { Monster } from '../../Monster';
 
 export class LookToPlayerLogic extends MonsterLogic {
   onAttach(monster: Monster) {}

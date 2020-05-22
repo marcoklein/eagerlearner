@@ -1,11 +1,5 @@
-import { Hero } from '../actors/Hero';
 import FpsText from '../objects/fpsText';
-import { MonsterSpawner } from '../world/MonsterSpawner';
-import { PlatformController } from '../world/PlatformController';
-import { Gun } from '../actors/wearables/Gun';
-import { ProjectileController } from '../world/ProjectileController';
-import { CollisionController } from '../world/CollisionController';
-import { LevelController } from '../world/LevelController';
+import { LevelController } from '../level/LevelController';
 
 export class GameScene extends Phaser.Scene {
   fpsText: Phaser.GameObjects.Text;
@@ -27,7 +21,7 @@ export class GameScene extends Phaser.Scene {
       .setOrigin(1, 0);
 
     this.level = new LevelController(this);
-    this.level.init();
+    // this.level.init();
     this.level.createLevel1();
   }
 

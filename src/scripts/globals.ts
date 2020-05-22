@@ -1,7 +1,7 @@
 export const GlobalConfig = {
   player: {
     speed: 400,
-    jumpVelocity: 400,
+    jumpVelocity: 600,
     mass: 10,
     dragX: 1000,
   },

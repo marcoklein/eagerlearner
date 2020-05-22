@@ -1,17 +1,16 @@
-import { GameScene } from '../scenes/GameScene';
-import { Monster } from '../actors/Monster';
-import { TextureKey } from '../Globals';
-import { Wearable } from '../actors/wearables/Wearable';
-import { MonsterSpawner } from './MonsterSpawner';
-import { MonsterLogic } from '../actors/ai/MonsterLogic';
+import { MonsterController } from './MonsterController';
+import { TextureKey } from '../../Globals';
+import { MonsterLogic } from './ai/MonsterLogic';
+import { Wearable } from '../wearables/Wearable';
+import { Monster } from '../Monster';
 
-export class MonsterBuilder {
-  spawner: MonsterSpawner;
+export class MonsterSpawner {
+  spawner: MonsterController;
   _texture: TextureKey | undefined;
   _logics: MonsterLogic[];
   wearable: Wearable | undefined;
 
-  constructor(spawner: MonsterSpawner) {
+  constructor(spawner: MonsterController) {
     this.spawner = spawner;
     this.reset();
   }
@@ -41,8 +40,9 @@ export class MonsterBuilder {
   spawn(x: number, y: number) {
     if (!this._texture) throw new Error('Texture needed');
     const monster = new Monster(this.spawner.scene, x, y, this._texture);
-    if (this.wearable) monster.hands.equip(this.wearable);
-    this._logics.forEach((logic) => monster.addLogic(logic));
+    if (this.wearable) monster.hands.equip(Object.create(this.wearable));
+    this._logics.forEach((logic) => monster.addLogic(Object.create(logic)));
     this.spawner.spawnMonster(monster);
+    return this;
   }
 }

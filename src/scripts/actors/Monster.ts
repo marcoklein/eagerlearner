@@ -1,8 +1,8 @@
-import { TextureKey } from '../Globals';
+import { TextureKey, GlobalConfig } from '../Globals';
 import { GameScene } from '../scenes/GameScene';
 import { DestroyOnFallDownComponent } from './components/DestroyOnFallDownComponent';
 import { HandComponent } from './components/HandComponent';
-import { MonsterLogic } from './ai/MonsterLogic';
+import { MonsterLogic } from './monster/ai/MonsterLogic';
 import { Actor } from './Actor';
 
 export class Monster extends Actor {
