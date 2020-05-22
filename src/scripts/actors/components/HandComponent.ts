@@ -21,6 +21,8 @@ export class HandComponent {
 
   defaultWearable = new Punch();
 
+  bodyCenter = new Phaser.Math.Vector2();
+
   constructor(scene: GameScene, body: Phaser.Physics.Arcade.Sprite, texture: TextureKey) {
     this.scene = scene;
     this.body = body;
@@ -56,11 +58,12 @@ export class HandComponent {
 
   update(time: number, delta: number) {
     this.wearable.update(this, time, delta);
+    this.body.getCenter(this.bodyCenter);
     const positions = this.wearable.calculateHandPositions(this, this.body);
-    this.leftHand.x = this.body.x + (this.body.flipX ? -positions.left.x : positions.left.x);
-    this.leftHand.y = this.body.y + positions.left.y;
-    this.rightHand.x = this.body.x + (this.body.flipX ? -positions.right.x : positions.right.x);
-    this.rightHand.y = this.body.y + positions.right.y;
+    this.leftHand.x = this.bodyCenter.x + (this.body.flipX ? -positions.left.x : positions.left.x);
+    this.leftHand.y = this.bodyCenter.y + positions.left.y;
+    this.rightHand.x = this.bodyCenter.x + (this.body.flipX ? -positions.right.x : positions.right.x);
+    this.rightHand.y = this.bodyCenter.y + positions.right.y;
   }
 
   action() {

@@ -15,5 +15,7 @@ export class PlatformController {
     platform.refreshBody();
     // platform.setFriction(0.7, 0.7);
     this.group.add(platform);
+
+    return platform;
   }
 }

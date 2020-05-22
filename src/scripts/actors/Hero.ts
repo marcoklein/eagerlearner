@@ -16,8 +16,9 @@ export class Hero extends Actor {
     this.scene = scene;
     this.hands = new HandComponent(this.scene, this, { key: 'player.hand' });
     this.control = new PlayerControlComponent(this.scene, this);
-
     this.fallDownDestroy = new DestroyOnFallDownComponent(scene, this);
+
+    this.setOrigin(0.5, 1);
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
