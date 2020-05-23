@@ -22,10 +22,10 @@
 ## For MVP
 * [x] add a "DEAD" screen / message
 * [x] adjust physics parameters
-* [ ] add particles on destroy
-* [ ] level generator
+* [ ] add particles on destroy - srsly .. without it justs looks really boring
+* [x] level generator
   * [x] generate random platforms
-  * [ ] generate random monsters
+  * [x] generate random monsters
 * [ ] more weapons = more fun :)
 * [ ] add intro screen (with instructions on blackboard)
 * [ ] add some more enemies / generate them

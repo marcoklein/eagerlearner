@@ -9,7 +9,8 @@ import { Wearable } from '../../actors/wearables/Wearable';
 import { Punch } from '../../actors/wearables/Punch';
 import { WearableFactory } from '../../actors/wearables/WearableFactory';
 import { MonsterLogic } from '../../actors/monster/ai/MonsterLogic';
-import { DumbShootLogic } from '../../actors/monster/ai/DumbShootLogic';
+import { DumbAttackLogic } from '../../actors/monster/ai/DumbShootLogic';
+import { Random } from './Random';
 
 export interface LevelOptions {
   levelWidth: number;
@@ -67,24 +68,21 @@ export class ActionLevelGenerator extends LevelGenerator {
     // TODO with each level one more texture is filtered
     const monsterTextures = ['monster.1', 'monster.5'];
     const wearables = [WearableFactory.createPunch(), WearableFactory.createGun()];
-    const moveLogics = [[new LookToPlayerLogic()], []];
-    const attackLogics = [[new DumbShootLogic()], [new DumbShootLogic()]];
+    // const moveLogics = [[new LookToPlayerLogic()], []];
+    // const attackLogics = [[new DumbAttackLogic()], [new DumbAttackLogic()]];
 
     let levelMonsterTextures = monsterTextures.filter((item, index) => index < level.actionLevel);
     let levelWearables = wearables.filter((item, index) => index < level.actionLevel);
-    let levelLogics = moveLogics.filter((item, index) => index < level.actionLevel);
-    let levelAttackLogics = attackLogics.filter((item, index) => index < level.actionLevel);
+    // let levelLogics = moveLogics.filter((item, index) => index < level.actionLevel);
+    // let levelAttackLogics = attackLogics.filter((item, index) => index < level.actionLevel);
 
     console.log('monster textures for level', levelMonsterTextures);
     console.log('monster wearables for level', levelWearables);
-    console.log('level logics', levelLogics);
 
     // create random spawners
     let spawners: MonsterSpawner[] = [];
     for (let i = 0; i < monsterKinds; i++) {
-      spawners.push(
-        this.createRandomSpawner(level, levelMonsterTextures, levelWearables, levelLogics, levelAttackLogics)
-      );
+      spawners.push(this.createRandomSpawner(level, levelMonsterTextures, levelWearables));
     }
 
     // create random platforms
@@ -136,19 +134,24 @@ export class ActionLevelGenerator extends LevelGenerator {
    * @param platform
    */
   handlePlatformSpawned(level: LevelController, platform: Phaser.Physics.Arcade.Sprite, spawners: MonsterSpawner[]) {
-    const rnd = (min: number, max: number) => Phaser.Math.Between(min, max);
+    const rnd = (min: number, max: number) => Random.between(min, max);
 
     const minPlayerDistance = 300; // spawn monsters not directly in front of player
     if (platform.x < minPlayerDistance) return;
 
     // maybe spawn monster on platform
-    if (Math.random() < 1) {
+    if (
+      platform.width > 500 || // always spawn on large platforms
+      Math.random() < 0.4
+    ) {
       // spawn monster
       const spawner = this.randomElement(spawners);
       const monster = spawner.spawn(platform.x + rnd(0, platform.displayWidth) - platform.displayWidth / 2, platform.y);
       console.log('spawned monster');
 
       // add move logic here
+      monster.addLogic(new LookToPlayerLogic());
+      monster.addLogic(new DumbAttackLogic(Random.between(200, 1000)));
       monster.addLogic(new PatrolLogic(platform.x - platform.displayWidth / 2, platform.x + platform.displayWidth / 2));
     }
   }
@@ -165,17 +168,9 @@ export class ActionLevelGenerator extends LevelGenerator {
     return Math.round(a * inputSquared + max);
   }
 
-  private createRandomSpawner(
-    level: LevelController,
-    availableTextures: string[],
-    equipments: Wearable[],
-    moveLogics: MonsterLogic[][],
-    attackLogics: MonsterLogic[][]
-  ) {
+  private createRandomSpawner(level: LevelController, availableTextures: string[], equipments: Wearable[]) {
     return new MonsterSpawner(level.spawner)
       .texture({ key: this.randomElement(availableTextures) })
-      .logics(this.randomElement(moveLogics).map((c) => Object.create(c)))
-      .logics(this.randomElement(attackLogics).map((c) => Object.create(c)))
       .equip(this.randomElement(equipments));
   }
 

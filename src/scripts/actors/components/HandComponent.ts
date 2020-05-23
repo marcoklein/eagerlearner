@@ -2,6 +2,7 @@ import { TextureKey } from '../../Globals';
 import { Wearable } from '../wearables/Wearable';
 import { Punch } from '../wearables/Punch';
 import { GameScene } from '../../scenes/GameScene';
+import { Actor } from '../Actor';
 
 /**
  * Controls hands.
@@ -12,7 +13,7 @@ export class HandComponent {
   leftHand: Phaser.GameObjects.Sprite;
   rightHand: Phaser.GameObjects.Sprite;
 
-  body: Phaser.Physics.Arcade.Sprite;
+  body: Actor;
 
   /**
    * Something held in the hands.
@@ -23,7 +24,7 @@ export class HandComponent {
 
   bodyCenter = new Phaser.Math.Vector2();
 
-  constructor(scene: GameScene, body: Phaser.Physics.Arcade.Sprite, texture: TextureKey) {
+  constructor(scene: GameScene, body: Actor, texture: TextureKey) {
     this.scene = scene;
     this.body = body;
     this.initHands(texture);

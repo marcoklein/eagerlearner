@@ -16,6 +16,7 @@ export class ThrowBackEffect extends ProjectileEffect {
   private throwBack(projectile: Projectile, actor: Actor) {
     const physicsBody = actor.body;
     physicsBody.velocity.x += projectile.flipX ? -250 : 250;
+    actor.reduceLife();
 
     return EffectStatus.DESTROY;
   }

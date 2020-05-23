@@ -6,7 +6,7 @@ import { CollisionController } from './CollisionController';
 import { Gun } from '../actors/wearables/Gun';
 import { LevelLogic } from './logic/LevelLogic';
 import { LookToPlayerLogic } from '../actors/monster/ai/LookToPlayerLogic';
-import { DumbShootLogic } from '../actors/monster/ai/DumbShootLogic';
+import { DumbAttackLogic } from '../actors/monster/ai/DumbShootLogic';
 import { PatrolLogic } from '../actors/monster/ai/PatrolLogic';
 import { PlatformController } from './PlatformController';
 import { MonsterSpawner } from '../actors/monster/MonsterSpawner';

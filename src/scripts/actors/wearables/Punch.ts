@@ -1,10 +1,9 @@
 import { Wearable, HandPositions } from './Wearable';
 import { HandComponent } from '../components/HandComponent';
+import { ObjectCache } from '../../ObjectCache';
+import { Actor } from '../Actor';
 
 export class Punch extends Wearable {
-  // temp vectors
-  private rightHandCenter = new Phaser.Math.Vector2();
-
   // action
   hitting = false;
   private hitTime = 0;
@@ -35,18 +34,34 @@ export class Punch extends Wearable {
       // check for collision/hit
       // avoid hitting while our hand is moving back
       if (this.hitTime < this.hitDuration / 2) {
-        rightHand.getCenter(this.rightHandCenter);
-        const hits = <
-          Phaser.Physics.Arcade.Body[] // TODO just check with a rectangle if we hit something
-        >scene.physics.overlapCirc(this.rightHandCenter.x, this.rightHandCenter.y, leftHand.width / 2, true, false);
+        let actorPos = ObjectCache.vectorA;
+        const hitWidth = 100;
+        const hitHeight = hands.body.displayHeight * 0.6;
+        if (hands.body.flipX) {
+          // hit left
+          hands.body.getTopLeft(actorPos);
+          actorPos.x -= hitWidth / 2; // adjust center
+        } else {
+          // hit right
+          hands.body.getTopRight(actorPos);
+          actorPos.x -= hitWidth / 2; // adjust center
+        }
+        const hits = <Phaser.Physics.Arcade.Body[]>(
+          scene.physics.overlapRect(actorPos.x, actorPos.y, hitWidth, hitHeight, true, false)
+        );
         hits.forEach((body) => {
           if (body === hands.body.body) return; // own body
           if (this.hits.indexOf(body) !== -1) return; // already hit
+          const actor = body.gameObject;
+          if (!(actor instanceof Actor)) return; // hit only Actors
+
           this.hits.push(body);
+
+          // hit effect => throw back and reduce life
           let vel = 300;
           body.velocity.x += hands.body.flipX ? -vel : vel;
           body.velocity.y += -vel * 0.1;
-          // body.angularVelocity += this.body.flipX ? -45 : 45;
+          actor.reduceLife();
         });
       }
       if (this.hitTime > this.hitDuration) {

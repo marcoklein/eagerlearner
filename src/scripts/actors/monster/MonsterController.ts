@@ -1,4 +1,4 @@
-import { DumbShootLogic } from './ai/DumbShootLogic';
+import { DumbAttackLogic } from './ai/DumbShootLogic';
 import { FollowPlayerLogic } from './ai/GoToPlayer';
 import { LookToPlayerLogic } from './ai/LookToPlayerLogic';
 import { Monster } from '../Monster';
@@ -34,13 +34,15 @@ export class MonsterController {
   }
 
   spawnWeakMonster(x: number, y: number) {
-    return this.builder
-      .reset()
-      .texture({ key: 'monster.1' })
-      .logic(new LookToPlayerLogic())
-      .logic(new DumbShootLogic())
-      .equip(new Gun({ key: 'weapon.gun' }))
-      .spawn(x, y);
+    return (
+      this.builder
+        .reset()
+        .texture({ key: 'monster.1' })
+        .logic(new LookToPlayerLogic())
+        // .logic(new DumbAttackLogic())
+        .equip(new Gun({ key: 'weapon.gun' }))
+        .spawn(x, y)
+    );
   }
 
   spawnPunchingMonster(x: number, y: number) {
