@@ -32,7 +32,9 @@
 ### Small
 * [ ] bullets should destroy each other; this satisfying feeling when you prevent the bullet from hitting you
 * [ ] monsters should not kill each other.. then you cant count :O
-* [ ] sometimes you get killed while walking on a platform - maybe falldown y reached?
+* [x] sometimes you get killed while walking on a platform - maybe falldown y reached?
+* [ ] destroy particles on level change
+* [x] player falls through door and then level
 
 ## For more
 * [ ] add something to bottom as ground so player knows whats happening

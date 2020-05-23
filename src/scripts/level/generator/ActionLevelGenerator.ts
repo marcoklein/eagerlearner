@@ -59,7 +59,7 @@ export class ActionLevelGenerator extends LevelGenerator {
         levelWidth: 5000,
         maxGap: 250,
         minY: -500,
-        maxY: GlobalConfig.world.falldownY + 50,
+        maxY: GlobalConfig.world.falldownY - GlobalConfig.world.falldownY,
         maxYGap: 100,
         minWidth: 100,
         maxWidth: 1000,

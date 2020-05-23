@@ -135,6 +135,8 @@ export class LevelController {
       this.learningLevel++;
       this.learningRoomGenerator.generate(this);
     }
+    this.hero.body.velocity.set(0, 0);
+    this.hero.body.y -= 10;
   }
 
   addLogic(logic: LevelLogic) {

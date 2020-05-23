@@ -30,9 +30,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="807.57931"
-     inkscape:cy="389.30767"
+     inkscape:zoom="0.7"
+     inkscape:cx="1210.9135"
+     inkscape:cy="1021.311"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -59,6 +59,15 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       ry="0"
+       rx="0"
+       y="155.74416"
+       x="96.332214"
+       height="76.434128"
+       width="106.70827"
+       id="rect1298"
+       style="fill:#008033;fill-opacity:1;stroke:#1c241c;stroke-width:1.02569;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        transform="scale(0.8872395,1.1270914)"
        id="text1128"
@@ -527,6 +536,8 @@
        rx="0.26591194"
        ry="1.3570037" />
     <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#008033;fill-opacity:1;stroke:#1c241c;stroke-width:1.02569;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect961"
        width="106.70827"
@@ -707,6 +718,8 @@
        d="m 183.63174,105.56762 c -0.0528,1.63427 -0.23452,3.32876 0,4.97036 0.0783,0.54931 0.37277,1.21999 0.22593,1.80742 -0.0653,0.26114 -0.22593,0.39803 -0.22593,0.67777"
        style="fill:none;stroke:#d40000;stroke-width:0.316296px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#ff0000;stroke:#333333;stroke-width:0.71973;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect1157"
        width="11.78652"
@@ -715,6 +728,8 @@
        y="234.42909"
        ry="5.3929996" />
     <ellipse
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736434;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="ellipse1161"
        cx="81.06282"
@@ -722,6 +737,8 @@
        rx="0.68700641"
        ry="0.77288204" />
     <ellipse
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        ry="0.77288204"
        rx="0.68700641"
        cy="238.8125"
@@ -729,6 +746,8 @@
        id="ellipse1163"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736434;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.257046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="ellipse1165"
        cx="85.249504"
@@ -736,6 +755,8 @@
        rx="1.8377419"
        ry="1.8205668" />
     <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#4d4d4d;fill-opacity:1;stroke:#4d4d4d;stroke-width:0.51285;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1169"
        width="0.45185232"
@@ -745,6 +766,8 @@
        ry="0.22592616"
        transform="rotate(15.494759)" />
     <ellipse
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        ry="1.8205668"
        rx="1.8377419"
        cy="245.76447"
@@ -752,6 +775,8 @@
        id="ellipse1167"
        style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.257046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:none;stroke:#000000;stroke-width:0.330523px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 76.894982,242.39811 c 0.226196,0.1539 0.270046,0.38241 0.484547,0.55357 0.139847,0.11169 0.439376,0.16227 0.616696,0.1977 0.331744,0.0661 0.713208,0.19772 1.057195,0.19772 0.498823,0 1.8483,-0.40558 2.202495,-0.63265 0.157276,-0.10098 0.14109,-0.28481 0.264299,-0.39544"
        id="path1187"
@@ -826,6 +851,8 @@
          y="169.28238"
          style="stroke-width:0.316296">How many?</tspan></text>
     <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#808080;fill-opacity:1;stroke:#4d4d4d;stroke-width:1.33943;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1229"
        width="17.42067"
@@ -833,17 +860,6 @@
        x="111.62922"
        y="209.34641"
        ry="0.28583163" />
-    <text
-       xml:space="preserve"
-       style="font-size:12.6519px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.316296"
-       x="117.10692"
-       y="221.4109"
-       id="text1243"><tspan
-         sodipodi:role="line"
-         id="tspan1241"
-         x="117.10692"
-         y="221.4109"
-         style="stroke-width:0.316296">1</tspan></text>
     <rect
        ry="0.28583163"
        y="209.14966"
@@ -1002,49 +1018,56 @@
          id="tspan1225-2"
          sodipodi:role="line">Choose</tspan></text>
     <rect
-       transform="scale(-1,1)"
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#ff7f2a;stroke:#333333;stroke-width:0.719733;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect835-5-3"
        width="11.78652"
        height="19.006647"
-       x="-125.03613"
-       y="369.63412"
+       x="178.27585"
+       y="432.00018"
        ry="5.3929996" />
     <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736439;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 119.11186,378.60328 c -0.49904,-0.18752 -0.98527,-0.33125 -1.5114,-0.41221 -0.13018,-0.0201 -0.38024,-0.0883 -0.51526,-0.0344 -0.0831,0.0333 -0.12759,0.12883 -0.20611,0.17176 -0.12147,0.0662 -0.24363,0.13821 -0.37786,0.17175 -0.0419,0.0106 -0.56495,0.041 -0.61829,0.0344 -0.13067,-0.0171 -0.21779,-0.0688 -0.34351,-0.0688"
+       d="m 184.20013,440.96935 c 0.49904,-0.18752 0.98527,-0.33125 1.5114,-0.41221 0.13018,-0.0201 0.38024,-0.0883 0.51526,-0.0344 0.0831,0.0333 0.12759,0.12883 0.20611,0.17176 0.12147,0.0662 0.24363,0.13821 0.37786,0.17175 0.0419,0.0106 0.56495,0.041 0.61829,0.0344 0.13067,-0.0171 0.21779,-0.0688 0.34351,-0.0688"
        id="path839-5-7"
        inkscape:connector-curvature="0" />
     <ellipse
-       transform="scale(-1,1)"
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736439;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path841-3-9"
-       cx="-115.98599"
-       cy="373.98315"
+       cx="187.32599"
+       cy="436.34921"
        rx="0.68700641"
        ry="0.77288204" />
     <ellipse
-       transform="scale(-1,1)"
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        ry="0.77288204"
        rx="0.68700641"
-       cy="374.01752"
-       cx="-119.73019"
+       cy="436.38358"
+       cx="183.5818"
        id="ellipse843-3-47"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736439;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
-       transform="scale(-1,1)"
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        style="fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.257046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path845-2-8"
-       cx="-112.60249"
-       cy="379.08423"
+       cx="190.70949"
+       cy="441.45029"
        rx="1.8377419"
        ry="1.8205669" />
     <ellipse
-       transform="scale(-1,1)"
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
        ry="1.8205669"
        rx="1.8377419"
-       cy="379.42767"
-       cx="-121.91142"
+       cy="441.79373"
+       cx="181.40056"
        id="ellipse847-4-8"
        style="fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.257046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <g
@@ -2627,50 +2650,20 @@
        id="path881-5"
        d="m 782.89167,795.81857 c -0.55287,-0.18921 -0.98783,0.0649 -1.50596,0.19431 -0.16018,0.0399 -0.32701,0.052 -0.48578,0.0972 -0.14297,0.0409 -0.2845,0.14572 -0.4372,0.14572"
        style="fill:none;stroke:#000000;stroke-width:0.0680099px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <rect
-       transform="scale(-1,1)"
-       style="fill:#ff7f2a;stroke:#333333;stroke-width:0.71973;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect1213"
-       width="11.78652"
-       height="19.006647"
-       x="-288.71024"
-       y="217.84082"
-       ry="5.3929996" />
-    <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 282.78596,226.80996 c -0.49903,-0.1875 -0.98526,-0.33125 -1.51141,-0.41218 -0.13022,-0.0201 -0.38023,-0.0883 -0.51525,-0.0344 -0.0831,0.0332 -0.12761,0.12886 -0.20611,0.17176 -0.12149,0.0662 -0.24362,0.13821 -0.37785,0.17177 -0.0418,0.0106 -0.56498,0.041 -0.6183,0.0344 -0.13069,-0.0171 -0.21779,-0.0687 -0.34351,-0.0687"
-       id="path1215"
-       inkscape:connector-curvature="0" />
-    <ellipse
-       transform="scale(-1,1)"
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="ellipse1217"
-       cx="-279.66006"
-       cy="222.18985"
-       rx="0.68700641"
-       ry="0.77288204" />
-    <ellipse
-       transform="scale(-1,1)"
-       ry="0.77288204"
-       rx="0.68700641"
-       cy="222.2242"
-       cx="-283.40427"
-       id="ellipse1219"
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
        transform="scale(-1,1)"
        style="fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.257046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="ellipse1221"
-       cx="-274.40573"
-       cy="225.15273"
+       cx="-250.87671"
+       cy="219.0106"
        rx="1.8377419"
        ry="1.8205669" />
     <ellipse
        transform="scale(-1,1)"
        ry="1.8205669"
        rx="1.8377419"
-       cy="230.30705"
-       cx="-276.76562"
+       cy="224.16493"
+       cx="-253.2366"
        id="ellipse1223"
        style="fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.257046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
@@ -2868,5 +2861,135 @@
          x="86.664268"
          id="tspan1276"
          sodipodi:role="line">0</tspan></text>
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:connector-curvature="0"
+       d="m 298.82942,232.45549 -2e-5,-23.86788 v 0 h 18.06442 v 23.86788"
+       style="fill:#a29187;fill-opacity:0.875537;stroke:#c05700;stroke-width:1.57524;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1280" />
+    <rect
+       transform="scale(-1,1)"
+       style="fill:#ff7f2a;stroke:#333333;stroke-width:0.71973;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect1213"
+       width="11.78652"
+       height="19.006647"
+       x="-288.71024"
+       y="217.84082"
+       ry="5.3929996" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 282.78596,226.80996 c -0.49903,-0.1875 -0.98526,-0.33125 -1.51141,-0.41218 -0.13022,-0.0201 -0.38023,-0.0883 -0.51525,-0.0344 -0.0831,0.0332 -0.12761,0.12886 -0.20611,0.17176 -0.12149,0.0662 -0.24362,0.13821 -0.37785,0.17177 -0.0418,0.0106 -0.56498,0.041 -0.6183,0.0344 -0.13069,-0.0171 -0.21779,-0.0687 -0.34351,-0.0687"
+       id="path1215"
+       inkscape:connector-curvature="0" />
+    <ellipse
+       transform="scale(-1,1)"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse1217"
+       cx="-279.66006"
+       cy="222.18985"
+       rx="0.68700641"
+       ry="0.77288204" />
+    <ellipse
+       transform="scale(-1,1)"
+       ry="0.77288204"
+       rx="0.68700641"
+       cy="222.2242"
+       cx="-283.40427"
+       id="ellipse1219"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       id="text1302"
+       y="221.4109"
+       x="117.10692"
+       style="font-size:12.6519px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.316296"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.316296"
+         y="221.4109"
+         x="117.10692"
+         id="tspan1300"
+         sodipodi:role="line">1</tspan></text>
+    <rect
+       ry="0.28583163"
+       y="209.34641"
+       x="111.62922"
+       height="16.977526"
+       width="17.42067"
+       id="rect1304"
+       style="fill:#808080;fill-opacity:1;stroke:#4d4d4d;stroke-width:1.33943;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="fill:#ff7f2a;stroke:#333333;stroke-width:0.71973;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect1306"
+       width="11.78652"
+       height="19.006647"
+       x="323.52988"
+       y="8.9624929"
+       ry="5.3929996" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 329.45415,17.931636 c 0.49903,-0.1875 0.98526,-0.33125 1.51141,-0.41218 0.13022,-0.0201 0.38023,-0.0883 0.51525,-0.0344 0.0831,0.0332 0.12761,0.12886 0.20611,0.17176 0.12149,0.0662 0.24362,0.13821 0.37785,0.17177 0.0418,0.0106 0.56498,0.041 0.6183,0.0344 0.13069,-0.0171 0.21779,-0.0687 0.34351,-0.0687"
+       id="path1308"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.7297px;line-height:1.25;font-family:sans-serif;stroke-width:0.50215;fill:#8800aa;fill-opacity:1;"
+       x="326.65186"
+       y="25.035603"
+       id="text1320"><tspan
+         sodipodi:role="line"
+         id="tspan1318"
+         x="326.65186"
+         y="25.035603"
+         style="stroke-width:0.50215;fill:#8800aa;fill-opacity:1;">+</tspan></text>
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse1310"
+       cx="332.58002"
+       cy="13.311522"
+       rx="0.68700641"
+       ry="0.77288204" />
+    <ellipse
+       ry="0.77288204"
+       rx="0.68700641"
+       cy="13.34587"
+       cx="328.83582"
+       id="ellipse1312"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.736438;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <ellipse
+       style="fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.257046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse1314"
+       cx="335.77451"
+       cy="18.601538"
+       rx="1.8377419"
+       ry="1.8205669" />
+    <ellipse
+       ry="1.8205669"
+       rx="1.8377419"
+       cy="21.21287"
+       cx="328.73343"
+       id="ellipse1316"
+       style="fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.257046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       id="text1324"
+       y="25.035603"
+       x="326.65186"
+       style="font-size:14.7297px;line-height:1.25;font-family:sans-serif;fill:#8800aa;fill-opacity:1;stroke-width:0.50215"
+       xml:space="preserve"><tspan
+         style="fill:#8800aa;fill-opacity:1;stroke-width:0.50215"
+         y="25.035603"
+         x="326.65186"
+         id="tspan1322"
+         sodipodi:role="line">+</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:9.77549px;line-height:1.25;font-family:sans-serif;stroke-width:0.333256"
+       x="361.74466"
+       y="19.300644"
+       id="text1328"><tspan
+         sodipodi:role="line"
+         id="tspan1326"
+         x="361.74466"
+         y="19.300644"
+         style="stroke-width:0.333256">+</tspan></text>
   </g>
 </svg>
