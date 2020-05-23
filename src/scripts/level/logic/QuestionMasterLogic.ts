@@ -1,10 +1,11 @@
-import { LevelLogic } from './LevelLogic';
-import { AnswerBoxLogic } from './AnswerBoxLogic';
-import { LevelController } from '../LevelController';
-import { BlackboardLogic } from './BlackboardLogic';
-import { Projectile } from '../../actors/projectile/Projectile';
 import { Hero } from '../../actors/Hero';
 import { EffectStatus } from '../../actors/projectile/effects/ProjectileEffect';
+import { Projectile } from '../../actors/projectile/Projectile';
+import { WearableFactory } from '../../actors/wearables/WearableFactory';
+import { LevelController } from '../LevelController';
+import { AnswerBoxLogic } from './AnswerBoxLogic';
+import { BlackboardLogic } from './BlackboardLogic';
+import { LevelLogic } from './LevelLogic';
 
 /**
  * Main controller for questions.
@@ -63,7 +64,8 @@ export class QuestionMasterLogic extends LevelLogic {
   }
 
   onRightAnswer = (projectile: Projectile, hero: Hero) => {
-    // spawn door
+    // spawn door and loot
+    this.giveHeroBetterItem();
     this.spawnDoorToActionWorld();
     return EffectStatus.DESTROY;
   };
@@ -71,6 +73,13 @@ export class QuestionMasterLogic extends LevelLogic {
   onWrongAnswer = (projectile: Projectile, hero: Hero) => {
     return EffectStatus.DESTROY;
   };
+
+  /**
+   * TODO in future we may spawn to items so the player can choose and pick
+   */
+  giveHeroBetterItem() {
+    this.level.hero.hands.equip(WearableFactory.createGun());
+  }
 
   // TODO handling the "right answer" should be extracted into a different component
   spawnDoorToActionWorld() {
