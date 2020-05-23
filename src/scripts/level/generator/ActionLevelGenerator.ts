@@ -1,15 +1,11 @@
-import { LevelGenerator } from './LevelGenerator';
-import { LevelController } from '../LevelController';
-import { Gun } from '../../actors/wearables/Gun';
-import { MonsterSpawner } from '../../actors/monster/MonsterSpawner';
-import { PatrolLogic } from '../../actors/monster/ai/PatrolLogic';
-import { LookToPlayerLogic } from '../../actors/monster/ai/LookToPlayerLogic';
-import { PlayerDeadLogic } from '../logic/PlayerDeadLogic';
-import { Wearable } from '../../actors/wearables/Wearable';
-import { Punch } from '../../actors/wearables/Punch';
-import { WearableFactory } from '../../actors/wearables/WearableFactory';
-import { MonsterLogic } from '../../actors/monster/ai/MonsterLogic';
 import { DumbAttackLogic } from '../../actors/monster/ai/DumbShootLogic';
+import { LookToPlayerLogic } from '../../actors/monster/ai/LookToPlayerLogic';
+import { PatrolLogic } from '../../actors/monster/ai/PatrolLogic';
+import { MonsterSpawner } from '../../actors/monster/MonsterSpawner';
+import { Wearable } from '../../actors/wearables/Wearable';
+import { WearableFactory } from '../../actors/wearables/WearableFactory';
+import { LevelController } from '../LevelController';
+import { LevelGenerator } from './LevelGenerator';
 import { Random } from './Random';
 
 export interface LevelOptions {
@@ -30,37 +26,7 @@ export class ActionLevelGenerator extends LevelGenerator {
 
     level.setCameraOffset(0, level.hero.height / 2);
 
-    this.createRandomLevel(level); // TODO for testing only
-    // if (level.levelNumber <= 1) {
-    //   this.createTestLevel(level);
-    // } else {
-    //   this.createRandomLevel();
-    // }
-  }
-
-  createTestLevel(level: LevelController) {
-    // add platforms and monsters
-    // add platforms
-    level.platforms.createPlatform(0, 100, 100);
-    level.platforms.createPlatform(120, 140, 200);
-
-    const weakMonster = new MonsterSpawner(level.spawner)
-      .texture({ key: 'monster.1' })
-      // .logic(new LookToPlayerLogic())
-      // .logic(new DumbShootLogic())
-      .logic(new PatrolLogic(350, 350 + 500))
-      // .equip(new Gun({ key: 'weapon.gun' }))
-      .spawn(1, 3);
-    level.platforms.createPlatform(350, 180, 500);
-
-    const standMonster = new MonsterSpawner(level.spawner)
-      .texture({ key: 'monster.5' })
-      .logic(new LookToPlayerLogic())
-      .equip(new Gun({ key: 'weapon.gun' }))
-      .spawn(1100, 100);
-    level.platforms.createPlatform(1000, 180, 500);
-
-    level.addDoor(1200, 180);
+    this.createRandomLevel(level);
   }
 
   createRandomLevel(level: LevelController) {
@@ -145,7 +111,7 @@ export class ActionLevelGenerator extends LevelGenerator {
       Math.random() < 0.4
     ) {
       // spawn monster
-      const spawner = this.randomElement(spawners);
+      const spawner = Random.element(spawners);
       const monster = spawner.spawn(platform.x + rnd(0, platform.displayWidth) - platform.displayWidth / 2, platform.y);
       console.log('spawned monster');
 
@@ -170,16 +136,7 @@ export class ActionLevelGenerator extends LevelGenerator {
 
   private createRandomSpawner(level: LevelController, availableTextures: string[], equipments: Wearable[]) {
     return new MonsterSpawner(level.spawner)
-      .texture({ key: this.randomElement(availableTextures) })
-      .equip(this.randomElement(equipments));
-  }
-
-  /**
-   * Get random array element.
-   *
-   * @param array
-   */
-  private randomElement<T>(array: T[]) {
-    return array[Phaser.Math.Between(0, array.length - 1)];
+      .texture({ key: Random.element(availableTextures) })
+      .equip(Random.element(equipments));
   }
 }

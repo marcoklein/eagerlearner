@@ -15,6 +15,7 @@ import { LearningRoomGenerator } from './generator/LearningRoomGenerator';
 import { ActionLevelGenerator } from './generator/ActionLevelGenerator';
 import { PlayerDeadLogic } from './logic/PlayerDeadLogic';
 import { GlobalConfig } from '../Globals';
+import { IntroRoomGenerator } from './generator/IntroRoomGenerator';
 
 export enum LevelState {
   HOME,
@@ -38,8 +39,7 @@ export class LevelController {
 
   learningRoomGenerator = new LearningRoomGenerator();
   actionLevelGenerator = new ActionLevelGenerator();
-
-  gameIsActionLevel = true;
+  introRoomGenerator = new IntroRoomGenerator();
 
   private _state = LevelState.HOME;
 
@@ -89,10 +89,9 @@ export class LevelController {
     this.createHero();
     this.setCameraOffset(0, this.hero.height / 2);
 
-    this.gameIsActionLevel = true;
     this.actionLevel = 0;
     this.learningLevel = 0;
-    this.createNextLevel();
+    this.createNextLevel(true);
   }
 
   private createHero() {
@@ -126,18 +125,21 @@ export class LevelController {
     this.platforms.group.children.each((child) => child.destroy());
   }
 
-  private createNextLevel() {
+  private createNextLevel(introRoom: boolean = false) {
     // general logic components
     this.addLogic(new PlayerDeadLogic());
 
-    if (this.gameIsActionLevel) {
-      this.gameIsActionLevel = false;
+    if (introRoom) {
+      this.introRoomGenerator.generate(this);
+    } else if (this.actionLevel <= this.learningLevel) {
+      // start with action level
+      console.log('starting new Action level!!');
+      this.actionLevel++;
+      this.actionLevelGenerator.generate(this);
+    } else {
+      console.log('starting new learning level!!');
       this.learningLevel++;
       this.learningRoomGenerator.generate(this);
-    } else {
-      this.actionLevel++;
-      this.gameIsActionLevel = true;
-      this.actionLevelGenerator.generate(this);
     }
   }
 

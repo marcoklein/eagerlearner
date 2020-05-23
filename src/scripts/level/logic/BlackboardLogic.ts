@@ -11,6 +11,7 @@ export class BlackboardLogic extends LevelLogic {
   blackboard: Phaser.GameObjects.Image;
   teacher: Phaser.GameObjects.Image;
   textObject: Phaser.GameObjects.Text | undefined;
+  credits: Phaser.GameObjects.Text | undefined;
 
   constructor(x: number, y: number) {
     super();
@@ -34,17 +35,30 @@ export class BlackboardLogic extends LevelLogic {
     this.blackboard.destroy();
     this.teacher.destroy();
     this.textObject?.destroy();
+    this.credits?.destroy();
   }
 
-  showText(text: string) {
+  showText(text: string, fontSize: number = 42) {
     if (this.textObject) {
       this.textObject.destroy();
     }
     const topCenter = this.blackboard.getTopCenter();
     this.textObject = this.level.scene.add.text(topCenter.x, topCenter.y + this.blackboard.height * 0.2, text);
     this.textObject.setOrigin(0.5, 0);
-    this.textObject.setFontSize(42);
+    this.textObject.setFontSize(fontSize);
+    this.textObject.setAlign('center');
     this.textObject.setFontStyle('bold');
+    this.textObject.setDepth(-50);
+  }
+
+  showCredits() {
+    const bottomLeft = this.blackboard.getBottomLeft();
+    this.credits = this.level.scene.add.text(bottomLeft.x + 8, bottomLeft.y - 8, 'by Marco Klein', {
+      fontStyle: 'bold',
+      fontSize: 18,
+      color: '#FFF',
+    });
+    this.credits.setOrigin(0, 1);
   }
 
   update(level: LevelController, time: number, delta: number) {}
