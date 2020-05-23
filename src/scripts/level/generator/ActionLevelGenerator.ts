@@ -107,7 +107,7 @@ export class ActionLevelGenerator extends LevelGenerator {
     // params for initial platform
     let nextX = rnd(-100, 100);
     let nextY = rnd(minY, maxY);
-    let nextWidth = rnd(minWidth, maxWidth);
+    let nextWidth = rnd(Math.max(minWidth, maxWidth * 0.8), maxWidth); // ensure first platform is large enough
 
     // set hero on initial platform
     level.hero.y = nextY;
@@ -151,7 +151,7 @@ export class ActionLevelGenerator extends LevelGenerator {
 
       // add move logic here
       monster.addLogic(new LookToPlayerLogic());
-      monster.addLogic(new DumbAttackLogic(Random.between(200, 1000)));
+      monster.addLogic(new DumbAttackLogic(Random.between(1000, 2000)));
       monster.addLogic(new PatrolLogic(platform.x - platform.displayWidth / 2, platform.x + platform.displayWidth / 2));
     }
   }

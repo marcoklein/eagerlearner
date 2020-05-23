@@ -13,7 +13,7 @@ export const GlobalConfig = {
   },
   bullets: {
     speed: 700,
-    lifetime: 10000,
+    lifetime: 800,
   },
   monsters: {
     mass: 10,

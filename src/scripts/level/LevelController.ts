@@ -132,8 +132,10 @@ export class LevelController {
 
     if (this.gameIsActionLevel) {
       this.gameIsActionLevel = false;
+      this.learningLevel++;
       this.learningRoomGenerator.generate(this);
     } else {
+      this.actionLevel++;
       this.gameIsActionLevel = true;
       this.actionLevelGenerator.generate(this);
     }

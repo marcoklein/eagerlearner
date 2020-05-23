@@ -39,7 +39,7 @@ export class PlayerControlComponent {
       left: keyboard.addKey('A'),
       right: keyboard.addKey('D'),
       jump: keyboard.addKey('W'),
-      primary: keyboard.addKey('E'),
+      primary: keyboard.addKey('SPACE'),
       secondary: keyboard.addKey('Q'),
     };
   }
