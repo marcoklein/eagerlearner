@@ -1,11 +1,10 @@
-import { MonsterLogic } from './MonsterLogic';
 import { Monster } from '../../Monster';
-import { GlobalConfig } from '../../../Globals';
+import { MonsterLogic } from './MonsterLogic';
 
 /**
  * Shoots :)
  */
-export class DumbAttackLogic extends MonsterLogic {
+export class AttackOnPlayerSight extends MonsterLogic {
   cooldown = 0;
   speed: number;
 

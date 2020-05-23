@@ -9,6 +9,7 @@ export class ParticleController {
   readonly level: LevelController;
 
   private emitterCache: { [key: string]: Phaser.GameObjects.Particles.ParticleEmitterManager } = {};
+  private emitters: Phaser.GameObjects.Particles.ParticleEmitter[] = [];
 
   constructor(level: LevelController) {
     this.level = level;
@@ -38,5 +39,18 @@ export class ParticleController {
       frequency: 5,
       speed: 50,
     });
+    this.level.scene.time.delayedCall(2000, () => {
+      const index = this.emitters.indexOf(emitter);
+      if (index !== -1) {
+        this.emitters.splice(index, 1);
+      }
+    });
+    this.emitters.push(emitter);
+  }
+
+  destroyParticles() {
+    this.emitters.forEach((e) => e.remove());
+    Object.values(this.emitterCache).forEach((e) => e.destroy());
+    this.emitterCache = {};
   }
 }

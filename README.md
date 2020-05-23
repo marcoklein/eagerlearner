@@ -17,7 +17,7 @@
 ## For MVP
 * [x] add a "DEAD" screen / message
 * [x] adjust physics parameters
-* [ ] add particles on destroy - srsly .. without it justs looks really boring
+* [x] add particles on destroy - srsly .. without it justs looks really boring
 * [x] level generator
   * [x] generate random platforms
   * [x] generate random monsters
@@ -28,15 +28,20 @@
 * [x] hands of player hit every object and only left/or right hand currently has an effect
   * [x] just add a rectangle to check what it hits
 * [ ] bullet shooting limit - loose weapon when you shoot everything
+* [ ] add a highscore
+* [x] adjust level generator
+  * [x] first level should be smaller
+* [ ] kill monster if player jumps on it / move it downward
 
 ### Small
 * [ ] bullets should destroy each other; this satisfying feeling when you prevent the bullet from hitting you
-* [ ] monsters should not kill each other.. then you cant count :O
+* [x] monsters should not kill each other.. then you cant count :O => added the option that monsters only move if player has been in sight
 * [x] sometimes you get killed while walking on a platform - maybe falldown y reached?
-* [ ] destroy particles on level change
+* [x] destroy particles on level change
 * [x] player falls through door and then level
 
 ## For more
+* [ ] add a death message reason
 * [ ] add something to bottom as ground so player knows whats happening
 * [ ] add a timer to questions
 * [ ] add a "closed door" where the player spawns in a new level - there you can also reset physics and stuff

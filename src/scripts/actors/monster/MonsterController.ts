@@ -1,4 +1,4 @@
-import { DumbAttackLogic } from './ai/DumbShootLogic';
+import { AttackOnPlayerSight } from './ai/AttackOnPlayerSight';
 import { FollowPlayerLogic } from './ai/GoToPlayer';
 import { LookToPlayerLogic } from './ai/LookToPlayerLogic';
 import { Monster } from '../Monster';

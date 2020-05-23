@@ -31,6 +31,7 @@ export class Hero extends Actor {
   }
 
   destroy() {
+    console.log('hero fell down if there is no explosion message yet');
     super.destroy();
     this.hands.destroy();
   }

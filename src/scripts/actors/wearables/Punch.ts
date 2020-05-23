@@ -2,6 +2,7 @@ import { Wearable, HandPositions } from './Wearable';
 import { HandComponent } from '../components/HandComponent';
 import { ObjectCache } from '../../ObjectCache';
 import { Actor } from '../Actor';
+import { Monster } from '../Monster';
 
 export class Punch extends Wearable {
   // action
@@ -36,14 +37,14 @@ export class Punch extends Wearable {
       if (this.hitTime < this.hitDuration / 2) {
         let actorPos = ObjectCache.vectorA;
         const hitWidth = 100;
-        const hitHeight = hands.body.displayHeight * 0.6;
+        const hitHeight = hands.leftHand.displayHeight + 5;
         if (hands.body.flipX) {
           // hit left
-          hands.body.getTopLeft(actorPos);
+          hands.body.getLeftCenter(actorPos);
           actorPos.x -= hitWidth / 2; // adjust center
         } else {
           // hit right
-          hands.body.getTopRight(actorPos);
+          hands.body.getRightCenter(actorPos);
           actorPos.x -= hitWidth / 2; // adjust center
         }
         const hits = <Phaser.Physics.Arcade.Body[]>(
@@ -61,6 +62,12 @@ export class Punch extends Wearable {
           let vel = 300;
           body.velocity.x += hands.body.flipX ? -vel : vel;
           body.velocity.y += -vel * 0.1;
+
+          // monsters may kick each other from an edge ..
+          // maybe only attack if player is in sight per default
+          // monsters only attack when in sight now
+          // if (actor instanceof Monster && this.hands?.body instanceof Monster) return; // monsters dont hit monsters
+
           actor.reduceLife();
         });
       }

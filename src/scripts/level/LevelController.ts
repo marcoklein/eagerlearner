@@ -117,6 +117,7 @@ export class LevelController {
     this.spawner.group.children.each((child) => child.destroy());
     this.projectiles.group.children.each((child) => child.destroy());
     this.platforms.group.children.each((child) => child.destroy());
+    this.particles.destroyParticles();
   }
 
   private createNextLevel(introRoom: boolean = false) {
