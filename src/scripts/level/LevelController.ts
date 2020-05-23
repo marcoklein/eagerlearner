@@ -43,6 +43,15 @@ export class LevelController {
 
   private _state = LevelState.HOME;
 
+  /**
+   * 0 means that we are "home".
+   * 1 is the first level
+   * 2 is the learning room
+   * 3 is the next level
+   * ... and so on
+   */
+  levelNumber = 0;
+
   constructor(scene: GameScene) {
     this.scene = scene;
   }
@@ -69,6 +78,7 @@ export class LevelController {
     console.log('restarting game');
     // reset level and hero
     this.resetLevel();
+    this.levelNumber = 0;
 
     this.changeState(LevelState.HOME);
 
@@ -91,7 +101,8 @@ export class LevelController {
    */
   private newLevel() {
     if (!this.initialized) throw Error('Not initialized.');
-    console.log('new level!!!');
+    this.levelNumber++;
+    console.log('new level!!! with number', this.levelNumber);
     this.spawner.group.active = false;
     this.projectiles.group.active = false;
     this.clearLogics(); // CLEAR logics! => otherwise the door logic will continously call finish level
@@ -156,7 +167,7 @@ export class LevelController {
   }
 
   setCameraOffset(x: number, y: number) {
-    this.scene.cameras.main.startFollow(this.hero, false, 1, 1, x, y);
+    this.scene.cameras.main.startFollow(this.hero, true, 0.5, 0.5, x, y);
   }
 
   get state() {

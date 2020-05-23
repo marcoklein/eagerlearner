@@ -24,6 +24,8 @@
 * [x] adjust physics parameters
 * [ ] add particles on destroy
 * [ ] level generator
+  * [x] generate random platforms
+  * [ ] generate random monsters
 * [ ] more weapons = more fun :)
 * [ ] add intro screen (with instructions on blackboard)
 * [ ] add some more enemies / generate them
