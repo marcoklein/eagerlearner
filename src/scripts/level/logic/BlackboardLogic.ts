@@ -59,6 +59,7 @@ export class BlackboardLogic extends LevelLogic {
       color: '#FFF',
     });
     this.credits.setOrigin(0, 1);
+    this.credits.setDepth(-50);
   }
 
   update(level: LevelController, time: number, delta: number) {}

@@ -1,21 +1,17 @@
-import { GameScene } from '../scenes/GameScene';
 import { Hero } from '../actors/Hero';
 import { MonsterController } from '../actors/monster/MonsterController';
 import { ProjectileController } from '../actors/projectile/ProjectileController';
-import { CollisionController } from './CollisionController';
-import { Gun } from '../actors/wearables/Gun';
-import { LevelLogic } from './logic/LevelLogic';
-import { LookToPlayerLogic } from '../actors/monster/ai/LookToPlayerLogic';
-import { DumbAttackLogic } from '../actors/monster/ai/DumbShootLogic';
-import { PatrolLogic } from '../actors/monster/ai/PatrolLogic';
-import { PlatformController } from './PlatformController';
-import { MonsterSpawner } from '../actors/monster/MonsterSpawner';
-import { DoorFinishLogic } from './logic/DoorFinishLogic';
-import { LearningRoomGenerator } from './generator/LearningRoomGenerator';
-import { ActionLevelGenerator } from './generator/ActionLevelGenerator';
-import { PlayerDeadLogic } from './logic/PlayerDeadLogic';
 import { GlobalConfig } from '../Globals';
+import { GameScene } from '../scenes/GameScene';
+import { CollisionController } from './CollisionController';
+import { ActionLevelGenerator } from './generator/ActionLevelGenerator';
 import { IntroRoomGenerator } from './generator/IntroRoomGenerator';
+import { LearningRoomGenerator } from './generator/LearningRoomGenerator';
+import { DoorFinishLogic } from './logic/DoorFinishLogic';
+import { LevelLogic } from './logic/LevelLogic';
+import { PlayerDeadLogic } from './logic/PlayerDeadLogic';
+import { PlatformController } from './platforms/PlatformController';
+import { ParticleController } from './ParticleController';
 
 export enum LevelState {
   HOME,
@@ -25,17 +21,19 @@ export enum LevelState {
 
 export class LevelController {
   scene: GameScene;
+  initialized = false;
 
   private _hero: Hero;
   heroGroup: Phaser.Physics.Arcade.Group;
+
+  // controllers
   spawner: MonsterController;
   platforms: PlatformController;
   projectiles: ProjectileController;
   collisions: CollisionController;
+  particles: ParticleController;
 
   logics: LevelLogic[] = [];
-
-  initialized = false;
 
   learningRoomGenerator = new LearningRoomGenerator();
   actionLevelGenerator = new ActionLevelGenerator();
@@ -69,9 +67,10 @@ export class LevelController {
       mass: GlobalConfig.player.mass,
     });
     this.platforms = new PlatformController(this.scene);
-    this.spawner = new MonsterController(this.scene);
+    this.spawner = new MonsterController(this);
     this.projectiles = new ProjectileController(this.scene);
     this.collisions = new CollisionController(this);
+    this.particles = new ParticleController(this);
 
     this.restartGame();
   }
@@ -96,7 +95,7 @@ export class LevelController {
 
   private createHero() {
     this.heroGroup.children.each((child) => child.destroy());
-    this._hero = new Hero(this.scene, 0, 0);
+    this._hero = new Hero(this, 0, 0);
     this.heroGroup.add(this.hero);
     console.log('created and added hero', this.heroGroup.children.size);
   }
@@ -107,15 +106,10 @@ export class LevelController {
   private newLevel() {
     if (!this.initialized) throw Error('Not initialized.');
     console.log('new level!!! with number', this.levelNumber);
-    this.spawner.group.active = false;
-    this.projectiles.group.active = false;
+    // edit .. clearLogics() is only necessary when we have a delay between rooms
     this.clearLogics(); // CLEAR logics! => otherwise the door logic will continously call finish level
-    setTimeout(() => {
-      this.spawner.group.active = true;
-      this.projectiles.group.active = true;
-      this.resetLevel();
-      this.createNextLevel();
-    }, 100);
+    this.resetLevel();
+    this.createNextLevel();
   }
 
   private resetLevel() {
@@ -176,6 +170,7 @@ export class LevelController {
   }
 
   setCameraOffset(x: number, y: number) {
+    this.scene.cameras.main.centerOn(x, y); // move immediately to avoid initial "lag" when switching levels
     this.scene.cameras.main.startFollow(this.hero, true, 0.5, 0.5, x, y);
   }
 

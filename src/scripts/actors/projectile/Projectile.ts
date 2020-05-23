@@ -79,7 +79,11 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   }
 
   destroy() {
-    this.projectileType.onDestroy(this);
+    if (this.scene) {
+      // may already be removed
+      this.projectileType.onDestroy(this);
+      this.scene.level.particles.emitParticles(this.x, this.y, this.texture.key);
+    }
     super.destroy();
   }
 }

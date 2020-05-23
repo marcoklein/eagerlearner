@@ -7,6 +7,7 @@ import { WearableFactory } from '../../actors/wearables/WearableFactory';
 import { LevelController } from '../LevelController';
 import { LevelGenerator } from './LevelGenerator';
 import { Random } from './Random';
+import { GlobalConfig } from '../../Globals';
 
 export interface LevelOptions {
   levelWidth: number;
@@ -24,9 +25,9 @@ export class ActionLevelGenerator extends LevelGenerator {
     level.hero.x = 0;
     level.hero.y = 0;
 
-    level.setCameraOffset(0, level.hero.height / 2);
-
     this.createRandomLevel(level);
+
+    level.setCameraOffset(0, level.hero.height / 2);
   }
 
   createRandomLevel(level: LevelController) {
@@ -58,7 +59,7 @@ export class ActionLevelGenerator extends LevelGenerator {
         levelWidth: 5000,
         maxGap: 250,
         minY: -500,
-        maxY: 500,
+        maxY: GlobalConfig.world.falldownY + 50,
         maxYGap: 100,
         minWidth: 100,
         maxWidth: 1000,

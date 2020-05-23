@@ -1,3 +1,5 @@
+import { GlobalConfig } from '../../Globals';
+
 export class DestroyOnFallDownComponent {
   sprite: Phaser.Physics.Arcade.Sprite;
   scene: Phaser.Scene;
@@ -8,7 +10,8 @@ export class DestroyOnFallDownComponent {
   }
 
   update(time: number, delta: number) {
-    if (this.scene.cameras.main.height < this.sprite.y) {
+    if (this.sprite.y > GlobalConfig.world.falldownY) {
+      console.log('destroyed through fall down');
       this.sprite.destroy();
     }
   }

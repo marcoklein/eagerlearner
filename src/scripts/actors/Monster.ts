@@ -4,6 +4,7 @@ import { DestroyOnFallDownComponent } from './components/DestroyOnFallDownCompon
 import { HandComponent } from './components/HandComponent';
 import { MonsterLogic } from './monster/ai/MonsterLogic';
 import { Actor } from './Actor';
+import { LevelController } from '../level/LevelController';
 
 export class Monster extends Actor {
   scene: GameScene;
@@ -12,16 +13,15 @@ export class Monster extends Actor {
   body: Phaser.Physics.Arcade.Body;
   fallDownDestroy: DestroyOnFallDownComponent;
 
-  constructor(scene: GameScene, x: number, y: number, texture: TextureKey) {
-    super(scene, x, y, texture.key, texture.frame);
-    this.scene = scene;
+  constructor(level: LevelController, x: number, y: number, texture: TextureKey) {
+    super(level, x, y, texture.key, texture.frame);
     this.hands = new HandComponent(this.scene, this, { key: 'monster.hand' });
-    this.fallDownDestroy = new DestroyOnFallDownComponent(scene, this);
+    this.fallDownDestroy = new DestroyOnFallDownComponent(this.scene, this);
     this.setOrigin(0.5, 1);
 
     // NOTE: physical attributes are overriden and handled by the MonsterSpawner static group
-    scene.add.existing(this);
-    scene.physics.add.existing(this);
+    this.scene.add.existing(this);
+    this.scene.physics.add.existing(this);
   }
 
   addLogic(control: MonsterLogic) {

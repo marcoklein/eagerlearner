@@ -28,8 +28,7 @@ export class AnswerBoxLogic extends LevelLogic {
   }
 
   onDetach(level: LevelController): void {
-    if (this.leftBox) this.leftBox.destroy();
-    if (this.rightBox) this.rightBox.destroy();
+    this.destroyBoxes();
   }
 
   createAnswerBoxes(
@@ -56,6 +55,11 @@ export class AnswerBoxLogic extends LevelLogic {
       .texture({ key: 'learn.box' })
       .type(new TextItem(rightText))
       .spawn(bottomRight.x - 100, bottomRight.y - 100);
+  }
+
+  destroyBoxes() {
+    if (this.leftBox) this.leftBox.destroy();
+    if (this.rightBox) this.rightBox.destroy();
   }
 
   update(level: LevelController, time: number, delta: number) {}

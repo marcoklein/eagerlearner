@@ -1,6 +1,7 @@
 export const GlobalConfig = {
-  physics: {
+  world: {
     gravity: 2000,
+    falldownY: 600,
   },
   player: {
     speed: 400,
@@ -13,7 +14,11 @@ export const GlobalConfig = {
   },
   bullets: {
     speed: 700,
-    lifetime: 800,
+    /**
+     * Lifetime of a bullet.
+     * Should be a value that the Hero can see the enemy (to count it).
+     */
+    lifetime: 750,
   },
   monsters: {
     mass: 10,

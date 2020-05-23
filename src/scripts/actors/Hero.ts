@@ -4,24 +4,23 @@ import { PlayerControlComponent } from './components/PlayerControlComponent';
 import { GameScene } from '../scenes/GameScene';
 import { Actor } from './Actor';
 import { GlobalConfig } from '../Globals';
+import { LevelController } from '../level/LevelController';
 
 export class Hero extends Actor {
-  scene: GameScene;
   hands: HandComponent;
   control: PlayerControlComponent;
   fallDownDestroy: DestroyOnFallDownComponent;
 
-  constructor(scene: GameScene, x: number, y: number) {
-    super(scene, x, y, 'player.body');
-    this.scene = scene;
+  constructor(level: LevelController, x: number, y: number) {
+    super(level, x, y, 'player.body');
     this.hands = new HandComponent(this.scene, this, { key: 'player.hand' });
     this.control = new PlayerControlComponent(this.scene, this);
-    this.fallDownDestroy = new DestroyOnFallDownComponent(scene, this);
+    this.fallDownDestroy = new DestroyOnFallDownComponent(this.scene, this);
 
     this.setOrigin(0.5, 1);
 
-    scene.add.existing(this);
-    scene.physics.add.existing(this);
+    this.scene.add.existing(this);
+    this.scene.physics.add.existing(this);
   }
 
   preUpdate(time: number, delta: number) {

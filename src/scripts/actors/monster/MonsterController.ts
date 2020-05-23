@@ -6,15 +6,18 @@ import { Gun } from '../wearables/Gun';
 import { GlobalConfig } from '../../Globals';
 import { GameScene } from '../../scenes/GameScene';
 import { MonsterSpawner } from './MonsterSpawner';
+import { LevelController } from '../../level/LevelController';
 
 export class MonsterController {
-  scene: GameScene;
-  group: Phaser.Physics.Arcade.Group;
+  readonly level: LevelController;
+  readonly scene: GameScene;
+  readonly group: Phaser.Physics.Arcade.Group;
 
-  builder = new MonsterSpawner(this);
+  readonly builder = new MonsterSpawner(this);
 
-  constructor(scene: GameScene) {
-    this.scene = scene;
+  constructor(level: LevelController) {
+    this.scene = level.scene;
+    this.level = level;
     this.group = this.scene.physics.add.group({
       dragX: GlobalConfig.monsters.dragX,
       angularDrag: 200,

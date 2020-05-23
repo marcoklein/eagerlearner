@@ -1,7 +1,17 @@
+import { LevelController } from '../level/LevelController';
+import { GameScene } from '../scenes/GameScene';
+
 export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
+  scene: GameScene;
+  level: LevelController;
   body: Phaser.Physics.Arcade.Body;
 
   life = 0;
+
+  constructor(level: LevelController, x: number, y: number, texture: string, frame?: string | number | undefined) {
+    super(level.scene, x, y, texture, frame);
+    this.level = level;
+  }
 
   move(speed: number, directionLeftOrRight: boolean = this.flipX) {
     // move
@@ -26,5 +36,10 @@ export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
     if (this.life < 0) {
       this.destroy();
     }
+  }
+
+  destroy() {
+    super.destroy();
+    this.level.particles.emitDeathExplosion(this);
   }
 }
