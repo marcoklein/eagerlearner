@@ -1,7 +1,10 @@
 export const GlobalConfig = {
+  physics: {
+    gravity: 2000,
+  },
   player: {
     speed: 400,
-    jumpVelocity: 600,
+    jumpVelocity: 800,
     mass: 10,
     dragX: 1000,
   },

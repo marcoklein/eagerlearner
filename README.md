@@ -21,6 +21,7 @@
 # TODOs
 ## For MVP
 * [x] add a "DEAD" screen / message
+* [x] adjust physics parameters
 * [ ] add particles on destroy
 * [ ] level generator
 * [ ] more weapons = more fun :)
