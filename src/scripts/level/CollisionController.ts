@@ -15,6 +15,12 @@ export class CollisionController {
     scene.physics.add.collider(scene.level.spawner.group, scene.level.platforms.group);
     scene.physics.add.collider(scene.level.spawner.group, scene.level.heroGroup);
 
+    scene.physics.add.overlap(scene.level.projectiles.group, scene.level.projectiles.group, (a, b) => {
+      // destroy bullets on collision
+      a.destroy();
+      b.destroy();
+    });
+
     scene.physics.add.overlap(scene.level.projectiles.group, scene.level.platforms.group, (a, b) => {
       // collided with wall
       if (a instanceof Phaser.Physics.Arcade.Sprite && b instanceof Projectile) {

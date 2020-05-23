@@ -34,7 +34,7 @@
 * [ ] kill monster if player jumps on it / move it downward
 
 ### Small
-* [ ] bullets should destroy each other; this satisfying feeling when you prevent the bullet from hitting you
+* [x] bullets should destroy each other; this satisfying feeling when you prevent the bullet from hitting you
 * [x] monsters should not kill each other.. then you cant count :O => added the option that monsters only move if player has been in sight
 * [x] sometimes you get killed while walking on a platform - maybe falldown y reached?
 * [x] destroy particles on level change
