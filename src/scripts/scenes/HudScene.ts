@@ -1,6 +1,7 @@
 import FpsText from '../objects/fpsText';
 import { GameScene } from './GameScene';
 import { LevelState } from '../level/LevelController';
+import { GlobalConfig } from '../Globals';
 
 export class HudScene extends Phaser.Scene {
   fpsText: Phaser.GameObjects.Text;
@@ -17,15 +18,16 @@ export class HudScene extends Phaser.Scene {
 
   create() {
     this.gameScene = this.scene.get('GameScene') as GameScene;
-    this.fpsText = new FpsText(this);
+    if (GlobalConfig.debug.showFps) this.fpsText = new FpsText(this);
 
     // display the Phaser.VERSION
-    this.add
-      .text(this.cameras.main.width - 15, 15, `Phaser v${Phaser.VERSION}`, {
-        color: '#000000',
-        fontSize: 24,
-      })
-      .setOrigin(1, 0);
+    if (GlobalConfig.debug.showVersion)
+      this.add
+        .text(this.cameras.main.width - 15, 15, `v${VERSION}`, {
+          color: '#000000',
+          fontSize: 24,
+        })
+        .setOrigin(1, 0);
 
     this.deadMessage = this.add
       .text(this.cameras.main.width / 2, this.cameras.main.height / 2, 'Ooops ... you exploded', {
@@ -45,7 +47,7 @@ export class HudScene extends Phaser.Scene {
   }
 
   update(time: number, delta: number) {
-    this.fpsText.update(time, delta);
+    if (this.fpsText) this.fpsText.update(time, delta);
 
     this.deadGroup.setVisible(this.gameScene.level.state === LevelState.DEAD);
   }

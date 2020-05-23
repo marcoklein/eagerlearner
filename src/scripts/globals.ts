@@ -1,6 +1,8 @@
 export const GlobalConfig = {
   debug: {
     actionLevelOnly: false,
+    showVersion: true,
+    showFps: false,
   },
   world: {
     gravity: 2000,

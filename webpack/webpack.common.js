@@ -1,6 +1,7 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 const { InjectManifest } = require('workbox-webpack-plugin')
 
 module.exports = {
@@ -29,12 +30,17 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(require("../package.json").version)
+    }),
     new HtmlWebpackPlugin({ gameName: 'Eager Learner', template: 'src/index.html' }),
-    new CopyWebpackPlugin([
-      { from: 'src/assets', to: 'assets' },
-      { from: 'pwa', to: '' },
-      { from: 'src/favicon.ico', to: '' }
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/assets', to: 'assets' },
+        { from: 'pwa', to: '' },
+        { from: 'src/favicon.ico', to: '' }
+      ]
+    }),
     new InjectManifest({
       swSrc: path.resolve(__dirname, '../pwa/sw.js')
     })
