@@ -1,16 +1,11 @@
 {
-  "short_name": "Phaser Game",
-  "name": "My Cool Phaser 3 Game",
+  "short_name": "Eager Learner",
+  "name": "Eager Learner Action Game",
   "icons": [
     {
       "src": "./icons/icons-192.png",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "./icons/icons-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": "./index.html",
