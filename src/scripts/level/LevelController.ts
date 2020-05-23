@@ -50,7 +50,12 @@ export class LevelController {
    * 3 is the next level
    * ... and so on
    */
-  levelNumber = 0;
+  get levelNumber() {
+    return this.actionLevel + this.learningLevel;
+  }
+
+  actionLevel = 0;
+  learningLevel = 0;
 
   constructor(scene: GameScene) {
     this.scene = scene;
@@ -78,7 +83,6 @@ export class LevelController {
     console.log('restarting game');
     // reset level and hero
     this.resetLevel();
-    this.levelNumber = 0;
 
     this.changeState(LevelState.HOME);
 
@@ -86,6 +90,8 @@ export class LevelController {
     this.setCameraOffset(0, this.hero.height / 2);
 
     this.gameIsActionLevel = true;
+    this.actionLevel = 0;
+    this.learningLevel = 0;
     this.createNextLevel();
   }
 
@@ -101,7 +107,6 @@ export class LevelController {
    */
   private newLevel() {
     if (!this.initialized) throw Error('Not initialized.');
-    this.levelNumber++;
     console.log('new level!!! with number', this.levelNumber);
     this.spawner.group.active = false;
     this.projectiles.group.active = false;

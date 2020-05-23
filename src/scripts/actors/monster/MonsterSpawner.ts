@@ -37,12 +37,17 @@ export class MonsterSpawner {
     return this;
   }
 
+  logics(logics: MonsterLogic[]) {
+    logics.forEach((l) => this.logic(l));
+    return this;
+  }
+
   spawn(x: number, y: number) {
     if (!this._texture) throw new Error('Texture needed');
     const monster = new Monster(this.spawner.scene, x, y, this._texture);
     if (this.wearable) monster.hands.equip(Object.create(this.wearable));
     this._logics.forEach((logic) => monster.addLogic(Object.create(logic)));
     this.spawner.spawnMonster(monster);
-    return this;
+    return monster;
   }
 }

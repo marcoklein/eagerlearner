@@ -17,6 +17,7 @@ export class Monster extends Actor {
     this.scene = scene;
     this.hands = new HandComponent(this.scene, this, { key: 'monster.hand' });
     this.fallDownDestroy = new DestroyOnFallDownComponent(scene, this);
+    this.setOrigin(0.5, 1);
 
     // NOTE: physical attributes are overriden and handled by the MonsterSpawner static group
     scene.add.existing(this);

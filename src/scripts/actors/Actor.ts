@@ -13,6 +13,5 @@ export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
       const moveVel = directionLeftOrRight ? -maxSpeed : maxSpeed;
       this.setVelocityX(moveVel);
     }
-    console.log(this.body.velocity.x);
   }
 }

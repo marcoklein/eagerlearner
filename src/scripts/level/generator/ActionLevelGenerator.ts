@@ -6,6 +6,10 @@ import { PatrolLogic } from '../../actors/monster/ai/PatrolLogic';
 import { LookToPlayerLogic } from '../../actors/monster/ai/LookToPlayerLogic';
 import { PlayerDeadLogic } from '../logic/PlayerDeadLogic';
 import { Wearable } from '../../actors/wearables/Wearable';
+import { Punch } from '../../actors/wearables/Punch';
+import { WearableFactory } from '../../actors/wearables/WearableFactory';
+import { MonsterLogic } from '../../actors/monster/ai/MonsterLogic';
+import { DumbShootLogic } from '../../actors/monster/ai/DumbShootLogic';
 
 export interface LevelOptions {
   levelWidth: number;
@@ -52,31 +56,54 @@ export class ActionLevelGenerator extends LevelGenerator {
       .texture({ key: 'monster.5' })
       .logic(new LookToPlayerLogic())
       .equip(new Gun({ key: 'weapon.gun' }))
-      .spawn(1100, 100)
-      .spawn(1150, 100);
+      .spawn(1100, 100);
     level.platforms.createPlatform(1000, 180, 500);
 
     level.addDoor(1200, 180);
   }
 
   createRandomLevel(level: LevelController) {
+    const monsterKinds = 5; // random monster breeds
+    // TODO with each level one more texture is filtered
+    const monsterTextures = ['monster.1', 'monster.5'];
+    const wearables = [WearableFactory.createPunch(), WearableFactory.createGun()];
+    const moveLogics = [[new LookToPlayerLogic()], []];
+    const attackLogics = [[new DumbShootLogic()], [new DumbShootLogic()]];
+
+    let levelMonsterTextures = monsterTextures.filter((item, index) => index < level.actionLevel);
+    let levelWearables = wearables.filter((item, index) => index < level.actionLevel);
+    let levelLogics = moveLogics.filter((item, index) => index < level.actionLevel);
+    let levelAttackLogics = attackLogics.filter((item, index) => index < level.actionLevel);
+
+    console.log('monster textures for level', levelMonsterTextures);
+    console.log('monster wearables for level', levelWearables);
+    console.log('level logics', levelLogics);
+
     // create random spawners
     let spawners: MonsterSpawner[] = [];
-    const monsterKinds = 5; // random monster breeds
+    for (let i = 0; i < monsterKinds; i++) {
+      spawners.push(
+        this.createRandomSpawner(level, levelMonsterTextures, levelWearables, levelLogics, levelAttackLogics)
+      );
+    }
 
     // create random platforms
-    this.createRandomPlatforms(level, {
-      levelWidth: 5000,
-      maxGap: 250,
-      minY: -500,
-      maxY: 500,
-      maxYGap: 100,
-      minWidth: 100,
-      maxWidth: 1000,
-    });
+    this.createRandomPlatforms(
+      level,
+      {
+        levelWidth: 5000,
+        maxGap: 250,
+        minY: -500,
+        maxY: 500,
+        maxYGap: 100,
+        minWidth: 100,
+        maxWidth: 1000,
+      },
+      spawners
+    );
   }
 
-  private createRandomPlatforms(level: LevelController, options: LevelOptions) {
+  private createRandomPlatforms(level: LevelController, options: LevelOptions, spawners: MonsterSpawner[]) {
     const { levelWidth, maxGap, minY, maxY, maxYGap, minWidth, maxWidth } = options;
     const rnd = (min: number, max: number) => Phaser.Math.Between(min, max);
     // params for initial platform
@@ -90,14 +117,46 @@ export class ActionLevelGenerator extends LevelGenerator {
     let curPlatform: Phaser.Physics.Arcade.Sprite;
     do {
       curPlatform = level.platforms.createPlatform(nextX, nextY, nextWidth);
+      this.handlePlatformSpawned(level, curPlatform, spawners);
       // succeeding platform params
       nextWidth = rnd(minWidth, maxWidth);
       nextX += (nextWidth + curPlatform.displayWidth) / 2 + rnd(0, maxGap); // left param is min x gap
       nextY = rnd(Math.max(minY, curPlatform.y - maxYGap), Math.min(maxY, curPlatform.y + maxYGap));
     } while (curPlatform.x < levelWidth);
 
+    // add door on last platform
     level.addDoor(curPlatform.x, curPlatform.y);
   }
+
+  /**
+   * Called as a new platform is created.
+   * Create monsters or stuff on it..
+   *
+   * @param level
+   * @param platform
+   */
+  handlePlatformSpawned(level: LevelController, platform: Phaser.Physics.Arcade.Sprite, spawners: MonsterSpawner[]) {
+    const rnd = (min: number, max: number) => Phaser.Math.Between(min, max);
+
+    const minPlayerDistance = 300; // spawn monsters not directly in front of player
+    if (platform.x < minPlayerDistance) return;
+
+    // maybe spawn monster on platform
+    if (Math.random() < 1) {
+      // spawn monster
+      const spawner = this.randomElement(spawners);
+      const monster = spawner.spawn(platform.x + rnd(0, platform.displayWidth) - platform.displayWidth / 2, platform.y);
+      console.log('spawned monster');
+
+      // add move logic here
+      monster.addLogic(new PatrolLogic(platform.x - platform.displayWidth / 2, platform.x + platform.displayWidth / 2));
+    }
+  }
+
+  private rndBoolean() {
+    return Phaser.Math.Between(0, 1) === 0;
+  }
+
   private rndSquared(min: number, max: number) {
     const input = Phaser.Math.Between(min, max);
     const inputMinusMax = input - max;
@@ -106,9 +165,17 @@ export class ActionLevelGenerator extends LevelGenerator {
     return Math.round(a * inputSquared + max);
   }
 
-  private createRandomSpawner(level: LevelController, availableTextures: string[], equipments: Wearable[]) {
+  private createRandomSpawner(
+    level: LevelController,
+    availableTextures: string[],
+    equipments: Wearable[],
+    moveLogics: MonsterLogic[][],
+    attackLogics: MonsterLogic[][]
+  ) {
     return new MonsterSpawner(level.spawner)
       .texture({ key: this.randomElement(availableTextures) })
+      .logics(this.randomElement(moveLogics).map((c) => Object.create(c)))
+      .logics(this.randomElement(attackLogics).map((c) => Object.create(c)))
       .equip(this.randomElement(equipments));
   }
 
