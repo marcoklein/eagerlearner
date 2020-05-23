@@ -14,12 +14,15 @@ export class TextItem extends Item {
   }
 
   setupPhysicalAttributes(projectile: Projectile): void {
-    super.setupPhysicalAttributes(projectile);
-
     const centerPos = projectile.getCenter();
     this.textObject = projectile.scene.add.text(centerPos.x, centerPos.y, this.text);
     this.textObject.setOrigin(0.5, 0.5);
     this.textObject.setFontSize(26);
+  }
+
+  onUpdate(time: number, delta: number, projectile: Projectile) {
+    this.textObject.x = projectile.x;
+    this.textObject.y = projectile.y;
   }
 
   onDestroy(projectile: Projectile): void {

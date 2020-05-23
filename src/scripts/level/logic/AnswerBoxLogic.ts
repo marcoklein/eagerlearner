@@ -9,7 +9,7 @@ import { BlackboardLogic } from './BlackboardLogic';
 import { LevelLogic } from './LevelLogic';
 
 /**
- * Shows answer boxes.
+ * Interface to control answer boxes.
  */
 export class AnswerBoxLogic extends LevelLogic {
   level: LevelController;

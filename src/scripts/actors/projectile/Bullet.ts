@@ -20,4 +20,6 @@ export class Bullet extends ProjectileType {
   }
 
   onDestroy(projectile: Projectile): void {}
+
+  onUpdate(time: number, delta: number, projectile: Projectile) {}
 }

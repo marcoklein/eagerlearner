@@ -1,9 +1,8 @@
-import { LevelGenerator } from './LevelGenerator';
 import { LevelController } from '../LevelController';
-import { BlackboardLogic } from '../logic/BlackboardLogic';
-import { LevelLogic } from '../logic/LevelLogic';
 import { AnswerBoxLogic } from '../logic/AnswerBoxLogic';
+import { BlackboardLogic } from '../logic/BlackboardLogic';
 import { QuestionMasterLogic } from '../logic/QuestionMasterLogic';
+import { LevelGenerator } from './LevelGenerator';
 
 export class LearningRoomGenerator extends LevelGenerator {
   generate(level: LevelController): void {

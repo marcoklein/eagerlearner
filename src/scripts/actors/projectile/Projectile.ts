@@ -26,6 +26,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
 
   preUpdate(time: number, delta: number) {
     super.preUpdate(time, delta);
+    this.projectileType.onUpdate(time, delta, this);
     this.lifetime -= delta;
     // auto kill if it doesnt collide after time
     if (this.lifetime < 0) {
