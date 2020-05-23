@@ -27,6 +27,7 @@
 * [ ] more weapons = more fun :) .. not sure .. its like already fun - maybe give gun later
 * [x] hands of player hit every object and only left/or right hand currently has an effect
   * [x] just add a rectangle to check what it hits
+* [ ] bullet shooting limit - loose weapon when you shoot everything
 
 ### Small
 * [ ] bullets should destroy each other; this satisfying feeling when you prevent the bullet from hitting you
@@ -34,6 +35,7 @@
 * [ ] sometimes you get killed while walking on a platform - maybe falldown y reached?
 
 ## For more
+* [ ] add something to bottom as ground so player knows whats happening
 * [ ] add a timer to questions
 * [ ] add a "closed door" where the player spawns in a new level - there you can also reset physics and stuff
 * [ ] lobby music (probably easiest)
