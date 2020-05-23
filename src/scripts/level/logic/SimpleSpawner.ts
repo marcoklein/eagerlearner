@@ -13,8 +13,9 @@ export class SimpleSpawner extends LevelLogic {
   update(level: LevelController, time: number, delta: number) {
     if (time > this.spawnedMonsters * 10000) {
       this.spawnedMonsters++;
-      level.spawner.spawnWeakMonster(Phaser.Math.Between(300, 900), 0);
-      level.spawner.spawnPunchingMonster(Phaser.Math.Between(300, 900), 0);
+      throw new Error('simple spawner not implemented');
+      // level.spawner.spawnWeakMonster(Phaser.Math.Between(300, 900), 0);
+      // level.spawner.spawnPunchingMonster(Phaser.Math.Between(300, 900), 0);
     }
   }
 }

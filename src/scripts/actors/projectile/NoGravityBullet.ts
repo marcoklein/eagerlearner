@@ -4,7 +4,7 @@ import { ProjectileType } from './ProjectileType';
 /**
  * Something that flys and has an effect on collision.
  */
-export class Bullet extends ProjectileType {
+export class NoGravityBullet extends ProjectileType {
   private velocity: Phaser.Math.Vector2;
 
   constructor(velocity: Phaser.Math.Vector2) {

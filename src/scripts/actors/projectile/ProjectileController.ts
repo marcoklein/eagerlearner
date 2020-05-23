@@ -1,4 +1,4 @@
-import { Bullet } from './Bullet';
+import { NoGravityBullet } from './NoGravityBullet';
 import { Projectile } from './Projectile';
 import { ProjectileBuilder } from './ProjectileBuilder';
 import { ThrowBackEffect } from './effects/ThrowBackEffect';
@@ -17,7 +17,7 @@ export class ProjectileController {
   constructor(scene: GameScene) {
     this.scene = scene;
     this.group = this.scene.physics.add.group({
-      allowGravity: false,
+      // allowGravity: false,
     });
   }
 
@@ -32,7 +32,11 @@ export class ProjectileController {
       .effect(new ThrowBackEffect())
       .texture(texture)
       .owner(owner)
-      .type(new Bullet(velocity))
+      .type(new NoGravityBullet(velocity))
       .spawn(x, y);
+  }
+
+  newBuilder() {
+    return new ProjectileBuilder(this);
   }
 }

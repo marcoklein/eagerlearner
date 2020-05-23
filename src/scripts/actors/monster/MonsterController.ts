@@ -35,29 +35,4 @@ export class MonsterController {
   spawnMonster(monster: Monster) {
     this.group.add(monster);
   }
-
-  spawnWeakMonster(x: number, y: number) {
-    return (
-      this.builder
-        .reset()
-        .texture({ key: 'monster.1' })
-        .logic(new LookToPlayerLogic())
-        // .logic(new DumbAttackLogic())
-        .equip(new Gun({ key: 'weapon.gun' }))
-        .spawn(x, y)
-    );
-  }
-
-  spawnPunchingMonster(x: number, y: number) {
-    return (
-      this.builder
-        .reset()
-        .texture({ key: 'monster.5' })
-        .logic(new LookToPlayerLogic())
-        .logic(new FollowPlayerLogic())
-        // .logic(new DumbShootLogic())
-        // .equip(new Punch())
-        .spawn(x, y)
-    );
-  }
 }

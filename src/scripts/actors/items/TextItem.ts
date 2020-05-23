@@ -18,6 +18,7 @@ export class TextItem extends Item {
     this.textObject = projectile.scene.add.text(centerPos.x, centerPos.y, this.text);
     this.textObject.setOrigin(0.5, 0.5);
     this.textObject.setFontSize(26);
+    projectile.setGravityY(-projectile.scene.physics.world.gravity.y); // stay in air
   }
 
   onUpdate(time: number, delta: number, projectile: Projectile) {

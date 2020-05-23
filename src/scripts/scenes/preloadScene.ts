@@ -8,10 +8,14 @@ export class PreloadScene extends Phaser.Scene {
   preload() {
     this.load.image('player.body', 'assets/sprites/player.png');
     this.load.image('player.hand', 'assets/sprites/hand.png');
+
     this.load.image('weapon.gun', 'assets/sprites/gun.png');
     this.load.image('weapon.bullet', 'assets/sprites/bullet.png');
-    this.load.image('monster.1', 'assets/sprites/monster-1.png');
-    this.load.image('monster.5', 'assets/sprites/monster-5.png');
+
+    this.weapons(['plus', 'equal', 'sigma']);
+
+    this.monsters(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+
     this.load.image('monster.hand', 'assets/sprites/monster-hand.png');
 
     this.load.image('world.door', 'assets/sprites/door.png');
@@ -20,6 +24,22 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image('learn.blackboard', 'assets/sprites/blackboard.png');
     this.load.image('learn.teacher', 'assets/sprites/teacher.png');
     this.load.image('learn.box', 'assets/sprites/answer-box.png');
+  }
+
+  private weapons(names: string[]) {
+    names.forEach((name) => this.loadWeaponWithBullet(name));
+  }
+
+  private loadWeaponWithBullet(name: string) {
+    this.load.image(`weapon.${name}`, `assets/sprites/weapon.${name}.png`);
+    this.load.image(`bullet.${name}`, `assets/sprites/bullet.${name}.png`);
+  }
+
+  private monsters(names: string[]) {
+    names.forEach((name) => this.loadMonster(name));
+  }
+  private loadMonster(name: string) {
+    this.load.image(`monster.${name}`, `assets/sprites/monster.${name}.png`);
   }
 
   create() {

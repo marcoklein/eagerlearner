@@ -1,4 +1,7 @@
 export const GlobalConfig = {
+  debug: {
+    actionLevelOnly: false,
+  },
   world: {
     gravity: 2000,
     falldownY: 600,

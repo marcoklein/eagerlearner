@@ -59,7 +59,7 @@ export class ActionLevelGenerator extends LevelGenerator {
   generate(level: LevelController): void {
     level.hero.x = 0;
     level.hero.y = 0;
-    level.hero.hands.equip(WearableFactory.createGun());
+    level.hero.hands.equip(WearableFactory.createPlusGun());
 
     this.createRandomLevel(level);
 
@@ -70,7 +70,7 @@ export class ActionLevelGenerator extends LevelGenerator {
     const monsterKinds = 5; // random monster breeds
     // TODO with each level one more texture is filtered
     const monsterTextures = ['monster.1', 'monster.5'];
-    const wearables = [WearableFactory.createGun(), WearableFactory.createPunch()];
+    const wearables = [WearableFactory.createEqualGun(), WearableFactory.createPunch()];
 
     // all levels inherit the base attributes
     const baseConfig: LevelOptions = {

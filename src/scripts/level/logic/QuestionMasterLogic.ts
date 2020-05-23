@@ -81,7 +81,7 @@ export class QuestionMasterLogic extends LevelLogic {
    * TODO in future we may spawn to items so the player can choose and pick
    */
   giveHeroBetterItem() {
-    this.level.hero.hands.equip(WearableFactory.createGun());
+    this.level.hero.hands.equip(WearableFactory.createEqualGun());
   }
 
   // TODO handling the "right answer" should be extracted into a different component

@@ -1,7 +1,6 @@
 import { Hero } from '../actors/Hero';
 import { Monster } from '../actors/Monster';
 import { Projectile } from '../actors/projectile/Projectile';
-import { GameScene } from '../scenes/GameScene';
 import { LevelController } from './LevelController';
 
 export class CollisionController {
@@ -17,8 +16,15 @@ export class CollisionController {
 
     scene.physics.add.overlap(scene.level.projectiles.group, scene.level.projectiles.group, (a, b) => {
       // destroy bullets on collision
-      a.destroy();
-      b.destroy();
+      if (a instanceof Projectile && b instanceof Projectile) {
+        if (a.owner !== b.owner) {
+          // dont destroy own projectiles
+          a.destroy();
+          b.destroy();
+        }
+      } else {
+        throw new Error('Wrong type during collision');
+      }
     });
 
     scene.physics.add.overlap(scene.level.projectiles.group, scene.level.platforms.group, (a, b) => {

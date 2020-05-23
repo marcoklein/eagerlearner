@@ -1,7 +1,7 @@
-import { Wearable, HandPositions } from './Wearable';
+import { GlobalConfig, TextureKey } from '../../Globals';
 import { HandComponent } from '../components/HandComponent';
-import { TextureKey, GlobalConfig } from '../../Globals';
-import { Bullet } from '../projectile/Bullet';
+import { GunFireLogic } from './logics/GunFireLogic';
+import { HandPositions, Wearable } from './Wearable';
 
 /**
  * Shoots stuff.
@@ -16,9 +16,12 @@ export class Gun extends Wearable {
   shootAnimationTime = 50;
   shootAnimation = 0;
 
-  constructor(texture: TextureKey) {
+  fireLogic: GunFireLogic;
+
+  constructor(texture: TextureKey, fireLogic: GunFireLogic) {
     super();
     this.texture = texture;
+    this.fireLogic = fireLogic;
   }
 
   onEquip(hands: HandComponent): void {
@@ -36,12 +39,12 @@ export class Gun extends Wearable {
       // fire
       this.shootAnimation = this.shootAnimationTime;
       this.currentCooldown = this.cooldown;
-      const vel = new Phaser.Math.Vector2(body.flipX ? -GlobalConfig.bullets.speed : GlobalConfig.bullets.speed, 0);
-      this.hands.scene.level.projectiles.fireBullet(
+
+      this.fireLogic.fire(
+        this.hands.scene.level,
+        this,
         this.gunSprite.x + (body.flipX ? -body.width / 2 : body.width / 2),
         this.gunSprite.y,
-        vel,
-        { key: 'weapon.bullet' },
         this.hands.body
       );
     }

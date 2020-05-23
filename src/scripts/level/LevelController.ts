@@ -124,7 +124,11 @@ export class LevelController {
     // general logic components
     this.addLogic(new PlayerDeadLogic());
 
-    if (introRoom) {
+    if (GlobalConfig.debug.actionLevelOnly) {
+      console.log('starting new Action level!!');
+      this.actionLevel++;
+      this.actionLevelGenerator.generate(this);
+    } else if (introRoom) {
       this.introRoomGenerator.generate(this);
     } else if (this.actionLevel <= this.learningLevel) {
       // start with action level

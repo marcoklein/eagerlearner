@@ -7,6 +7,8 @@ import { ProjectileBuilder } from '../../actors/projectile/ProjectileBuilder';
 import { LevelController } from '../LevelController';
 import { BlackboardLogic } from './BlackboardLogic';
 import { LevelLogic } from './LevelLogic';
+import { Actor } from '../../actors/Actor';
+import { Monster } from '../../actors/Monster';
 
 /**
  * Interface to control answer boxes.
@@ -42,12 +44,16 @@ export class AnswerBoxLogic extends LevelLogic {
     const bottomLeft = this.blackboard.blackboard.getBottomLeft();
     const bottomRight = this.blackboard.blackboard.getBottomRight();
 
+    // fix until item system is there
+    const god = new Monster(this.level, -1000000000, -1000000000, { key: 'god' });
+    god.destroy();
+
     // left
     this.leftBox = new ProjectileBuilder(this.level.projectiles)
       .effect(new HeroEffect(leftCallback))
       .texture({ key: 'learn.box' })
       .type(new TextItem(leftText))
-      .owner(this.level.hero)
+      .owner(god)
       .spawn(bottomLeft.x + 100, bottomLeft.y - 100);
 
     // right
@@ -55,7 +61,7 @@ export class AnswerBoxLogic extends LevelLogic {
       .effect(new HeroEffect(rightCallback))
       .texture({ key: 'learn.box' })
       .type(new TextItem(rightText))
-      .owner(this.level.hero)
+      .owner(god)
       .spawn(bottomRight.x - 100, bottomRight.y - 100);
   }
 
