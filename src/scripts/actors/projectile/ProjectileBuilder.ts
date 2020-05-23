@@ -3,6 +3,7 @@ import { Projectile } from './Projectile';
 import { ProjectileController } from './ProjectileController';
 import { ProjectileEffect } from './effects/ProjectileEffect';
 import { ProjectileType } from './ProjectileType';
+import { Actor } from '../Actor';
 
 export class ProjectileBuilder {
   readonly controller: ProjectileController;
@@ -10,6 +11,7 @@ export class ProjectileBuilder {
   private _texture: TextureKey | undefined;
   private _lifetime: number;
   private effects: ProjectileEffect[] = [];
+  private _owner: Actor;
 
   constructor(projectileController: ProjectileController) {
     this.controller = projectileController;
@@ -38,6 +40,11 @@ export class ProjectileBuilder {
     return this;
   }
 
+  owner(actor: Actor) {
+    this._owner = actor;
+    return this;
+  }
+
   lifetime(time: number) {
     this._lifetime = time;
     return this;
@@ -46,7 +53,15 @@ export class ProjectileBuilder {
   spawn(x: number, y: number) {
     if (!this._texture) throw new Error('Texture needed');
     if (!this._type) throw new Error('Type needed');
-    const projectile = new Projectile(this.controller.scene, x, y, this._texture, Object.create(this._type));
+    if (!this._owner) throw new Error('Owner needed');
+    const projectile = new Projectile(
+      this.controller.scene,
+      x,
+      y,
+      this._texture,
+      Object.create(this._type),
+      this._owner
+    );
     projectile.lifetime = this._lifetime;
     this.effects.forEach((effect) => projectile.addEffect(Object.create(effect)));
     this.controller.addProjectile(projectile);

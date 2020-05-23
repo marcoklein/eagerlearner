@@ -47,6 +47,7 @@ export class AnswerBoxLogic extends LevelLogic {
       .effect(new HeroEffect(leftCallback))
       .texture({ key: 'learn.box' })
       .type(new TextItem(leftText))
+      .owner(this.level.hero)
       .spawn(bottomLeft.x + 100, bottomLeft.y - 100);
 
     // right
@@ -54,6 +55,7 @@ export class AnswerBoxLogic extends LevelLogic {
       .effect(new HeroEffect(rightCallback))
       .texture({ key: 'learn.box' })
       .type(new TextItem(rightText))
+      .owner(this.level.hero)
       .spawn(bottomRight.x - 100, bottomRight.y - 100);
   }
 

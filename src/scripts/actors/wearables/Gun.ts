@@ -41,7 +41,8 @@ export class Gun extends Wearable {
         this.gunSprite.x + (body.flipX ? -body.width / 2 : body.width / 2),
         this.gunSprite.y,
         vel,
-        { key: 'weapon.bullet' }
+        { key: 'weapon.bullet' },
+        this.hands.body
       );
     }
   }

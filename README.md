@@ -39,6 +39,7 @@
 * [x] sometimes you get killed while walking on a platform - maybe falldown y reached?
 * [x] destroy particles on level change
 * [x] player falls through door and then level
+* [x] dont let bullets kill yourself
 
 ## For more
 * [ ] add a death message reason

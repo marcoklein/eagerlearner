@@ -4,6 +4,7 @@ import { ProjectileBuilder } from './ProjectileBuilder';
 import { ThrowBackEffect } from './effects/ThrowBackEffect';
 import { GlobalConfig, TextureKey } from '../../Globals';
 import { GameScene } from '../../scenes/GameScene';
+import { Actor } from '../Actor';
 
 /**
  * Manages everything that generally flys around in the world and has some effect on actors.
@@ -25,7 +26,13 @@ export class ProjectileController {
     projectile.setupPhysicalAttributes();
   }
 
-  fireBullet(x: number, y: number, velocity: Phaser.Math.Vector2, texture: TextureKey) {
-    this.builder.reset().effect(new ThrowBackEffect()).texture(texture).type(new Bullet(velocity)).spawn(x, y);
+  fireBullet(x: number, y: number, velocity: Phaser.Math.Vector2, texture: TextureKey, owner: Actor) {
+    this.builder
+      .reset()
+      .effect(new ThrowBackEffect())
+      .texture(texture)
+      .owner(owner)
+      .type(new Bullet(velocity))
+      .spawn(x, y);
   }
 }

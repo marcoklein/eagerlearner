@@ -4,6 +4,8 @@ import { ProjectileEffect, EffectStatus } from './effects/ProjectileEffect';
 import { ProjectileType } from './ProjectileType';
 import { Hero } from '../Hero';
 import { Monster } from '../Monster';
+import { Actor } from '../Actor';
+import { Platform } from '../../level/platforms/Platform';
 
 /**
  * Something that flys and has an effect on collision.
@@ -16,9 +18,16 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
 
   lifetime: number = GlobalConfig.bullets.lifetime;
 
-  constructor(scene: GameScene, x: number, y: number, texture: TextureKey, type: ProjectileType) {
+  /**
+   * The shooter.
+   */
+  owner: Actor;
+
+  constructor(scene: GameScene, x: number, y: number, texture: TextureKey, type: ProjectileType, owner: Actor) {
     super(scene, x, y, texture.key, texture.frame);
+
     this.projectileType = type;
+    this.owner = owner;
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -43,6 +52,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   }
 
   onHeroCollision(hero: Hero) {
+    if (hero === this.owner) return;
     let destroy = false;
     this.effects = this.effects.filter((effect) => {
       const status = effect.applyToHero(this, hero);
@@ -55,6 +65,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   }
 
   onMonsterCollision(monster: Monster) {
+    if (monster === this.owner) return;
     let destroy = false;
     this.effects = this.effects.filter((effect) => {
       const status = effect.applyToMonster(this, monster);
@@ -66,7 +77,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  onWallCollision(wall: Phaser.Physics.Arcade.Sprite) {
+  onWallCollision(wall: Platform) {
     let destroy = false;
     this.effects = this.effects.filter((effect) => {
       const status = effect.applyToWall(this, wall);
