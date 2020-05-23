@@ -30,10 +30,10 @@ export class PlayerControlComponent {
     this.scene = scene;
     this.player = player;
     this.initKeyboard();
-    // this.initActions();
   }
 
   private initKeyboard() {
+    console.log('player input keyboard init');
     const keyboard = this.scene.input.keyboard;
     this.controlKeys = {
       left: keyboard.addKey('A'),
@@ -43,20 +43,6 @@ export class PlayerControlComponent {
       secondary: keyboard.addKey('Q'),
     };
   }
-
-  // private initActions() {
-  //   this.actions = {
-  //     left: () => {
-
-  //     },
-  //     right: () => {
-
-  //     },
-  //     jump: () => {
-
-  //     }
-  //   };
-  // }
 
   update(time: number, delta: number) {
     // handle input

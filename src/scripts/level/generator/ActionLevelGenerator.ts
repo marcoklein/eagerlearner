@@ -4,6 +4,7 @@ import { Gun } from '../../actors/wearables/Gun';
 import { MonsterSpawner } from '../../actors/monster/MonsterSpawner';
 import { PatrolLogic } from '../../actors/monster/ai/PatrolLogic';
 import { LookToPlayerLogic } from '../../actors/monster/ai/LookToPlayerLogic';
+import { PlayerDeadLogic } from '../logic/PlayerDeadLogic';
 
 export class ActionLevelGenerator extends LevelGenerator {
   generate(level: LevelController): void {

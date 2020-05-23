@@ -22,9 +22,6 @@ export class Hero extends Actor {
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
-
-    this.setDragX(GlobalConfig.player.dragX);
-    this.setMass(GlobalConfig.player.mass);
   }
 
   preUpdate(time: number, delta: number) {
