@@ -20,6 +20,7 @@ export class Punch extends Wearable {
 
   useAction() {
     if (!this.hitting) {
+      this.hands?.body.level.sounds.playSound('punch');
       this.hitting = true;
       this.hits = [];
       return true;

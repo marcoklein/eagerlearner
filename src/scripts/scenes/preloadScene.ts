@@ -1,5 +1,17 @@
 import { GameScene } from './GameScene';
 
+export const Assets = {
+  sounds: {
+    explosion: 'Explosion',
+    goThroughDoor: 'GoThroughDoor',
+    jump: 'Jump',
+    punch: 'Punch',
+    yess: 'RightBoxSelect',
+    noo: 'WrongBoxSelect',
+    shoot: 'Shoot',
+  },
+};
+
 export class PreloadScene extends Phaser.Scene {
   constructor() {
     super({ key: 'PreloadScene' });
@@ -24,6 +36,14 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image('learn.blackboard', 'assets/sprites/blackboard.png');
     this.load.image('learn.teacher', 'assets/sprites/teacher.png');
     this.load.image('learn.box', 'assets/sprites/answer-box.png');
+
+    // sounds
+    const soundPath = (key: string) => `assets/sounds/${key}.wav`;
+    Object.keys(Assets.sounds).forEach((key) => {
+      const path = soundPath((<any>Assets.sounds)[key]);
+      this.load.audio(key, path);
+      console.log('loading sound from ', path);
+    });
   }
 
   private weapons(names: string[]) {

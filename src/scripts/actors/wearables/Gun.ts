@@ -39,7 +39,7 @@ export class Gun extends Wearable {
       // fire
       this.shootAnimation = this.shootAnimationTime;
       this.currentCooldown = this.cooldown;
-
+      this.hands.body.level.sounds.playSound('shoot');
       this.fireLogic.fire(
         this.hands.scene.level,
         this.gunSprite.x + (body.flipX ? -body.width / 2 : body.width / 2),

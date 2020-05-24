@@ -69,6 +69,7 @@ export class QuestionMasterLogic extends LevelLogic {
     this.giveHeroBetterItem();
     this.spawnDoorToActionWorld();
     this.answers.destroyBoxes();
+    this.level.sounds.playSound('yess');
     return EffectStatus.DESTROY;
   };
 
@@ -76,6 +77,7 @@ export class QuestionMasterLogic extends LevelLogic {
     // hero.reduceLife();
     this.spawnDoorToActionWorld();
     this.answers.destroyBoxes();
+    this.level.sounds.playSound('noo');
     return EffectStatus.DESTROY;
   };
 

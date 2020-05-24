@@ -40,6 +40,7 @@ export class DoorFinishLogic extends LevelLogic {
       // level finished
       // TODO we may check if the door is closed - feature for later :)
       level.finishLevel();
+      level.sounds.playSound('goThroughDoor');
     }
   }
 }

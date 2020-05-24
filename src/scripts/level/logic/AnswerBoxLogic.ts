@@ -53,7 +53,7 @@ export class AnswerBoxLogic extends LevelLogic {
       .type(new TextItem(leftText))
       .owner(god)
       .spawn(center.x - 100, center.y - 100);
-      
+
     console.log('leftbox: ', this.leftBox.x, this.leftBox.y);
 
     // right

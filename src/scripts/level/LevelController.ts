@@ -12,6 +12,7 @@ import { LevelLogic } from './logic/LevelLogic';
 import { PlayerDeadLogic } from './logic/PlayerDeadLogic';
 import { PlatformController } from './platforms/PlatformController';
 import { ParticleController } from './ParticleController';
+import { SoundController } from './SoundController';
 
 export enum LevelState {
   HOME,
@@ -32,6 +33,7 @@ export class LevelController {
   projectiles: ProjectileController;
   collisions: CollisionController;
   particles: ParticleController;
+  sounds: SoundController;
 
   logics: LevelLogic[] = [];
 
@@ -73,6 +75,7 @@ export class LevelController {
     this.projectiles = new ProjectileController(this.scene);
     this.collisions = new CollisionController(this);
     this.particles = new ParticleController(this);
+    this.sounds = new SoundController(this);
 
     this.loadHighscores();
 
@@ -119,10 +122,12 @@ export class LevelController {
 
   private resetLevel() {
     this.clearLogics();
+    this.sounds.disable(); // dont play sounds for destroying everything
     this.spawner.group.children.each((child) => child.destroy());
     this.projectiles.group.children.each((child) => child.destroy());
     this.platforms.group.children.each((child) => child.destroy());
     this.particles.destroyParticles();
+    this.sounds.enable();
   }
 
   private createNextLevel(introRoom: boolean = false) {

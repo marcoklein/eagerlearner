@@ -20,6 +20,7 @@ export class ParticleController {
 
   emitDeathExplosion(actor: Actor) {
     this.emitParticles(actor.x, actor.y - actor.displayHeight / 2, actor.texture.key, actor.frame.name);
+    this.level.sounds.playSound('explosion');
   }
 
   emitParticles(x: number, y: number, texture: string, frame?: string) {
