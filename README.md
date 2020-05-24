@@ -64,10 +64,25 @@
 
 # To Change
 * highscore should also relate to monster kills
+* monsters should not kill each other!
+* **Add a wall to learning level**
+
+* Are questions necessary? => just pick one weapon ..
 * + plus weapon is really hard to control
  * either make a mechanic to change weapon
  * or choose the weapon (two boxes explicitly)
-* monsters should not kill each other!
 * explode on wrong answer?
 * each monster should have a dedicated skill!
-  * e.g. 1 can only hit, 2 has gun and moves etc... :)
+ * those can be randomly generated or set
+ * e.g. 1 can only hit, 2 has gun and moves etc... :)
+ 
+* spawn multiple monsters on a platform with a certain level; then the + is a useful weapon
+
+## Future
+* but maybe keep question system.. lets try
+* coins and stuff:
+ * coins or stuff to level up weapons or second life etc..
+ * upgrades
+
+* make learning system within level / dont change level! => one large side scroller
+ * highscore 
