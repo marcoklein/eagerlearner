@@ -23,7 +23,7 @@ export const GlobalConfig = {
      * Lifetime of a bullet.
      * Should be a value that the Hero can see the enemy (to count it).
      */
-    lifetime: 750,
+    lifetime: 700,
   },
   monsters: {
     mass: 10,

@@ -45,7 +45,7 @@ export const MonsterCreations = {
   patrolling: (level: LevelController, platform: Platform, monster: Monster) => {
     // add move logic here
     monster.addLogic(new LookToPlayerLogic());
-    monster.addLogic(new AttackOnPlayerSight(Random.between(1000, 2000)));
+    monster.addLogic(new AttackOnPlayerSight(Random.between(1500, 4000)));
     monster.addLogic(new PatrolLogic(platform.x - platform.displayWidth / 2, platform.x + platform.displayWidth / 2));
   },
   standing: (level: LevelController, platform: Platform, monster: Monster) => {
@@ -90,7 +90,7 @@ export class ActionLevelGenerator extends LevelGenerator {
     const baseConfig: LevelOptions = {
       // level 1 (shorter)
       name: 'Base level',
-      levelWidth: 4000,
+      levelWidth: 3000,
       maxGap: 250,
       minY: -1000,
       maxY: GlobalConfig.world.falldownY - GlobalConfig.world.falldownY,
@@ -118,7 +118,16 @@ export class ActionLevelGenerator extends LevelGenerator {
       },
       {
         // level goes up and down a lot
+        name: 'Super long and super short',
+        maxGap: 300,
+        maxYGap: 40,
+        minWidth: 100,
+        maxWidth: 1500,
+      },
+      {
+        // level goes up and down a lot
         name: 'Steep and Short',
+        maxGap: 100,
         minYGap: 100,
         maxYGap: 150,
         minWidth: 100,
