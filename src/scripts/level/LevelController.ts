@@ -73,6 +73,8 @@ export class LevelController {
     this.projectiles = new ProjectileController(this.scene);
     this.collisions = new CollisionController(this);
     this.particles = new ParticleController(this);
+    
+    this.loadHighscores();
 
     this.restartGame();
   }
