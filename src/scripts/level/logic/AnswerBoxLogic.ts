@@ -17,8 +17,8 @@ export class AnswerBoxLogic extends LevelLogic {
   level: LevelController;
   blackboard: BlackboardLogic;
 
-  leftBox: Projectile;
-  rightBox: Projectile;
+  private leftBox: Projectile;
+  private rightBox: Projectile;
 
   constructor(blackboard: BlackboardLogic) {
     super();
@@ -39,10 +39,8 @@ export class AnswerBoxLogic extends LevelLogic {
     rightText: string,
     rightCallback: (projectile: Projectile, hero: Hero) => EffectStatus
   ) {
-    if (this.leftBox) this.leftBox.destroy();
-    if (this.rightBox) this.rightBox.destroy();
-    const bottomLeft = this.blackboard.blackboard.getBottomLeft();
-    const bottomRight = this.blackboard.blackboard.getBottomRight();
+    this.destroyBoxes();
+    const center = this.blackboard.blackboard.getBottomCenter();
 
     // fix until item system is there
     const god = new Monster(this.level, -1000000000, -1000000000, { key: 'god' });
@@ -54,7 +52,9 @@ export class AnswerBoxLogic extends LevelLogic {
       .texture({ key: 'learn.box' })
       .type(new TextItem(leftText))
       .owner(god)
-      .spawn(bottomLeft.x + 100, bottomLeft.y - 100);
+      .spawn(center.x - 100, center.y - 100);
+      
+    console.log('leftbox: ', this.leftBox.x, this.leftBox.y);
 
     // right
     this.rightBox = new ProjectileBuilder(this.level.projectiles)
@@ -62,7 +62,7 @@ export class AnswerBoxLogic extends LevelLogic {
       .texture({ key: 'learn.box' })
       .type(new TextItem(rightText))
       .owner(god)
-      .spawn(bottomRight.x - 100, bottomRight.y - 100);
+      .spawn(center.x + 100, center.y - 100);
   }
 
   destroyBoxes() {

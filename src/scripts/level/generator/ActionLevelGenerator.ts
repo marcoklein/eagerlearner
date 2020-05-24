@@ -77,6 +77,7 @@ export class ActionLevelGenerator extends LevelGenerator {
       'monster.7',
       'monster.8',
       'monster.9',
+      'monster.0',
     ];
     const wearables = [
       WearableFactory.createPunch(),
@@ -103,8 +104,12 @@ export class ActionLevelGenerator extends LevelGenerator {
 
     const levelConfigs: Array<WeakLevelOptions> = [
       {
-        // level 1 (shorter)
-        name: 'Level 1',
+        // level goes up and down a lot
+        name: 'Very long platforms',
+        maxGap: 250,
+        maxYGap: 40,
+        minWidth: 100,
+        maxWidth: 1500,
       },
       {
         // level goes up and down a lot
@@ -116,12 +121,7 @@ export class ActionLevelGenerator extends LevelGenerator {
         maxWidth: 1000,
       },
       {
-        // level goes up and down a lot
-        name: 'Super long and super short',
-        maxGap: 250,
-        maxYGap: 40,
-        minWidth: 100,
-        maxWidth: 1500,
+        name: 'Base level',
       },
       {
         // level goes up and down a lot
@@ -201,7 +201,7 @@ export class ActionLevelGenerator extends LevelGenerator {
   ) {
     const rnd = (min: number, max: number) => Random.between(min, max);
 
-    const minPlayerDistance = 300; // spawn monsters not directly in front of player
+    const minPlayerDistance = GlobalConfig.monsters.sight + 50; // spawn monsters not directly in front of player
     if (platform.x < minPlayerDistance) return;
 
     // maybe spawn monster on platform

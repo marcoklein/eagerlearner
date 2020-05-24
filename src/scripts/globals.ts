@@ -1,5 +1,6 @@
 export const GlobalConfig = {
   debug: {
+    learningLevelOnly: false,
     actionLevelOnly: false,
     showVersion: true,
     showFps: false,

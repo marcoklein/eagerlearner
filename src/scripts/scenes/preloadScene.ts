@@ -14,7 +14,7 @@ export class PreloadScene extends Phaser.Scene {
 
     this.weapons(['plus', 'equal', 'sigma']);
 
-    this.monsters(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+    this.monsters(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
 
     this.load.image('monster.hand', 'assets/sprites/monster-hand.png');
 

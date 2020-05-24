@@ -28,6 +28,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: GameScene, x: number, y: number, texture: TextureKey, type: ProjectileType, owner: Actor) {
     super(scene, x, y, texture.key, texture.frame);
 
+    this.setOrigin(0.5, 0.5);
     this.projectileType = type;
     this.owner = owner;
 

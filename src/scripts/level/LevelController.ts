@@ -73,7 +73,7 @@ export class LevelController {
     this.projectiles = new ProjectileController(this.scene);
     this.collisions = new CollisionController(this);
     this.particles = new ParticleController(this);
-    
+
     this.loadHighscores();
 
     this.restartGame();
@@ -128,8 +128,11 @@ export class LevelController {
   private createNextLevel(introRoom: boolean = false) {
     // general logic components
     this.addLogic(new PlayerDeadLogic());
-
-    if (GlobalConfig.debug.actionLevelOnly) {
+    if (GlobalConfig.debug.learningLevelOnly) {
+      console.log('starting new learning level!!');
+      this.learningLevel++;
+      this.learningRoomGenerator.generate(this);
+    } else if (GlobalConfig.debug.actionLevelOnly) {
       console.log('starting new Action level!!');
       this.actionLevel++;
       this.actionLevelGenerator.generate(this);

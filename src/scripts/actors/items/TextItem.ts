@@ -7,6 +7,8 @@ import { Item } from './Item';
 export class TextItem extends Item {
   text: string;
   textObject: Phaser.GameObjects.Text;
+  initX: number;
+  initY: number;
 
   constructor(text: string) {
     super();
@@ -19,11 +21,13 @@ export class TextItem extends Item {
     this.textObject.setOrigin(0.5, 0.5);
     this.textObject.setFontSize(26);
     projectile.setGravityY(-projectile.scene.physics.world.gravity.y); // stay in air
+    this.initX = projectile.x;
+    this.initY = projectile.y;
   }
 
   onUpdate(time: number, delta: number, projectile: Projectile) {
-    this.textObject.x = projectile.x;
-    this.textObject.y = projectile.y;
+    projectile.x = this.initX; // hard setting the location here until we have an item system
+    projectile.y = this.initY;
   }
 
   onDestroy(projectile: Projectile): void {
