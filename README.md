@@ -61,3 +61,13 @@
 * [In Game](https://beepbox.co/#8n31s0k0l00e05t2mm0a7g0fj07i0r1o3210T1v3L4u83q3d1f8y1z2C0c2AbF6B2V3Q0572P9995E0001T1v1L4u76q1d1fay0z1C1c2A0F9B3V1Q1000Pdbc0E0191T1v1L4uf1q3d5f7y0zjC0c0A1F0B0V1Q1845Pe354E034aT3v1L4uf8q1d5f8y3ziC0S-Iqiiiiiiiiiiiib4i4O0000000i4z800000014h4g0000004i4h0000000p22bnd7MBRlllleq_GGOGGCq8UegGGGGGOGHaGGGEzQVBllllpllBllcQtC1jhYk9HZ8LOqc1bWi-tfAkkpejghwFBU5E5jnYo2bgbAo2bgbAkOo2CL9bQQphMujACnOi_98V0OYHa8Wyc0)
 
 * [Experimenting](https://beepbox.co/#8n31s0k0l00e01t2mm0a7g0fj07i0r1o3210T3v1L4uaeq1d2f8y2z9C0Sp99f9c9Vppbaa9gT1v1L4ua8q3d4f7y1z1C0c1AbFhB2V2Q2ae1Pa514E0001T0v1L4u14q1d6f9y2z1C0w5c1h2T2v1L4u15q0d1f8y0z1C2w0b4140000000010g000000014h000000004h400000000p1ZFBZ5E5whqxo615F5G5HI5E5F5G5HI5F5G5H0kOYyQ2M8JoI30yQyR2RDjw000)
+
+# To Change
+* highscore should also relate to monster kills
+* + plus weapon is really hard to control
+ * either make a mechanic to change weapon
+ * or choose the weapon (two boxes explicitly)
+* monsters should not kill each other!
+* explode on wrong answer?
+* each monster should have a dedicated skill!
+  * e.g. 1 can only hit, 2 has gun and moves etc... :)
