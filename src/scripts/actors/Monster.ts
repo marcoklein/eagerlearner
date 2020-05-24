@@ -21,6 +21,7 @@ export class Monster extends Actor {
   constructor(level: LevelController, x: number, y: number, texture: TextureKey) {
     super(level, x, y, texture.key, texture.frame);
     this.hands = new HandComponent(this.scene, this, { key: 'monster.hand' });
+    this.hands.ammo = Number.POSITIVE_INFINITY; // give monsters infinity ammo
     this.fallDownDestroy = new DestroyOnFallDownComponent(this.scene, this);
     this.setOrigin(0.5, 1);
     this.setFlipX(true);

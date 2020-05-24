@@ -1,16 +1,15 @@
+import { Monster } from '../../actors/Monster';
 import { AttackOnPlayerSight } from '../../actors/monster/ai/AttackOnPlayerSight';
 import { LookToPlayerLogic } from '../../actors/monster/ai/LookToPlayerLogic';
 import { PatrolLogic } from '../../actors/monster/ai/PatrolLogic';
 import { MonsterSpawner } from '../../actors/monster/MonsterSpawner';
 import { Wearable } from '../../actors/wearables/Wearable';
 import { WearableFactory } from '../../actors/wearables/WearableFactory';
+import { GlobalConfig } from '../../Globals';
 import { LevelController } from '../LevelController';
+import { Platform } from '../platforms/Platform';
 import { LevelGenerator } from './LevelGenerator';
 import { Random } from './Random';
-import { GlobalConfig } from '../../Globals';
-import { Monster } from '../../actors/Monster';
-import { Platform } from '../platforms/Platform';
-import { Gun } from '../../actors/wearables/Gun';
 
 export interface MonsterCreationFn {
   (level: LevelController, platform: Platform, monster: Monster): void;
@@ -59,7 +58,6 @@ export class ActionLevelGenerator extends LevelGenerator {
   generate(level: LevelController): void {
     level.hero.x = 0;
     level.hero.y = 0;
-    level.hero.hands.equip(WearableFactory.createPlusGun());
 
     this.createRandomLevel(level);
 
@@ -69,8 +67,24 @@ export class ActionLevelGenerator extends LevelGenerator {
   createRandomLevel(level: LevelController) {
     const monsterKinds = 5; // random monster breeds
     // TODO with each level one more texture is filtered
-    const monsterTextures = ['monster.1', 'monster.5'];
-    const wearables = [WearableFactory.createEqualGun(), WearableFactory.createPunch()];
+    const monsterTextures = [
+      'monster.1',
+      'monster.2',
+      'monster.3',
+      'monster.4',
+      'monster.5',
+      'monster.6',
+      'monster.7',
+      'monster.8',
+      'monster.9',
+    ];
+    const wearables = [
+      WearableFactory.createPunch(),
+      WearableFactory.createEqualGun(),
+      WearableFactory.createSigmaGun(),
+      WearableFactory.createPlusGun(),
+      WearableFactory.createGoodOldBlaster(),
+    ];
 
     // all levels inherit the base attributes
     const baseConfig: LevelOptions = {

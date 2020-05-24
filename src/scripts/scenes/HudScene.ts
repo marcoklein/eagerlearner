@@ -12,6 +12,9 @@ export class HudScene extends Phaser.Scene {
 
   gameScene: GameScene;
 
+  levelText: Phaser.GameObjects.Text;
+  ammoText: Phaser.GameObjects.Text;
+
   constructor() {
     super({ key: 'HudScene' });
   }
@@ -23,11 +26,11 @@ export class HudScene extends Phaser.Scene {
     // display the Phaser.VERSION
     if (GlobalConfig.debug.showVersion)
       this.add
-        .text(this.cameras.main.width - 15, 15, `v${VERSION}`, {
+        .text(this.cameras.main.width - 15, this.cameras.main.height - 15, `v${VERSION}`, {
           color: '#000000',
-          fontSize: 24,
+          fontSize: 18,
         })
-        .setOrigin(1, 0);
+        .setOrigin(1, 1);
 
     this.deadMessage = this.add
       .text(this.cameras.main.width / 2, this.cameras.main.height / 2, 'Ooops ... you exploded', {
@@ -36,6 +39,15 @@ export class HudScene extends Phaser.Scene {
         fontSize: 72,
       })
       .setOrigin(0.5, 0.5);
+
+    this.levelText = this.add
+      .text(15, 15, `Level:`, {
+        color: '#000000',
+        fontStyle: 'bold',
+        fontSize: 24,
+      })
+      .setOrigin(0)
+      .setVisible(false);
 
     this.grayOverlay = this.add.graphics();
     this.grayOverlay.fillStyle(0xffffff, 0.5);
@@ -48,6 +60,8 @@ export class HudScene extends Phaser.Scene {
 
   update(time: number, delta: number) {
     if (this.fpsText) this.fpsText.update(time, delta);
+    this.levelText.visible = this.gameScene.level.actionLevel > 0;
+    this.levelText.text = `Level: ${this.gameScene.level.actionLevel}\nAmmo: ${this.gameScene.level.hero.hands.ammo}`;
 
     this.deadGroup.setVisible(this.gameScene.level.state === LevelState.DEAD);
   }

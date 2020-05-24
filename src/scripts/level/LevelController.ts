@@ -41,6 +41,8 @@ export class LevelController {
 
   private _state = LevelState.HOME;
 
+  highscore: number = 0;
+
   /**
    * 0 means that we are "home".
    * 1 is the first level
@@ -80,6 +82,7 @@ export class LevelController {
    */
   restartGame() {
     console.log('restarting game');
+    this.saveHighscore();
     // reset level and hero
     this.resetLevel();
 
@@ -179,6 +182,20 @@ export class LevelController {
   setCameraOffset(x: number, y: number) {
     this.scene.cameras.main.centerOn(x, y); // move immediately to avoid initial "lag" when switching levels
     this.scene.cameras.main.startFollow(this.hero, true, 0.5, 0.5, x, y);
+  }
+
+  saveHighscore() {
+    if (this.actionLevel > this.highscore) {
+      this.highscore = this.actionLevel;
+      localStorage.setItem('highscore', '' + this.highscore);
+    }
+  }
+
+  loadHighscores() {
+    const highscore = localStorage.getItem('highscore');
+    if (highscore) {
+      this.highscore = parseInt(highscore);
+    }
   }
 
   get state() {

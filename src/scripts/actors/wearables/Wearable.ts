@@ -20,7 +20,10 @@ export abstract class Wearable {
 
   abstract onEquip(hands: HandComponent): void;
   abstract onUnequip(hands: HandComponent): void;
-  abstract useAction(): void;
+  /**
+   * If true, ammo will be reduced.
+   */
+  abstract useAction(): boolean;
   abstract update(hands: HandComponent, time: number, delta: number): void;
   abstract calculateHandPositions(hands: HandComponent, body: Phaser.Physics.Arcade.Sprite): HandPositions;
 }

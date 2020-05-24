@@ -9,17 +9,26 @@ import { Random } from './Random';
  * Our starting room.
  */
 export class IntroRoomGenerator extends LevelGenerator {
-  private playedAlready: false;
+  private playedAlready = false;
 
   generate(level: LevelController): void {
     const base = level.platforms.createPlatform(0, 0);
+
+    this.playedAlready = !!level.highscore;
 
     const blackboard = new BlackboardLogic(0, -100);
     level.addLogic(blackboard);
     const introMsgs = ['Have fun eager learner!', 'Welcome back...', 'That was close', "Keep goin'!", "It ain't easy"];
     const introMsg = this.playedAlready ? Random.element(introMsgs) : introMsgs[0];
 
-    blackboard.showText(`${introMsg}\n\nA / D = move\nW = jump\nSPACE = attack`, 28);
+    let blackboardIntro = `${introMsg}\n\nA / D = move\nW = jump\nSPACE = attack`;
+
+    const highscore = level.highscore;
+    if (highscore) {
+      blackboardIntro = `${introMsg}\n\nA / D = move\nW = jump\nSPACE = attack\n\nHighscore: ${highscore}`;
+    }
+
+    blackboard.showText(blackboardIntro, 28);
     blackboard.showCredits();
 
     const hero = level.hero;

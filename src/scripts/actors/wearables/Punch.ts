@@ -22,7 +22,9 @@ export class Punch extends Wearable {
     if (!this.hitting) {
       this.hitting = true;
       this.hits = [];
+      return true;
     }
+    return false;
   }
   update(hands: HandComponent, time: number, delta: number) {
     const scene = hands.scene;

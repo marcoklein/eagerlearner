@@ -33,7 +33,7 @@ export class Gun extends Wearable {
   }
 
   useAction() {
-    if (!this.hands) return;
+    if (!this.hands) return false;
     const body = this.hands.body;
     if (this.currentCooldown <= 0) {
       // fire
@@ -46,7 +46,9 @@ export class Gun extends Wearable {
         this.gunSprite.y,
         this.hands.body
       );
+      return true;
     }
+    return false;
   }
 
   update(hands: HandComponent, time: number, delta: number) {

@@ -6,6 +6,7 @@ import { LevelController } from '../LevelController';
 import { AnswerBoxLogic } from './AnswerBoxLogic';
 import { BlackboardLogic } from './BlackboardLogic';
 import { LevelLogic } from './LevelLogic';
+import { Random } from '../generator/Random';
 
 /**
  * Main controller for questions.
@@ -72,7 +73,7 @@ export class QuestionMasterLogic extends LevelLogic {
   };
 
   onWrongAnswer = (projectile: Projectile, hero: Hero) => {
-    hero.reduceLife();
+    // hero.reduceLife();
     this.answers.destroyBoxes();
     return EffectStatus.DESTROY;
   };
@@ -81,7 +82,8 @@ export class QuestionMasterLogic extends LevelLogic {
    * TODO in future we may spawn to items so the player can choose and pick
    */
   giveHeroBetterItem() {
-    this.level.hero.hands.equip(WearableFactory.createEqualGun());
+    this.level.hero.hands.equip(WearableFactory.createRandomGun());
+    this.level.hero.hands.ammo += Random.between(20, 50);
   }
 
   // TODO handling the "right answer" should be extracted into a different component

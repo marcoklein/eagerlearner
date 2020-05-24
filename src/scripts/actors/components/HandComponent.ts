@@ -24,6 +24,12 @@ export class HandComponent {
 
   bodyCenter = new Phaser.Math.Vector2();
 
+  /**
+   * Left ammunition.
+   * If gone the wearable is removed.
+   */
+  ammo: number = 0;
+
   constructor(scene: GameScene, body: Actor, texture: TextureKey) {
     this.scene = scene;
     this.body = body;
@@ -53,6 +59,7 @@ export class HandComponent {
   }
 
   unequip() {
+    if (this.wearable === this.defaultWearable) return;
     if (this.wearable) this.wearable.unequip(this);
     this.equip(this.defaultWearable);
   }
@@ -68,7 +75,16 @@ export class HandComponent {
   }
 
   action() {
-    this.wearable.useAction();
+    if (this.wearable !== this.defaultWearable) {
+      if (this.ammo <= 0) {
+        this.ammo = 0;
+        this.unequip();
+      } else {
+        if (this.wearable.useAction()) this.ammo--;
+      }
+    } else {
+      this.wearable.useAction();
+    }
   }
 
   destroy() {
