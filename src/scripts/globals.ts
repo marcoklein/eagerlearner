@@ -2,7 +2,7 @@ export const GlobalConfig = {
   debug: {
     learningLevelOnly: false,
     actionLevelOnly: false,
-    showVersion: false,
+    showVersion: true,
     showFps: false,
   },
   world: {

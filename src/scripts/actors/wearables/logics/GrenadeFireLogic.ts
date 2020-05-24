@@ -14,6 +14,7 @@ export class GrenadeFireLogic implements GunFireLogic {
   }
 
   fire(level: LevelController, x: number, y: number, owner: Actor) {
+    level.sounds.playSound('explosion');
     const vec = ObjectCache.vectorA;
     vec.set(1, 0);
     vec.scale(GlobalConfig.bullets.speed);

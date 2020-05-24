@@ -44,6 +44,10 @@ export class PreloadScene extends Phaser.Scene {
       this.load.audio(key, path);
       console.log('loading sound from ', path);
     });
+
+    // music
+    this.load.audio('home', 'assets/music/Home.wav');
+    this.load.audio('game', 'assets/music/InGame.wav');
   }
 
   private weapons(names: string[]) {

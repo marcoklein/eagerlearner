@@ -13,6 +13,7 @@ import { PlayerDeadLogic } from './logic/PlayerDeadLogic';
 import { PlatformController } from './platforms/PlatformController';
 import { ParticleController } from './ParticleController';
 import { SoundController } from './SoundController';
+import { MusicController } from './MusicController';
 
 export enum LevelState {
   HOME,
@@ -34,6 +35,7 @@ export class LevelController {
   collisions: CollisionController;
   particles: ParticleController;
   sounds: SoundController;
+  music: MusicController;
 
   logics: LevelLogic[] = [];
 
@@ -76,6 +78,7 @@ export class LevelController {
     this.collisions = new CollisionController(this);
     this.particles = new ParticleController(this);
     this.sounds = new SoundController(this);
+    this.music = new MusicController(this);
 
     this.loadHighscores();
 
@@ -98,6 +101,7 @@ export class LevelController {
 
     this.actionLevel = 0;
     this.learningLevel = 0;
+
     this.createNextLevel(true);
   }
 
@@ -133,25 +137,32 @@ export class LevelController {
   private createNextLevel(introRoom: boolean = false) {
     // general logic components
     this.addLogic(new PlayerDeadLogic());
-    if (GlobalConfig.debug.learningLevelOnly) {
-      console.log('starting new learning level!!');
-      this.learningLevel++;
-      this.learningRoomGenerator.generate(this);
-    } else if (GlobalConfig.debug.actionLevelOnly) {
-      console.log('starting new Action level!!');
-      this.actionLevel++;
-      this.actionLevelGenerator.generate(this);
-    } else if (introRoom) {
+
+    // if (GlobalConfig.debug.learningLevelOnly) {
+    //   console.log('starting new learning level!!');
+    //   this.learningLevel++;
+    //   this.learningRoomGenerator.generate(this);
+    // } else if (GlobalConfig.debug.actionLevelOnly) {
+    //   console.log('starting new Action level!!');
+    //   this.actionLevel++;
+    //   this.actionLevelGenerator.generate(this);
+    // }
+
+    if (introRoom) {
+      this.music.playHomeMusic();
       this.introRoomGenerator.generate(this);
-    } else if (this.actionLevel <= this.learningLevel) {
-      // start with action level
-      console.log('starting new Action level!!');
-      this.actionLevel++;
-      this.actionLevelGenerator.generate(this);
     } else {
-      console.log('starting new learning level!!');
-      this.learningLevel++;
-      this.learningRoomGenerator.generate(this);
+      this.music.playInGameMusic();
+      if (this.actionLevel <= this.learningLevel) {
+        // start with action level
+        console.log('starting new Action level!!');
+        this.actionLevel++;
+        this.actionLevelGenerator.generate(this);
+      } else {
+        console.log('starting new learning level!!');
+        this.learningLevel++;
+        this.learningRoomGenerator.generate(this);
+      }
     }
     this.hero.body.velocity.set(0, 0);
     this.hero.body.acceleration.set(0, 0);

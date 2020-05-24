@@ -11,6 +11,7 @@ export class PlayerDeadLogic extends LevelLogic {
   callback = () => {
     console.log('player dead');
     this.level.changeState(LevelState.DEAD);
+    this.level.music.playHomeMusic();
 
     setTimeout(() => {
       this.level.restartGame();
