@@ -81,6 +81,8 @@ export class ActionLevelGenerator extends LevelGenerator {
     ];
     const wearables = [
       WearableFactory.createPunch(),
+      WearableFactory.createSigmaGun(),
+      WearableFactory.createPunch(),
       WearableFactory.createEqualGun(),
       WearableFactory.createSigmaGun(),
       WearableFactory.createPlusGun(),
@@ -91,7 +93,7 @@ export class ActionLevelGenerator extends LevelGenerator {
     const baseConfig: LevelOptions = {
       // level 1 (shorter)
       name: 'Base level',
-      levelWidth: 3000,
+      levelWidth: 4000,
       maxGap: 250,
       minY: -1000,
       maxY: GlobalConfig.world.falldownY - GlobalConfig.world.falldownY,
@@ -119,6 +121,13 @@ export class ActionLevelGenerator extends LevelGenerator {
         maxYGap: 150,
         minWidth: 100,
         maxWidth: 1000,
+      },
+      {
+        name: 'Horizontal but short',
+        maxGap: 0,
+        maxYGap: 10,
+        minWidth: 70,
+        maxWidth: 500,
       },
       {
         name: 'Base level',

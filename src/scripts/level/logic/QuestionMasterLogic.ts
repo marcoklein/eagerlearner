@@ -86,7 +86,7 @@ export class QuestionMasterLogic extends LevelLogic {
    */
   giveHeroBetterItem() {
     this.level.hero.hands.equip(WearableFactory.createRandomGun());
-    this.level.hero.hands.ammo += Random.between(20, 50);
+    this.level.hero.hands.ammo += Random.between(20, 30);
   }
 
   // TODO handling the "right answer" should be extracted into a different component
