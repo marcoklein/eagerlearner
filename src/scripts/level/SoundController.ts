@@ -3,22 +3,22 @@ import { Assets } from '../scenes/PreloadScene';
 
 export class SoundController {
   level: LevelController;
-  omitSoundsFlag: boolean;
+  enabled: boolean;
 
   constructor(level: LevelController) {
     this.level = level;
   }
 
   enable() {
-    this.omitSoundsFlag = true;
+    this.enabled = true;
   }
 
   disable() {
-    this.omitSoundsFlag = false;
+    this.enabled = false;
   }
 
   playSound<K extends keyof typeof Assets.sounds>(key: K) {
-    if (!this.omitSoundsFlag) {
+    if (this.enabled) {
       this.level.scene.sound.play(key, {
         volume: 0.3,
       });
