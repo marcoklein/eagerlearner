@@ -54,7 +54,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   }
 
   onHeroCollision(hero: Hero) {
-    if (hero === this.owner) return;
+    // if (hero === this.owner) return;
     let destroy = false;
     this.effects = this.effects.filter((effect) => {
       const status = effect.applyToHero(this, hero);
@@ -67,7 +67,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   }
 
   onMonsterCollision(monster: Monster) {
-    if (monster === this.owner) return;
+    // if (monster === this.owner) return;
     let destroy = false;
     this.effects = this.effects.filter((effect) => {
       const status = effect.applyToMonster(this, monster);

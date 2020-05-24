@@ -3,5 +3,5 @@ import { Gun } from '../Gun';
 import { Actor } from '../../Actor';
 
 export interface GunFireLogic {
-  fire(level: LevelController, gun: Gun, x: number, y: number, owner: Actor): void;
+  fire(level: LevelController, x: number, y: number, owner: Actor): void;
 }

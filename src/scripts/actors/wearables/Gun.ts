@@ -42,7 +42,6 @@ export class Gun extends Wearable {
 
       this.fireLogic.fire(
         this.hands.scene.level,
-        this,
         this.gunSprite.x + (body.flipX ? -body.width / 2 : body.width / 2),
         this.gunSprite.y,
         this.hands.body

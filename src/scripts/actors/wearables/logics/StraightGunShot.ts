@@ -11,11 +11,8 @@ export class StraightGunShot implements GunFireLogic {
     this.texture = texture;
   }
 
-  fire(level: LevelController, gun: Gun, x: number, y: number, owner: Actor) {
-    const vel = new Phaser.Math.Vector2(
-      gun.gunSprite.flipX ? -GlobalConfig.bullets.speed : GlobalConfig.bullets.speed,
-      0
-    );
+  fire(level: LevelController, x: number, y: number, owner: Actor) {
+    const vel = new Phaser.Math.Vector2(owner.flipX ? -GlobalConfig.bullets.speed : GlobalConfig.bullets.speed, 0);
     level.projectiles.fireBullet(x, y, vel, this.texture, owner);
   }
 }

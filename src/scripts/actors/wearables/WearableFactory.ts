@@ -2,6 +2,7 @@ import { Gun } from './Gun';
 import { Punch } from './Punch';
 import { StraightGunShot } from './logics/StraightGunShot';
 import { ShotgunFireLogic } from './logics/ShotgunFireLogic';
+import { GrenadeFireLogic } from './logics/GrenadeFireLogic';
 
 export abstract class WearableFactory {
   // TODO add generators for random gun :)
@@ -12,11 +13,11 @@ export abstract class WearableFactory {
   }
 
   static createPlusGun() {
-    return new Gun({ key: 'weapon.plus' }, new ShotgunFireLogic({ key: 'bullet.plus' }));
+    return new Gun({ key: 'weapon.plus' }, new GrenadeFireLogic({ key: 'bullet.plus' }));
   }
 
   static createSigmaGun() {
-    return new Gun({ key: 'weapon.sigma' }, new StraightGunShot({ key: 'bullet.sigma' }));
+    return new Gun({ key: 'weapon.sigma' }, new ShotgunFireLogic({ key: 'bullet.sigma' }));
   }
 
   static createNamedStraightGun(name: string) {

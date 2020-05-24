@@ -45,6 +45,13 @@ export class PlayerControlComponent {
   }
 
   update(time: number, delta: number) {
+    if (this.controlKeys.primary.isDown) {
+      this.player.hands.action();
+    }
+    if (this.controlKeys.jump.isDown && this.player.body.touching.down) {
+      this.player.setVelocityY(-GlobalConfig.player.jumpVelocity);
+    }
+
     // handle input
     const maxSpeed = GlobalConfig.player.speed;
     // range where speed can be directly adjusted
@@ -66,14 +73,6 @@ export class PlayerControlComponent {
 
     if (directionVel !== 0) {
       this.player.flipX = directionVel < 0 ? true : false;
-    }
-
-    if (this.controlKeys.jump.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-GlobalConfig.player.jumpVelocity);
-    }
-
-    if (this.controlKeys.primary.isDown) {
-      this.player.hands.action();
     }
   }
 }

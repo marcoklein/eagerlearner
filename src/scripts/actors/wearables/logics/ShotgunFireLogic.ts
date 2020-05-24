@@ -15,7 +15,7 @@ export class ShotgunFireLogic implements GunFireLogic {
     this.texture = texture;
   }
 
-  fire(level: LevelController, gun: Gun, x: number, y: number, owner: Actor) {
+  fire(level: LevelController, x: number, y: number, owner: Actor) {
     const vec = ObjectCache.vectorA;
     vec.set(1, 0);
     vec.scale(GlobalConfig.bullets.speed);
