@@ -43,6 +43,7 @@
 * [x] lobby music (probably easiest)
 * [x] sounds
 * [x] kill monster if player jumps on it / move it downward
+* [ ] BUG: Sometimes you get stuck on a monster instead of killing it -> change collision check for monster jump kill
 * [ ] cycle through weapons that you already picked up or make choose dialog after quetions.. then you can choose
 * [ ] add different question types (e.g. count enemies)
 * [ ] make levels more interesting .. e.g create jumping monsters or other logics .. yes you could add much more color and stuff now !
