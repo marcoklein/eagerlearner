@@ -22,16 +22,14 @@
   * [x] generate random platforms
   * [x] generate random monsters
 * [x] add intro screen (with instructions on blackboard)
-* [ ] add some more enemies / generate them
-* [ ] add different question types (e.g. count enemies)
-* [ ] more weapons = more fun :) .. not sure .. its like already fun - maybe give gun later
+* [x] add some more enemies / generate them
+* [x] more weapons = more fun :) .. not sure .. its like already fun - maybe give gun later
 * [x] hands of player hit every object and only left/or right hand currently has an effect
   * [x] just add a rectangle to check what it hits
-* [ ] bullet shooting limit - loose weapon when you shoot everything
-* [ ] add a highscore
+* [x] bullet shooting limit - loose weapon when you shoot everything
+* [x] add a highscore
 * [x] adjust level generator
   * [x] first level should be smaller
-* [ ] kill monster if player jumps on it / move it downward
 
 ### Small
 * [x] bullets should destroy each other; this satisfying feeling when you prevent the bullet from hitting you
@@ -42,6 +40,9 @@
 * [x] dont let bullets kill yourself
 
 ## For more
+* [ ] cycle through weapons that you already picked up or make choose dialog after quetions.. then you can choose
+* [ ] add different question types (e.g. count enemies)
+* [ ] kill monster if player jumps on it / move it downward
 * [ ] add a death message reason
 * [ ] add something to bottom as ground so player knows whats happening
 * [ ] add a timer to questions
