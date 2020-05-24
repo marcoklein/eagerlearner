@@ -144,6 +144,7 @@ export class LevelController {
       this.learningRoomGenerator.generate(this);
     }
     this.hero.body.velocity.set(0, 0);
+    this.hero.body.acceleration.set(0, 0);
     this.hero.body.y -= 10;
   }
 

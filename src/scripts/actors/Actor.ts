@@ -1,5 +1,6 @@
 import { LevelController } from '../level/LevelController';
 import { GameScene } from '../scenes/GameScene';
+import { GlobalConfig } from '../Globals';
 
 export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
   scene: GameScene;
@@ -11,6 +12,10 @@ export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
   constructor(level: LevelController, x: number, y: number, texture: string, frame?: string | number | undefined) {
     super(level.scene, x, y, texture, frame);
     this.level = level;
+  }
+
+  jump() {
+    this.setVelocityY(-GlobalConfig.player.jumpVelocity);
   }
 
   move(speed: number, directionLeftOrRight: boolean = this.flipX) {

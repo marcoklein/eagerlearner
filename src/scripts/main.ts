@@ -21,6 +21,7 @@ const config: Phaser.Types.Core.GameConfig = {
     arcade: {
       debug: false,
       gravity: { y: GlobalConfig.world.gravity },
+      overlapBias: 16,
     },
   },
 };

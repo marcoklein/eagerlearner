@@ -49,7 +49,7 @@ export class PlayerControlComponent {
       this.player.hands.action();
     }
     if (this.controlKeys.jump.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-GlobalConfig.player.jumpVelocity);
+      this.player.jump();
     }
 
     // handle input

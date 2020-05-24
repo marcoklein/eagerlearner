@@ -105,12 +105,12 @@ export class ActionLevelGenerator extends LevelGenerator {
       {
         // level 1 (shorter)
         name: 'Level 1',
-        levelWidth: 2000,
+        levelWidth: 3000,
       },
       {
         // level goes up and down a lot
         name: 'Spam Up and Down',
-        maxGap: 150,
+        maxGap: 130,
         minYGap: 80,
         maxYGap: 150,
         minWidth: 100,

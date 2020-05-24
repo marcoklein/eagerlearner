@@ -2,6 +2,7 @@ import { Hero } from '../actors/Hero';
 import { Monster } from '../actors/Monster';
 import { Projectile } from '../actors/projectile/Projectile';
 import { LevelController } from './LevelController';
+import { Actor } from '../actors/Actor';
 
 export class CollisionController {
   constructor(level: LevelController) {
@@ -12,7 +13,17 @@ export class CollisionController {
     const scene = level.scene;
     scene.physics.add.collider(scene.level.heroGroup, scene.level.platforms.group);
     scene.physics.add.collider(scene.level.spawner.group, scene.level.platforms.group);
-    scene.physics.add.collider(scene.level.spawner.group, scene.level.heroGroup);
+    scene.physics.add.collider(scene.level.spawner.group, scene.level.heroGroup, (a, b) => {
+      if (a instanceof Actor && b instanceof Actor) {
+        if (a.y < b.body.top && a.body.touching.down) {
+          a.jump();
+          a.reduceLife();
+        } else if (b.y < a.body.top && b.body.touching.down) {
+          b.jump();
+          a.reduceLife();
+        }
+      }
+    });
 
     scene.physics.add.overlap(scene.level.projectiles.group, scene.level.projectiles.group, (a, b) => {
       // destroy bullets on collision
