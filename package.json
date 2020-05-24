@@ -15,8 +15,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run deploy"
+      "pre-commit": "lint-staged"
     }
   },
   "keywords": [

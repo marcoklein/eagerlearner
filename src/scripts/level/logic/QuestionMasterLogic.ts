@@ -74,6 +74,7 @@ export class QuestionMasterLogic extends LevelLogic {
 
   onWrongAnswer = (projectile: Projectile, hero: Hero) => {
     // hero.reduceLife();
+    this.spawnDoorToActionWorld();
     this.answers.destroyBoxes();
     return EffectStatus.DESTROY;
   };
