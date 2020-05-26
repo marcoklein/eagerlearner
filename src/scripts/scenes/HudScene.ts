@@ -60,8 +60,8 @@ export class HudScene extends Phaser.Scene {
 
   update(time: number, delta: number) {
     if (this.fpsText) this.fpsText.update(time, delta);
-    this.levelText.visible = this.gameScene.level.actionLevel > 0;
-    this.levelText.text = `Level: ${this.gameScene.level.actionLevel}\nAmmo: ${this.gameScene.level.hero.hands.ammo}`;
+    this.levelText.visible = this.gameScene.level.score > 0;
+    this.levelText.text = `Level: ${this.gameScene.level.score}\nAmmo: ${this.gameScene.level.hero.hands.ammo}`;
 
     this.deadGroup.setVisible(this.gameScene.level.state === LevelState.DEAD);
   }

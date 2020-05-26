@@ -4,16 +4,14 @@ import { ProjectileController } from '../actors/projectile/ProjectileController'
 import { GlobalConfig } from '../Globals';
 import { GameScene } from '../scenes/GameScene';
 import { CollisionController } from './CollisionController';
-import { ActionLevelGenerator } from './generator/ActionLevelGenerator';
-import { IntroRoomGenerator } from './generator/IntroRoomGenerator';
-import { LearningRoomGenerator } from './generator/LearningRoomGenerator';
 import { DoorFinishLogic } from './logic/DoorFinishLogic';
 import { LevelLogic } from './logic/LevelLogic';
 import { PlayerDeadLogic } from './logic/PlayerDeadLogic';
-import { PlatformController } from './platforms/PlatformController';
-import { ParticleController } from './ParticleController';
-import { SoundController } from './SoundController';
 import { MusicController } from './MusicController';
+import { ParticleController } from './ParticleController';
+import { LevelGenerator } from './parts/LevelGenerator';
+import { PlatformController } from './platforms/PlatformController';
+import { SoundController } from './SoundController';
 
 export enum LevelState {
   HOME,
@@ -37,29 +35,21 @@ export class LevelController {
   sounds: SoundController;
   music: MusicController;
 
-  logics: LevelLogic[] = [];
+  // generator
+  generator: LevelGenerator;
 
-  learningRoomGenerator = new LearningRoomGenerator();
-  actionLevelGenerator = new ActionLevelGenerator();
-  introRoomGenerator = new IntroRoomGenerator();
+  // control level specific logic
+  logics: LevelLogic[] = [];
 
   private _state = LevelState.HOME;
 
+  /**
+   * Score of current game.
+   */
+  score = 0;
   highscore: number = 0;
 
-  /**
-   * 0 means that we are "home".
-   * 1 is the first level
-   * 2 is the learning room
-   * 3 is the next level
-   * ... and so on
-   */
-  get levelNumber() {
-    return this.actionLevel + this.learningLevel;
-  }
-
-  actionLevel = 0;
-  learningLevel = 0;
+  levelNumber = 0;
 
   constructor(scene: GameScene) {
     this.scene = scene;
@@ -99,8 +89,7 @@ export class LevelController {
     this.createHero();
     this.setCameraOffset(0, this.hero.height / 2);
 
-    this.actionLevel = 0;
-    this.learningLevel = 0;
+    this.levelNumber = 0;
 
     this.createNextLevel(true);
   }
@@ -132,38 +121,16 @@ export class LevelController {
     this.platforms.group.children.each((child) => child.destroy());
     this.particles.destroyParticles();
     this.sounds.enable();
+    this.platforms.reset();
+
+    this.music.playHomeMusic();
   }
 
   private createNextLevel(introRoom: boolean = false) {
     // general logic components
     this.addLogic(new PlayerDeadLogic());
+    this.addLogic(new LevelGenerator());
 
-    // if (GlobalConfig.debug.learningLevelOnly) {
-    //   console.log('starting new learning level!!');
-    //   this.learningLevel++;
-    //   this.learningRoomGenerator.generate(this);
-    // } else if (GlobalConfig.debug.actionLevelOnly) {
-    //   console.log('starting new Action level!!');
-    //   this.actionLevel++;
-    //   this.actionLevelGenerator.generate(this);
-    // }
-
-    if (introRoom) {
-      this.music.playHomeMusic();
-      this.introRoomGenerator.generate(this);
-    } else {
-      this.music.playInGameMusic();
-      if (this.actionLevel <= this.learningLevel) {
-        // start with action level
-        console.log('starting new Action level!!');
-        this.actionLevel++;
-        this.actionLevelGenerator.generate(this);
-      } else {
-        console.log('starting new learning level!!');
-        this.learningLevel++;
-        this.learningRoomGenerator.generate(this);
-      }
-    }
     this.hero.body.velocity.set(0, 0);
     this.hero.body.acceleration.set(0, 0);
     this.hero.body.y -= 10;
@@ -207,8 +174,8 @@ export class LevelController {
   }
 
   saveHighscore() {
-    if (this.actionLevel > this.highscore) {
-      this.highscore = this.actionLevel;
+    if (this.score > this.highscore) {
+      this.highscore = this.score;
       localStorage.setItem('highscore', '' + this.highscore);
     }
   }

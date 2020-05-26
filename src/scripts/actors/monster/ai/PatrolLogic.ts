@@ -17,10 +17,8 @@ export class PatrolLogic extends MonsterLogic {
    */
   direction = 1;
 
-  constructor(minX: number, maxX: number) {
+  constructor() {
     super();
-    this.minX = minX;
-    this.maxX = maxX;
   }
 
   onAttach(monster: Monster) {
@@ -30,6 +28,7 @@ export class PatrolLogic extends MonsterLogic {
   onDetach(monster: Monster) {}
 
   update(monster: Monster, time: number, delta: number) {
+    // TODO check platform underneath
     if (monster.x < this.minX) {
       // go right
       this.direction = 1;
