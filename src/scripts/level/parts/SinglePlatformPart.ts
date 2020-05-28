@@ -28,12 +28,12 @@ export class SinglePlatformPart extends LevelPart {
 
     // maybe spawn monster on platform
     if (
-      platform.width > 500 || // always spawn on large platforms
-      Math.random() < 0.4
+      platform.displayWidth > 500 || // always spawn on large platforms
+      Math.random() < 0.5
     ) {
       // spawn monster
       const spawner = Random.element(params.monsters);
-      const monster = spawner.spawn(platform.x + rnd(0, platform.displayWidth), platform.y);
+      const monster = spawner.spawn(platform);
       console.log('spawned monster');
 
       // Random.element(options.monsterCreation)(level, platform, monster);

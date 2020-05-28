@@ -1,6 +1,7 @@
 import { MonsterLogic } from './MonsterLogic';
 import { Monster } from '../../Monster';
 import { GlobalConfig } from '../../../Globals';
+import { Platform } from '../../../level/platforms/Platform';
 
 /**
  * Patrols between two points.
@@ -10,8 +11,10 @@ export class PatrolLogic extends MonsterLogic {
   /** If blocked change direction */
   lastX: number;
 
+  platform: Platform | undefined;
   minX: number;
   maxX: number;
+
   /**
    * May be -1 or 1.
    */
@@ -28,7 +31,15 @@ export class PatrolLogic extends MonsterLogic {
   onDetach(monster: Monster) {}
 
   update(monster: Monster, time: number, delta: number) {
-    // TODO check platform underneath
+    if (!this.platform) {
+      this.platform = monster.level.platforms.findPlatformUnderneath(monster.x, monster.y);
+      if (!this.platform) {
+        console.warn('no platform under monster found');
+        return;
+      }
+      this.minX = this.platform.getTopLeft().x;
+      this.maxX = this.platform.getTopRight().x;
+    }
     if (monster.x < this.minX) {
       // go right
       this.direction = 1;

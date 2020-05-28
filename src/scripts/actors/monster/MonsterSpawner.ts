@@ -3,6 +3,8 @@ import { TextureKey } from '../../Globals';
 import { MonsterLogic } from './ai/MonsterLogic';
 import { Wearable } from '../wearables/Wearable';
 import { Monster } from '../Monster';
+import { Platform } from '../../level/platforms/Platform';
+import { Random } from '../../level/generator/Random';
 
 export class MonsterSpawner {
   spawner: MonsterController;
@@ -42,9 +44,14 @@ export class MonsterSpawner {
     return this;
   }
 
-  spawn(x: number, y: number) {
+  /**
+   * Spawns monster on random position on given platform.
+   * @param platform 
+   * @param x Optional x-coordinate to spawn monster relative to platform.
+   */
+  spawn(platform: Platform, x: number = Random.between(0, platform.displayWidth)) {
     if (!this._texture) throw new Error('Texture needed');
-    const monster = new Monster(this.spawner.level, x, y, this._texture);
+    const monster = new Monster(this.spawner.level, platform.x + x, platform.y, this._texture);
     if (this.wearable) monster.hands.equip(Object.create(this.wearable));
     this._logics.forEach((logic) => monster.addLogic(Object.create(logic)));
     this.spawner.spawnMonster(monster);

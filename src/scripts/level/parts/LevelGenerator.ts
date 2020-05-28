@@ -9,6 +9,8 @@ import { IntroPart } from './IntroPart';
 import { LevelPart } from './LevelPart';
 import { SinglePlatformPart } from './SinglePlatformPart';
 import { AttackOnPlayerSight } from '../../actors/monster/ai/AttackOnPlayerSight';
+import { WearableFactory } from '../../actors/wearables/WearableFactory';
+import { PatrolLogic } from '../../actors/monster/ai/PatrolLogic';
 
 export class LevelGenerator extends LevelLogic {
   level: LevelController;
@@ -21,14 +23,14 @@ export class LevelGenerator extends LevelLogic {
           max: 100,
         },
         y: {
-          min: -100,
-          max: 200,
+          min: -150,
+          max: 400,
         },
       },
       size: {
         width: {
-          min: 50,
-          max: 200,
+          min: 200,
+          max: 500,
         },
       },
     },
@@ -57,17 +59,42 @@ export class LevelGenerator extends LevelLogic {
     this.params.monsters.push(
       new MonsterSpawner(level.spawner)
         .texture({ key: 'monster.1' })
-        .equip(new Punch())
+        .equip(WearableFactory.createPunch())
         .logic(new LookToPlayerLogic())
-        .logic(new AttackOnPlayerSight(200))
+        .logic(new PatrolLogic())
+        .logic(new AttackOnPlayerSight(200, 2000))
     );
   }
+
   onDetach(level: LevelController): void {}
+
   update(level: LevelController, time: number, delta: number): void {
     // generate
+    // smooth scroll of camera
+    this.adjustCamScroll(level);
     if (level.hero.x > this.prevPlatform.getLeftCenter().x - this.level.scene.cameras.main.width) {
       this.appendPart(SinglePlatformPart.create());
     }
+  }
+
+  /**
+   * Cam is initially a little bit over the player and moves into center
+   * of player when leaving the intro platform.
+   * @param level 
+   */
+  private adjustCamScroll(level: LevelController) {
+    const camDownScrollX = 400;
+    const camIntroY = 100;
+    const camXTarget = 800;
+    const camYTarget = level.hero.displayHeight / 2;
+    let camY = camYTarget;
+    if (level.hero.x < camDownScrollX) {
+      camY = camIntroY;
+    } else if (level.hero.x < camXTarget) {
+      const m = (camYTarget - camIntroY) / (camXTarget - camDownScrollX)
+      camY = m * (level.hero.x - camDownScrollX) + camIntroY;
+    }
+    level.setCameraOffset(0, camY);
   }
 
   appendPart(part: LevelPart) {

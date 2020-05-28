@@ -1,13 +1,16 @@
 import { GlobalConfig } from '../../Globals';
+import { Platform } from './Platform';
 
 export class PlatformController {
   scene: Phaser.Scene;
-  group: Phaser.Physics.Arcade.StaticGroup;
+  readonly group: Phaser.Physics.Arcade.StaticGroup;
   lowestPlatform: number = GlobalConfig.world.falldownY;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
-    this.group = this.scene.physics.add.staticGroup();
+    this.group = this.scene.physics.add.staticGroup({
+      classType: Platform
+    });
   }
 
   createPlatform(x: number, y: number, width?: number, height?: number) {
@@ -24,6 +27,11 @@ export class PlatformController {
     }
 
     return platform;
+  }
+
+  findPlatformUnderneath(x: number, y: number) {
+    return (<Platform[]> this.group.children.entries)
+      .find(p => x >= p.x && x <= p.x + p.displayWidth);
   }
 
   reset() {

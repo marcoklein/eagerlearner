@@ -1,5 +1,6 @@
 import { Monster } from '../../Monster';
 import { MonsterLogic } from './MonsterLogic';
+import { Random } from '../../../level/generator/Random';
 
 /**
  * Shoots :)
@@ -7,13 +8,18 @@ import { MonsterLogic } from './MonsterLogic';
 export class AttackOnPlayerSight extends MonsterLogic {
   cooldown = 0;
   speed: number;
+  minSpeed: number;
+  maxSpeed: number;
 
-  constructor(attackSpeed: number) {
+  constructor(attackSpeedMin: number, attackSpeedMax: number) {
     super();
-    this.speed = attackSpeed;
+    this.minSpeed = attackSpeedMin;
+    this.maxSpeed = attackSpeedMax;
   }
 
   onAttach(monster: Monster) {
+    this.speed = Random.between(this.minSpeed, this.maxSpeed);
+    console.log('attached logic with attack speed', this.speed);
     this.cooldown = Phaser.Math.Between(0, this.speed);
   }
 

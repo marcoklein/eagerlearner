@@ -43,7 +43,6 @@ export class IntroPart extends LevelPart {
     hero.setVelocity(0, 0);
     hero.flipX = true;
     hero.setPosition(base.getTopCenter().x, 0);
-    level.setCameraOffset(0, 100);
 
     return base;
   }

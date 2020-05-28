@@ -6,10 +6,12 @@ export abstract class MonsterLogic {
 
   attach(monster: Monster) {
     this.monster = monster;
+    this.onAttach(monster);
   }
 
   detach(monster: Monster) {
     this.monster = undefined;
+    this.onDetach(monster);
   }
 
   abstract onAttach(monster: Monster): void;

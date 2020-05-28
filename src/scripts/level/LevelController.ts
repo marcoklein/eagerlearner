@@ -169,7 +169,11 @@ export class LevelController {
   }
 
   setCameraOffset(x: number, y: number) {
-    this.scene.cameras.main.centerOn(x, y); // move immediately to avoid initial "lag" when switching levels
+    // TODO smoothly move cam into center
+    // const tween = this.scene.tweens.add({
+    //   targets: this.scene.cameras.main,
+    // })
+    // this.scene.cameras.main.centerOn(x, y); // move immediately to avoid initial "lag" when switching levels
     this.scene.cameras.main.startFollow(this.hero, true, 0.5, 0.5, x, y);
   }
 
