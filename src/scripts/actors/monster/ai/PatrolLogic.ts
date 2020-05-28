@@ -2,6 +2,7 @@ import { MonsterLogic } from './MonsterLogic';
 import { Monster } from '../../Monster';
 import { GlobalConfig } from '../../../Globals';
 import { Platform } from '../../../level/platforms/Platform';
+import { ObjectCache } from '../../../ObjectCache';
 
 /**
  * Patrols between two points.
@@ -32,7 +33,8 @@ export class PatrolLogic extends MonsterLogic {
 
   update(monster: Monster, time: number, delta: number) {
     if (!this.platform) {
-      this.platform = monster.level.platforms.findPlatformUnderneath(monster.x, monster.y);
+      monster.getBottomCenter(ObjectCache.vectorA);
+      this.platform = monster.level.platforms.findPlatformUnderneath(ObjectCache.vectorA.x, ObjectCache.vectorA.y);
       if (!this.platform) {
         console.warn('no platform under monster found');
         return;

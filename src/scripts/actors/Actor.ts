@@ -15,7 +15,9 @@ export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
   }
 
   jump() {
-    this.setVelocityY(-GlobalConfig.player.jumpVelocity);
+    if (this.body.touching.down) {
+      this.setVelocityY(-GlobalConfig.player.jumpVelocity);
+    }
   }
 
   move(speed: number, directionLeftOrRight: boolean = this.flipX) {

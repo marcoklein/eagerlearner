@@ -9,7 +9,7 @@ export class PlatformController {
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
     this.group = this.scene.physics.add.staticGroup({
-      classType: Platform
+      classType: Platform,
     });
   }
 
@@ -30,8 +30,7 @@ export class PlatformController {
   }
 
   findPlatformUnderneath(x: number, y: number) {
-    return (<Platform[]> this.group.children.entries)
-      .find(p => x >= p.x && x <= p.x + p.displayWidth);
+    return (<Platform[]>this.group.children.entries).find((p) => x >= p.x && x <= p.x + p.displayWidth);
   }
 
   reset() {

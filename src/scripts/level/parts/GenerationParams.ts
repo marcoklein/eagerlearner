@@ -32,3 +32,5 @@ export interface GenerationParams {
   };
   monsters: MonsterSpawner[];
 }
+
+export type PartialGenerationParams = Partial<GenerationParams>;

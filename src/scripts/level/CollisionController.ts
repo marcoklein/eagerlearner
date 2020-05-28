@@ -3,6 +3,7 @@ import { Monster } from '../actors/Monster';
 import { Projectile } from '../actors/projectile/Projectile';
 import { LevelController } from './LevelController';
 import { Actor } from '../actors/Actor';
+import { ObjectCache } from '../ObjectCache';
 
 export class CollisionController {
   constructor(level: LevelController) {
@@ -14,11 +15,12 @@ export class CollisionController {
     scene.physics.add.collider(scene.level.heroGroup, scene.level.platforms.group);
     scene.physics.add.collider(scene.level.spawner.group, scene.level.platforms.group);
     scene.physics.add.collider(scene.level.spawner.group, scene.level.heroGroup, (a, b) => {
+      // monster - player collision
       if (a instanceof Actor && b instanceof Actor) {
-        if (a.y < b.body.top && a.body.touching.down) {
+        if (a.getBottomCenter().y < b.getTopCenter().y) {
           a.jump();
-          a.reduceLife();
-        } else if (b.y < a.body.top && b.body.touching.down) {
+          b.reduceLife();
+        } else if (b.getBottomCenter().y < a.getTopCenter().y) {
           b.jump();
           a.reduceLife();
         }

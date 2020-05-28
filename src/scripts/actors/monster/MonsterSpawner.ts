@@ -17,6 +17,10 @@ export class MonsterSpawner {
     this.reset();
   }
 
+  static create(controller: MonsterController) {
+    return new MonsterSpawner(controller);
+  }
+
   reset() {
     this._texture = undefined;
     this.wearable = undefined;
@@ -46,7 +50,7 @@ export class MonsterSpawner {
 
   /**
    * Spawns monster on random position on given platform.
-   * @param platform 
+   * @param platform
    * @param x Optional x-coordinate to spawn monster relative to platform.
    */
   spawn(platform: Platform, x: number = Random.between(0, platform.displayWidth)) {
