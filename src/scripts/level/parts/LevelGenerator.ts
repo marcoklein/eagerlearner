@@ -24,23 +24,22 @@ export const BASE_PART_PARAMS: PartGenerationParams = {
   platformWidthMin: 100,
   platformWidthMax: 1500,
   monsters: [],
-}
-
+};
 
 export const BASE_SECTION_PARAMS: SectionGenerationParams = {
   sections: [
     combinePartParams(BASE_PART_PARAMS, {}), // long platforms
-    combinePartParams(BASE_PART_PARAMS, {platformWidthMax: 250  }), // short platforms
-    combinePartParams(BASE_PART_PARAMS, {platformWidthMax: 500, platformGapYMax: 300  }), // goes downards
-    combinePartParams(BASE_PART_PARAMS, {}), 
-    combinePartParams(BASE_PART_PARAMS, {}), 
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250 }), // short platforms
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 500, platformGapYMax: 300 }), // goes downards
+    combinePartParams(BASE_PART_PARAMS, {}),
+    combinePartParams(BASE_PART_PARAMS, {}),
   ],
 };
 
 export class LevelGenerator extends LevelLogic {
   level: LevelController;
-  prevPlatform: Platform;
   sectionParams = BASE_SECTION_PARAMS;
+  prevParts: Array<{ platform: Platform; part: LevelPart }> = [];
   /**
    * A level is separated into individual sections.
    */
@@ -149,13 +148,29 @@ export class LevelGenerator extends LevelLogic {
       console.log('adding loot part');
       this.appendPart(LootPart.create());
 
-      this.continueToNextSection(this.prevPlatform.x);
-    } else if (level.hero.x > this.prevPlatform.getLeftCenter().x - this.level.scene.cameras.main.width / 2) {
+      this.continueToNextSection(this.getPrevPart().platform.x);
+    } else if (level.hero.x > this.getPrevPart().platform.getLeftCenter().x - this.level.scene.cameras.main.width / 2) {
       this.appendPart(SinglePlatformPart.create());
     }
     if (!this.gameStarted && level.hero.x > 0) {
       this.gameStarted = true;
       this.startActionGame();
+    }
+
+    this.clearOutofSightStuff();
+  }
+
+  private clearOutofSightStuff() {
+    while (this.prevParts.length > 1) {
+      // never delete all parts
+      const part = this.prevParts[0];
+      if (part.platform.getRightCenter().x < this.level.hero.x - this.level.scene.cameras.main.width / 2) {
+        // not visible -> destroy
+        this.prevParts.shift();
+        part.part.destroy(this.level);
+      } else {
+        break;
+      }
     }
   }
 
@@ -181,29 +196,30 @@ export class LevelGenerator extends LevelLogic {
 
   appendPart(part: LevelPart) {
     let x, y: number;
-    if (!this.prevPlatform) {
+    if (!this.getPrevPart()) {
       x = 0;
       y = 0;
     } else {
-      const topRight = this.prevPlatform.getTopRight();
+      const topRight = this.getPrevPart().platform.getTopRight();
       x = topRight.x;
       y = topRight.y;
     }
     console.log('appending part with section params', this.getCurrentSectionParams());
-    this.prevPlatform = part.append(this.level, this.getCurrentSectionParams(), x, y);
+    this.pushPrevPart(part, part.append(this.level, this.getCurrentSectionParams(), x, y));
   }
 
   private getCurrentSectionParams() {
     console.log(this.sectionNumber, this.sectionParams.sections.length);
     if (this.sectionNumber >= this.sectionParams.sections.length) return Random.element(this.sectionParams.sections);
-    return this.sectionParams.sections[this.sectionNumber]
+    return this.sectionParams.sections[this.sectionNumber];
   }
 
   private continueToNextSection(prevPlatformX: number = 0) {
     this.sectionNumber++;
-    this.nextSectionEndX = this.getCurrentSectionParams().sectionLength
-      + prevPlatformX
-      + (this.prevPlatform ? this.prevPlatform.displayWidth : 0);
+    this.nextSectionEndX =
+      this.getCurrentSectionParams().sectionLength +
+      prevPlatformX +
+      (this.getPrevPart() ? this.getPrevPart().platform.displayWidth : 0);
 
     console.log('to next section:', this.nextSectionEndX);
   }
@@ -211,5 +227,17 @@ export class LevelGenerator extends LevelLogic {
   private startActionGame() {
     // TODO change background and stuff
     this.level.music.playInGameMusic();
+  }
+
+  private pushPrevPart(part: LevelPart, platform: Platform) {
+    return this.prevParts.push({
+      part,
+      platform,
+    });
+  }
+
+  private getPrevPart() {
+    // if (!this.prevParts.length) return undefined;
+    return this.prevParts[this.prevParts.length - 1];
   }
 }

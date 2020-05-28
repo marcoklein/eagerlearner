@@ -1,44 +1,47 @@
-import { LevelPart } from "./LevelPart";
-import { LevelController } from "../LevelController";
-import { PartGenerationParams } from "./GenerationParams";
-import { BlackboardLogic } from "../logic/BlackboardLogic";
-import { AnswerBoxLogic } from "../logic/AnswerBoxLogic";
-import { QuestionMasterLogic } from "../logic/QuestionMasterLogic";
-import { Random } from "../generator/Random";
+import { LevelPart } from './LevelPart';
+import { LevelController } from '../LevelController';
+import { PartGenerationParams } from './GenerationParams';
+import { BlackboardLogic } from '../logic/BlackboardLogic';
+import { AnswerBoxLogic } from '../logic/AnswerBoxLogic';
+import { QuestionMasterLogic } from '../logic/QuestionMasterLogic';
+import { Random } from '../generator/Random';
+import { LevelLogic } from '../logic/LevelLogic';
+import { Platform } from '../platforms/Platform';
 
 /**
  * Hero can pick a new gun.
  */
 export class LootPart extends LevelPart {
+  base: Platform;
+  logics: LevelLogic[] = [];
 
-  
   static create() {
     return new LootPart();
   }
 
   append(level: LevelController, params: PartGenerationParams, prevPlatformX: number, prevPlatformY: number) {
     prevPlatformX += Random.between(50, 100);
-    const base = level.platforms.createPlatform(prevPlatformX, prevPlatformY);
+    this.base = level.platforms.createPlatform(prevPlatformX, prevPlatformY);
 
-    const blackboard = new BlackboardLogic(base.getTopCenter().x, base.getTopCenter().y - 100);
+    const blackboard = new BlackboardLogic(this.base.getTopCenter().x, this.base.getTopCenter().y - 100);
     const answerBoxLogic = new AnswerBoxLogic(blackboard);
     const questionMaster = new QuestionMasterLogic(
       blackboard,
       answerBoxLogic,
-      base.displayWidth / 2 - 2 * level.hero.displayWidth,
+      this.base.displayWidth / 2 - 2 * level.hero.displayWidth,
       0
     );
     level.addLogic(blackboard);
     level.addLogic(answerBoxLogic);
     level.addLogic(questionMaster);
 
-    // const hero = level.hero;
-    // hero.setVelocity(0, 0);
-    // hero.flipX = true;
-    // hero.setPosition(base.displayWidth / 2 - 2 * level.hero.displayWidth, 0);
-    // level.setCameraOffset(0, 100);
+    this.logics = [blackboard, answerBoxLogic, questionMaster];
 
-    return base;
+    return this.base;
   }
 
+  destroy(level: LevelController): void {
+    this.base.destroy();
+    this.logics.forEach(l => level.removeLogic(l));
+  }
 }

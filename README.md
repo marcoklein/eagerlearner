@@ -40,7 +40,7 @@
 * [x] dont let bullets kill yourself
 
 ## After first playing experience
-* [ ] add modulare level design for one long running level
+* [x] add modulare level design for one long running level
 * [ ] pick weapon instead of question
 * [ ] make levels more interesting .. e.g create jumping monsters or other logics .. yes you could add much more color and stuff now !
 * [ ] highscore should relate to monster kills

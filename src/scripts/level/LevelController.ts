@@ -142,6 +142,12 @@ export class LevelController {
     logic.onAttach(this);
   }
 
+  removeLogic(logic: LevelLogic) {
+    console.log('removing logic');
+    this.logics.splice(this.logics.indexOf(logic), 1);
+    logic.onDetach(this);
+  }
+
   private clearLogics() {
     // detach logics
     this.logics.forEach((logic) => logic.onDetach(this));

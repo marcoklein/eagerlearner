@@ -23,4 +23,9 @@ export abstract class LevelPart {
     prevPlatformX: number,
     prevPlatformY: number
   ): Platform;
+
+  /**
+   * Called when moved out of sight.
+   */
+  abstract destroy(level: LevelController): void;
 }

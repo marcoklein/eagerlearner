@@ -9,17 +9,21 @@ import { Random } from '../generator/Random';
  * Creates one platform of random length.
  */
 export class SinglePlatformPart extends LevelPart {
+  platform: Platform;
+
   static create() {
     return new SinglePlatformPart();
   }
 
   append(level: LevelController, params: PartGenerationParams, prevPlatformX: number, prevPlatformY: number) {
-    const {platformGapXMin,
+    const {
+      platformGapXMin,
       platformGapXMax,
       platformGapYMin,
       platformGapYMax,
       platformWidthMin,
-      platformWidthMax} = params;
+      platformWidthMax,
+    } = params;
 
     const rnd = (min: number, max: number) => Phaser.Math.Between(min, max);
     // params for initial platform
@@ -44,6 +48,11 @@ export class SinglePlatformPart extends LevelPart {
       // Random.element(options.monsterCreation)(level, platform, monster);
     }
 
+    this.platform = platform;
+
     return platform;
+  }
+  destroy(level: LevelController): void {
+    this.platform.destroy();
   }
 }

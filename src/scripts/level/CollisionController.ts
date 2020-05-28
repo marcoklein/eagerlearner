@@ -17,10 +17,10 @@ export class CollisionController {
     scene.physics.add.collider(scene.level.spawner.group, scene.level.heroGroup, (a, b) => {
       // monster - player collision
       if (a instanceof Actor && b instanceof Actor) {
-        if (a.getBottomCenter().y < b.getTopCenter().y) {
+        if (a.getBottomCenter().y < b.getTopCenter().y + 4) {
           a.jump();
           b.reduceLife();
-        } else if (b.getBottomCenter().y < a.getTopCenter().y) {
+        } else if (b.getBottomCenter().y < a.getTopCenter().y + 4) {
           b.jump();
           a.reduceLife();
         }

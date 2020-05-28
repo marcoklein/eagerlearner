@@ -4,10 +4,13 @@ import { LevelController } from '../LevelController';
 import { BlackboardLogic } from '../logic/BlackboardLogic';
 import { Random } from '../generator/Random';
 import { PartGenerationParams } from './GenerationParams';
+import { LevelLogic } from '../logic/LevelLogic';
 
 export class IntroPart extends LevelPart {
-
   static RIGHT_OFFSET = 200;
+
+  blackboard: BlackboardLogic;
+  base: Platform;
 
   static create() {
     return new IntroPart();
@@ -23,12 +26,12 @@ export class IntroPart extends LevelPart {
    * @param prevPlatformY
    */
   append(level: LevelController, params: PartGenerationParams, prevPlatformX: number, prevPlatformY: number) {
-    const base = level.platforms.createPlatform(-350 - IntroPart.RIGHT_OFFSET, 0, 800);
+    this.base = level.platforms.createPlatform(-350 - IntroPart.RIGHT_OFFSET, 0, 800);
 
     const playedAlready = !!level.highscore;
 
-    const blackboard = new BlackboardLogic(-IntroPart.RIGHT_OFFSET, -100);
-    level.addLogic(blackboard);
+    this.blackboard = new BlackboardLogic(-IntroPart.RIGHT_OFFSET, -100);
+    level.addLogic(this.blackboard);
     const introMsgs = ['Have fun eager learner!', 'Welcome back...', 'That was close', "Keep goin'!", "It ain't easy"];
     const introMsg = playedAlready ? Random.element(introMsgs) : introMsgs[0];
 
@@ -39,14 +42,19 @@ export class IntroPart extends LevelPart {
       blackboardIntro = `${introMsg}\n\nA / D = move\nW = jump\nSPACE = attack\n\nHighscore: ${highscore}`;
     }
 
-    blackboard.showText(blackboardIntro, 28);
-    blackboard.showCredits();
+    this.blackboard.showText(blackboardIntro, 28);
+    this.blackboard.showCredits();
 
     const hero = level.hero;
     hero.setVelocity(0, 0);
     hero.flipX = true;
-    hero.setPosition(base.getTopCenter().x, 0);
+    hero.setPosition(this.base.getTopCenter().x, 0);
 
-    return base;
+    return this.base;
+  }
+
+  destroy(level: LevelController): void {
+    this.base.destroy();
+    level.removeLogic(this.blackboard);
   }
 }

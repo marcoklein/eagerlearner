@@ -8,18 +8,17 @@ export interface SectionGenerationParams {
  * Params parts consider during generation of levels.
  */
 export interface PartGenerationParams {
-  sectionLength: number,
-  platformGapXMin: number,
-  platformGapXMax: number,
-  platformGapYMin: number,
-  platformGapYMax: number,
-  platformWidthMin: number,
-  platformWidthMax: number,
-  monsters: MonsterSpawner[],
+  sectionLength: number;
+  platformGapXMin: number;
+  platformGapXMax: number;
+  platformGapYMin: number;
+  platformGapYMax: number;
+  platformWidthMin: number;
+  platformWidthMax: number;
+  monsters: MonsterSpawner[];
 }
 
 export type PartialGenerationParams = Partial<PartGenerationParams>;
-
 
 export function combinePartParams(base: PartGenerationParams, custom: Partial<PartGenerationParams>) {
   custom.monsters = custom.monsters || [];

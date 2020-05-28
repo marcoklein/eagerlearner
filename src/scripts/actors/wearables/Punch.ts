@@ -60,7 +60,6 @@ export class Punch extends Wearable {
           const actor = body.gameObject;
           if (!(actor instanceof Actor)) return; // hit only Actors
 
-
           this.hits.push(body);
 
           // hit effect => throw back and reduce life
@@ -68,7 +67,8 @@ export class Punch extends Wearable {
           body.velocity.x += hands.body.flipX ? -vel : vel;
           body.velocity.y += -vel * 0.1;
 
-          if (!GlobalConfig.monsters.killEachOther && actor instanceof Monster && this.hands?.body instanceof Monster) return; // monsters dont hit monsters
+          if (!GlobalConfig.monsters.killEachOther && actor instanceof Monster && this.hands?.body instanceof Monster)
+            return; // monsters dont hit monsters
 
           actor.reduceLife();
         });
