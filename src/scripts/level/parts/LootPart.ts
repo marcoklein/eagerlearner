@@ -42,6 +42,6 @@ export class LootPart extends LevelPart {
 
   destroy(level: LevelController): void {
     this.base.destroy();
-    this.logics.forEach(l => level.removeLogic(l));
+    this.logics.forEach((l) => level.removeLogic(l));
   }
 }

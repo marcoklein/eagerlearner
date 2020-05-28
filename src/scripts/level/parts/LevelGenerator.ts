@@ -31,7 +31,7 @@ export const BASE_SECTION_PARAMS: SectionGenerationParams = {
     combinePartParams(BASE_PART_PARAMS, {}), // long platforms
     combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250 }), // short platforms
     combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 500, platformGapYMax: 300 }), // goes downards
-    combinePartParams(BASE_PART_PARAMS, {}),
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformGapYMin: -150, platformGapXMax: 50 }), // short and up
     combinePartParams(BASE_PART_PARAMS, {}),
   ],
 };
@@ -96,11 +96,11 @@ export class LevelGenerator extends LevelLogic {
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[0] })
         .givesScore(1)
-        .equip(WearableFactory.createPunch())
+        // .equip(WearableFactory.createPunch())
         .logic(new LookToPlayerLogic())
         // .logic(new PatrolLogic())
-        .logic(new JumpLogic(1000, 3000))
-        .logic(new AttackOnPlayerSight(1500, 3000)),
+        .logic(new JumpLogic(1000, 3000)),
+      // .logic(new AttackOnPlayerSight(1500, 3000)),
       // lvl 2
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[1] })
@@ -108,12 +108,12 @@ export class LevelGenerator extends LevelLogic {
         .equip(WearableFactory.createSigmaGun())
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
-        .logic(new AttackOnPlayerSight(1500, 3000)),
+        .logic(new AttackOnPlayerSight(2000, 3000)),
       // lvl 3
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[2] })
         .givesScore(3)
-        .equip(WearableFactory.createEqualGun())
+        .equip(WearableFactory.createPunch())
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
         .logic(new AttackOnPlayerSight(1500, 3000)),
@@ -121,7 +121,46 @@ export class LevelGenerator extends LevelLogic {
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[3] })
         .givesScore(4)
+        .equip(WearableFactory.createEqualGun())
+        .logic(new LookToPlayerLogic())
+        .logic(new AttackOnPlayerSight(2000, 4000)),
+      // lvl 5
+      MonsterSpawner.create(level.spawner)
+        .texture({ key: monsterTextures[4] })
+        .givesScore(5)
         .equip(WearableFactory.createPlusGun())
+        .logic(new LookToPlayerLogic())
+        .logic(new AttackOnPlayerSight(2000, 4000)),
+      // lvl 6
+      MonsterSpawner.create(level.spawner)
+        .texture({ key: monsterTextures[5] })
+        .givesScore(6)
+        .equip(WearableFactory.createSigmaGun())
+        .logic(new JumpLogic(1000, 3000))
+        .logic(new LookToPlayerLogic())
+        .logic(new AttackOnPlayerSight(2000, 4000)),
+      // lvl 7
+      MonsterSpawner.create(level.spawner)
+        .texture({ key: monsterTextures[6] })
+        .givesScore(7)
+        .equip(WearableFactory.createPlusGun())
+        .logic(new LookToPlayerLogic())
+        .logic(new PatrolLogic())
+        .logic(new AttackOnPlayerSight(2000, 4000)),
+      // lvl 8
+      MonsterSpawner.create(level.spawner)
+        .texture({ key: monsterTextures[7] })
+        .givesScore(8)
+        .logic(new JumpLogic(1000, 3000))
+        .equip(WearableFactory.createSigmaGun())
+        .logic(new LookToPlayerLogic())
+        .logic(new AttackOnPlayerSight(2000, 4000)),
+      // lvl 9
+      MonsterSpawner.create(level.spawner)
+        .texture({ key: monsterTextures[8] })
+        .givesScore(9)
+        .equip(WearableFactory.createEqualGun())
+        .logic(new JumpLogic(1000, 3000))
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
         .logic(new AttackOnPlayerSight(2000, 4000)),

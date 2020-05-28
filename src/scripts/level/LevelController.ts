@@ -81,6 +81,7 @@ export class LevelController {
   restartGame() {
     console.log('restarting game');
     this.saveHighscore();
+    this.score = 0;
     // reset level and hero
     this.resetLevel();
 

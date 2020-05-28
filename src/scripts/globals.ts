@@ -31,7 +31,7 @@ export const GlobalConfig = {
     mass: 10,
     dragX: 1000,
     speed: 200,
-    sight: 600, // monsters stay idle until they see the player.. they they are active
+    sight: 800, // monsters stay idle until they see the player.. they they are active
   },
 };
 
