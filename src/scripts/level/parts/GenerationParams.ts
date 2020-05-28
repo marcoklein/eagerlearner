@@ -1,9 +1,16 @@
 import { MonsterSpawner } from '../../actors/monster/MonsterSpawner';
 
+export interface SectionGenerationParams {
+  sections: {
+    sectionLength: number,
+    part: PartGenerationParams,
+  }[];
+}
+
 /**
  * Params parts consider during generation of levels.
  */
-export interface GenerationParams {
+export interface PartGenerationParams {
   platforms: {
     gap: {
       x: {
@@ -22,15 +29,7 @@ export interface GenerationParams {
       };
     };
   };
-  parts: {
-    size: {
-      width: {
-        min: number;
-        max: number;
-      };
-    };
-  };
   monsters: MonsterSpawner[];
 }
 
-export type PartialGenerationParams = Partial<GenerationParams>;
+export type PartialGenerationParams = Partial<PartGenerationParams>;

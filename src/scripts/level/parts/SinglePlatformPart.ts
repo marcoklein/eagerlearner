@@ -1,6 +1,6 @@
 import { LevelPart } from './LevelPart';
 import { LevelController } from '../LevelController';
-import { GenerationParams } from './GenerationParams';
+import { PartGenerationParams } from './GenerationParams';
 import { MonsterSpawner } from '../../actors/monster/MonsterSpawner';
 import { Platform } from '../platforms/Platform';
 import { Random } from '../generator/Random';
@@ -13,7 +13,7 @@ export class SinglePlatformPart extends LevelPart {
     return new SinglePlatformPart();
   }
 
-  append(level: LevelController, params: GenerationParams, prevPlatformX: number, prevPlatformY: number) {
+  append(level: LevelController, params: PartGenerationParams, prevPlatformX: number, prevPlatformY: number) {
     const platParams = params.platforms;
 
     const rnd = (min: number, max: number) => Phaser.Math.Between(min, max);

@@ -1,6 +1,6 @@
 import { LevelController } from '../LevelController';
 import { Platform } from '../platforms/Platform';
-import { GenerationParams } from './GenerationParams';
+import { PartGenerationParams } from './GenerationParams';
 
 /**
  * Part / module of a complete level.
@@ -19,7 +19,7 @@ export abstract class LevelPart {
    */
   abstract append(
     level: LevelController,
-    params: GenerationParams,
+    params: PartGenerationParams,
     prevPlatformX: number,
     prevPlatformY: number
   ): Platform;
