@@ -49,7 +49,7 @@
 * [x] lobby music (probably easiest)
 * [x] sounds
 * [x] kill monster if player jumps on it / move it downward
-* [ ] BUG: Sometimes you get stuck on a monster instead of killing it -> change collision check for monster jump kill
+* [x] BUG: Sometimes you get stuck on a monster instead of killing it -> change collision check for monster jump kill
 * [ ] add a death message reason
 * [ ] add some background elements / decoration
 * [ ] make teacher interactable / spawn as monster class with ai

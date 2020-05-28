@@ -22,7 +22,7 @@ export const BASE_PART_PARAMS: PartGenerationParams = {
   platformGapYMin: -100,
   platformGapYMax: 100,
   platformWidthMin: 100,
-  platformWidthMax: 1500,
+  platformWidthMax: 600,
   monsters: [],
 };
 
@@ -98,8 +98,8 @@ export class LevelGenerator extends LevelLogic {
         .equip(WearableFactory.createPunch())
         .logic(new LookToPlayerLogic())
         // .logic(new PatrolLogic())
-        .logic(new JumpLogic(200, 2000))
-        .logic(new AttackOnPlayerSight(200, 2000)),
+        .logic(new JumpLogic(1000, 3000))
+        .logic(new AttackOnPlayerSight(1500, 3000)),
       // lvl 2
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[1] })
