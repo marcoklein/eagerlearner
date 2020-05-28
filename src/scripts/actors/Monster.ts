@@ -17,10 +17,15 @@ export class Monster extends Actor {
    * After monster sees player Monster stays active.
    */
   hasSeenHero: boolean = false;
+  /**
+   * Amount of score this monster gives to the player.
+   */
+  giveScore = 1;
 
-  constructor(level: LevelController, x: number, y: number, texture: TextureKey) {
+  constructor(level: LevelController, x: number, y: number, texture: TextureKey, score: number) {
     super(level, x, y, texture.key, texture.frame);
     this.hands = new HandComponent(this.scene, this, { key: 'monster.hand' });
+    this.giveScore = score;
     this.hands.ammo = Number.POSITIVE_INFINITY; // give monsters infinity ammo
     this.fallDownDestroy = new DestroyOnFallDownComponent(this.scene, this);
     this.setOrigin(0.5, 1);
@@ -51,6 +56,11 @@ export class Monster extends Actor {
       this.controls.forEach((control) => control.update(this, time, delta));
     }
     this.fallDownDestroy.update(time, delta);
+  }
+
+  die() {
+    super.die();
+    this.level.score += this.giveScore;
   }
 
   destroy() {

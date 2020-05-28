@@ -95,6 +95,7 @@ export class LevelGenerator extends LevelLogic {
       // lvl 1
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[0] })
+        .givesScore(1)
         .equip(WearableFactory.createPunch())
         .logic(new LookToPlayerLogic())
         // .logic(new PatrolLogic())
@@ -103,6 +104,7 @@ export class LevelGenerator extends LevelLogic {
       // lvl 2
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[1] })
+        .givesScore(2)
         .equip(WearableFactory.createSigmaGun())
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
@@ -110,6 +112,7 @@ export class LevelGenerator extends LevelLogic {
       // lvl 3
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[2] })
+        .givesScore(3)
         .equip(WearableFactory.createEqualGun())
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
@@ -117,6 +120,7 @@ export class LevelGenerator extends LevelLogic {
       // lvl 4
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[3] })
+        .givesScore(4)
         .equip(WearableFactory.createPlusGun())
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())

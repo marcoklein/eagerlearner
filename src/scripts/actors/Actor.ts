@@ -41,8 +41,12 @@ export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
   reduceLife() {
     this.life--;
     if (this.life < 0) {
-      this.destroy();
+      this.die();
     }
+  }
+
+  die() {
+    this.destroy();
   }
 
   destroy() {

@@ -41,8 +41,8 @@ export class QuestionMasterLogic extends LevelLogic {
   update(level: LevelController, time: number, delta: number) {}
 
   createMathQuestion() {
-    const left = Phaser.Math.Between(1, 99);
-    const right = Phaser.Math.Between(1, 99);
+    const left = Phaser.Math.Between(0, 9);
+    const right = Phaser.Math.Between(0, 9);
     const plusOrMinus = Phaser.Math.Between(0, 1) ? true : false;
     const symbol = plusOrMinus ? '+' : '-';
     const questionText = `${left} ${symbol} ${right} = ?`;

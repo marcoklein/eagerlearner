@@ -43,7 +43,7 @@
 * [x] add modulare level design for one long running level
 * [ ] pick weapon instead of question
 * [ ] make levels more interesting .. e.g create jumping monsters or other logics .. yes you could add much more color and stuff now !
-* [ ] highscore should relate to monster kills
+* [x] highscore should relate to monster kills
 
 ## For more
 * [x] lobby music (probably easiest)

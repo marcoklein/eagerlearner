@@ -44,7 +44,7 @@ export class HudScene extends Phaser.Scene {
       .text(15, 15, `Level:`, {
         color: '#000000',
         fontStyle: 'bold',
-        fontSize: 24,
+        fontSize: 28,
       })
       .setOrigin(0)
       .setVisible(false);
@@ -62,7 +62,7 @@ export class HudScene extends Phaser.Scene {
     if (this.fpsText) this.fpsText.update(time, delta);
     this.levelText.visible = true;
     // this.levelText.visible = this.gameScene.level.score > 0;
-    this.levelText.text = `Level: ${this.gameScene.level.score}\nAmmo: ${this.gameScene.level.hero.hands.ammo}`;
+    this.levelText.text = `Score: ${this.gameScene.level.score}\nAmmo: ${this.gameScene.level.hero.hands.ammo}`;
 
     this.deadGroup.setVisible(this.gameScene.level.state === LevelState.DEAD);
   }
