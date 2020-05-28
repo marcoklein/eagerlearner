@@ -4,7 +4,7 @@ import { MonsterLogic } from './ai/MonsterLogic';
 import { Wearable } from '../wearables/Wearable';
 import { Monster } from '../Monster';
 import { Platform } from '../../level/platforms/Platform';
-import { Random } from '../../level/generator/Random';
+import { Random } from '../../level/Random';
 
 export class MonsterSpawner {
   spawner: MonsterController;

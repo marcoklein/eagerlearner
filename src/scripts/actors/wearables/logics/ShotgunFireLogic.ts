@@ -6,7 +6,7 @@ import { TextureKey, GlobalConfig } from '../../../Globals';
 import { ThrowBackEffect } from '../../projectile/effects/ThrowBackEffect';
 import { NoGravityBullet } from '../../projectile/NoGravityBullet';
 import { ObjectCache } from '../../../ObjectCache';
-import { Random } from '../../../level/generator/Random';
+import { Random } from '../../../level/Random';
 
 export class ShotgunFireLogic implements GunFireLogic {
   readonly texture: TextureKey;

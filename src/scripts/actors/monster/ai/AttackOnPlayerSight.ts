@@ -1,6 +1,6 @@
 import { Monster } from '../../Monster';
 import { MonsterLogic } from './MonsterLogic';
-import { Random } from '../../../level/generator/Random';
+import { Random } from '../../../level/Random';
 
 /**
  * Shoots :)

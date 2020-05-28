@@ -6,7 +6,7 @@ import { LevelController } from '../LevelController';
 import { AnswerBoxLogic } from './AnswerBoxLogic';
 import { BlackboardLogic } from './BlackboardLogic';
 import { LevelLogic } from './LevelLogic';
-import { Random } from '../generator/Random';
+import { Random } from '../Random';
 
 /**
  * Main controller for questions.

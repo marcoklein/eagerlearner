@@ -12,7 +12,7 @@ import { AttackOnPlayerSight } from '../../actors/monster/ai/AttackOnPlayerSight
 import { WearableFactory } from '../../actors/wearables/WearableFactory';
 import { PatrolLogic } from '../../actors/monster/ai/PatrolLogic';
 import { JumpLogic } from '../../actors/monster/ai/JumpLogic';
-import { Random } from '../generator/Random';
+import { Random } from '../Random';
 import { LootPart } from './LootPart';
 
 export const BASE_PART_PARAMS: PartGenerationParams = {
@@ -108,7 +108,7 @@ export class LevelGenerator extends LevelLogic {
         .equip(WearableFactory.createSigmaGun())
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
-        .logic(new AttackOnPlayerSight(2000, 3000)),
+        .logic(new AttackOnPlayerSight(4000, 8000)),
       // lvl 3
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[2] })
@@ -123,14 +123,14 @@ export class LevelGenerator extends LevelLogic {
         .givesScore(4)
         .equip(WearableFactory.createEqualGun())
         .logic(new LookToPlayerLogic())
-        .logic(new AttackOnPlayerSight(2000, 4000)),
+        .logic(new AttackOnPlayerSight(5000, 8000)),
       // lvl 5
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[4] })
         .givesScore(5)
         .equip(WearableFactory.createPlusGun())
         .logic(new LookToPlayerLogic())
-        .logic(new AttackOnPlayerSight(2000, 4000)),
+        .logic(new AttackOnPlayerSight(4000, 10000)),
       // lvl 6
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[5] })
@@ -138,7 +138,7 @@ export class LevelGenerator extends LevelLogic {
         .equip(WearableFactory.createSigmaGun())
         .logic(new JumpLogic(1000, 3000))
         .logic(new LookToPlayerLogic())
-        .logic(new AttackOnPlayerSight(2000, 4000)),
+        .logic(new AttackOnPlayerSight(3000, 6000)),
       // lvl 7
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[6] })
@@ -146,7 +146,7 @@ export class LevelGenerator extends LevelLogic {
         .equip(WearableFactory.createPlusGun())
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
-        .logic(new AttackOnPlayerSight(2000, 4000)),
+        .logic(new AttackOnPlayerSight(3000, 7000)),
       // lvl 8
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[7] })
@@ -154,7 +154,7 @@ export class LevelGenerator extends LevelLogic {
         .logic(new JumpLogic(1000, 3000))
         .equip(WearableFactory.createSigmaGun())
         .logic(new LookToPlayerLogic())
-        .logic(new AttackOnPlayerSight(2000, 4000)),
+        .logic(new AttackOnPlayerSight(4000, 6000)),
       // lvl 9
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[8] })
@@ -163,7 +163,7 @@ export class LevelGenerator extends LevelLogic {
         .logic(new JumpLogic(1000, 3000))
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
-        .logic(new AttackOnPlayerSight(2000, 4000)),
+        .logic(new AttackOnPlayerSight(3000, 6000)),
     ];
 
     // add monsters to sections

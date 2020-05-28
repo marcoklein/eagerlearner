@@ -4,7 +4,7 @@ import { PartGenerationParams } from './GenerationParams';
 import { BlackboardLogic } from '../logic/BlackboardLogic';
 import { AnswerBoxLogic } from '../logic/AnswerBoxLogic';
 import { QuestionMasterLogic } from '../logic/QuestionMasterLogic';
-import { Random } from '../generator/Random';
+import { Random } from '../Random';
 import { LevelLogic } from '../logic/LevelLogic';
 import { Platform } from '../platforms/Platform';
 

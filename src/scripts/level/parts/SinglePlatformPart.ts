@@ -3,7 +3,7 @@ import { LevelController } from '../LevelController';
 import { PartGenerationParams } from './GenerationParams';
 import { MonsterSpawner } from '../../actors/monster/MonsterSpawner';
 import { Platform } from '../platforms/Platform';
-import { Random } from '../generator/Random';
+import { Random } from '../Random';
 
 /**
  * Creates one platform of random length.

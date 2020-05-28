@@ -2,7 +2,7 @@ import { LevelPart } from './LevelPart';
 import { Platform } from '../platforms/Platform';
 import { LevelController } from '../LevelController';
 import { BlackboardLogic } from '../logic/BlackboardLogic';
-import { Random } from '../generator/Random';
+import { Random } from '../Random';
 import { PartGenerationParams } from './GenerationParams';
 import { LevelLogic } from '../logic/LevelLogic';
 
