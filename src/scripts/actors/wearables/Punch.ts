@@ -3,6 +3,7 @@ import { HandComponent } from '../components/HandComponent';
 import { ObjectCache } from '../../ObjectCache';
 import { Actor } from '../Actor';
 import { Monster } from '../Monster';
+import { GlobalConfig } from '../../Globals';
 
 export class Punch extends Wearable {
   // action
@@ -59,6 +60,7 @@ export class Punch extends Wearable {
           const actor = body.gameObject;
           if (!(actor instanceof Actor)) return; // hit only Actors
 
+
           this.hits.push(body);
 
           // hit effect => throw back and reduce life
@@ -66,10 +68,7 @@ export class Punch extends Wearable {
           body.velocity.x += hands.body.flipX ? -vel : vel;
           body.velocity.y += -vel * 0.1;
 
-          // monsters may kick each other from an edge ..
-          // maybe only attack if player is in sight per default
-          // monsters only attack when in sight now
-          // if (actor instanceof Monster && this.hands?.body instanceof Monster) return; // monsters dont hit monsters
+          if (!GlobalConfig.monsters.killEachOther && actor instanceof Monster && this.hands?.body instanceof Monster) return; // monsters dont hit monsters
 
           actor.reduceLife();
         });

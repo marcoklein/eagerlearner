@@ -27,6 +27,7 @@ export const GlobalConfig = {
     lifetime: 700,
   },
   monsters: {
+    killEachOther: false,
     mass: 10,
     dragX: 1000,
     speed: 200,

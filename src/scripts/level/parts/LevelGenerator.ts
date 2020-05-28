@@ -4,7 +4,7 @@ import { Punch } from '../../actors/wearables/Punch';
 import { LevelController } from '../LevelController';
 import { LevelLogic } from '../logic/LevelLogic';
 import { Platform } from '../platforms/Platform';
-import { PartGenerationParams, SectionGenerationParams } from './GenerationParams';
+import { PartGenerationParams, SectionGenerationParams, combinePartParams } from './GenerationParams';
 import { IntroPart } from './IntroPart';
 import { LevelPart } from './LevelPart';
 import { SinglePlatformPart } from './SinglePlatformPart';
@@ -13,35 +13,27 @@ import { WearableFactory } from '../../actors/wearables/WearableFactory';
 import { PatrolLogic } from '../../actors/monster/ai/PatrolLogic';
 import { JumpLogic } from '../../actors/monster/ai/JumpLogic';
 import { Random } from '../generator/Random';
+import { LootPart } from './LootPart';
 
 export const BASE_PART_PARAMS: PartGenerationParams = {
-  platforms: {
-    gap: {
-      x: {
-        min: 0,
-        max: 100,
-      },
-      y: {
-        min: -150,
-        max: 150,
-      },
-    },
-    size: {
-      width: {
-        min: 100,
-        max: 200,
-      },
-    },
-  },
+  sectionLength: 2000,
+  platformGapXMin: 0,
+  platformGapXMax: 250,
+  platformGapYMin: -100,
+  platformGapYMax: 100,
+  platformWidthMin: 100,
+  platformWidthMax: 1500,
   monsters: [],
 }
 
+
 export const BASE_SECTION_PARAMS: SectionGenerationParams = {
   sections: [
-    {
-      sectionLength: 1000,
-      part: BASE_PART_PARAMS,
-    }, 
+    combinePartParams(BASE_PART_PARAMS, {}), // long platforms
+    combinePartParams(BASE_PART_PARAMS, {platformWidthMax: 250  }), // short platforms
+    combinePartParams(BASE_PART_PARAMS, {platformWidthMax: 500, platformGapYMax: 300  }), // goes downards
+    combinePartParams(BASE_PART_PARAMS, {}), 
+    combinePartParams(BASE_PART_PARAMS, {}), 
   ],
 };
 
@@ -134,10 +126,13 @@ export class LevelGenerator extends LevelLogic {
 
     // add monsters to sections
     this.sectionParams.sections.forEach((section, index) => {
+      console.log('adding monsters to section', index);
       for (let i = 0; i < monsters.length && i <= index; i++) {
-        section.part.monsters.push(monsters[i]);
+        console.log('adding monster at ', i, 'to section', index);
+        section.monsters.push(monsters[i]);
       }
     });
+    console.log('sections after monster attachements: ', this.sectionParams);
 
     this.continueToNextSection();
     this.appendPart(introPart);
@@ -150,8 +145,12 @@ export class LevelGenerator extends LevelLogic {
     // smooth scroll of camera
     this.adjustCamScroll(level);
     if (level.hero.x > this.nextSectionEndX) {
-      this.continueToNextSection();
-    } else if (level.hero.x > this.prevPlatform.getLeftCenter().x - this.level.scene.cameras.main.width) {
+      // spawn loot room and continue to next section
+      console.log('adding loot part');
+      this.appendPart(LootPart.create());
+
+      this.continueToNextSection(this.prevPlatform.x);
+    } else if (level.hero.x > this.prevPlatform.getLeftCenter().x - this.level.scene.cameras.main.width / 2) {
       this.appendPart(SinglePlatformPart.create());
     }
     if (!this.gameStarted && level.hero.x > 0) {
@@ -190,20 +189,27 @@ export class LevelGenerator extends LevelLogic {
       x = topRight.x;
       y = topRight.y;
     }
-    this.prevPlatform = part.append(this.level, this.getCurrentSectionParams().part, x, y);
+    console.log('appending part with section params', this.getCurrentSectionParams());
+    this.prevPlatform = part.append(this.level, this.getCurrentSectionParams(), x, y);
   }
 
   private getCurrentSectionParams() {
+    console.log(this.sectionNumber, this.sectionParams.sections.length);
     if (this.sectionNumber >= this.sectionParams.sections.length) return Random.element(this.sectionParams.sections);
     return this.sectionParams.sections[this.sectionNumber]
   }
 
-  private continueToNextSection() {
+  private continueToNextSection(prevPlatformX: number = 0) {
     this.sectionNumber++;
-    this.nextSectionEndX = this.getCurrentSectionParams().sectionLength;
+    this.nextSectionEndX = this.getCurrentSectionParams().sectionLength
+      + prevPlatformX
+      + (this.prevPlatform ? this.prevPlatform.displayWidth : 0);
+
+    console.log('to next section:', this.nextSectionEndX);
   }
 
   private startActionGame() {
+    // TODO change background and stuff
     this.level.music.playInGameMusic();
   }
 }

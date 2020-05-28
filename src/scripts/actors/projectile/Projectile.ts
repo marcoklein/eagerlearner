@@ -68,7 +68,7 @@ export class Projectile extends Phaser.Physics.Arcade.Sprite {
   }
 
   onMonsterCollision(monster: Monster) {
-    // if (monster === this.owner) return;
+    if (!GlobalConfig.monsters.killEachOther && monster === this.owner) return;
     let destroy = false;
     this.effects = this.effects.filter((effect) => {
       const status = effect.applyToMonster(this, monster);

@@ -14,13 +14,18 @@ export class SinglePlatformPart extends LevelPart {
   }
 
   append(level: LevelController, params: PartGenerationParams, prevPlatformX: number, prevPlatformY: number) {
-    const platParams = params.platforms;
+    const {platformGapXMin,
+      platformGapXMax,
+      platformGapYMin,
+      platformGapYMax,
+      platformWidthMin,
+      platformWidthMax} = params;
 
     const rnd = (min: number, max: number) => Phaser.Math.Between(min, max);
     // params for initial platform
-    let nextX = rnd(prevPlatformX + platParams.gap.x.min, prevPlatformX + platParams.gap.x.max);
-    let nextY = rnd(prevPlatformY + platParams.gap.y.min, prevPlatformY + platParams.gap.y.max);
-    let nextWidth = rnd(platParams.size.width.min, platParams.size.width.max); // ensure first platform is large enough
+    let nextX = rnd(prevPlatformX + platformGapXMin, prevPlatformX + platformGapXMax);
+    let nextY = rnd(prevPlatformY + platformGapYMin, prevPlatformY + platformGapYMax);
+    let nextWidth = rnd(platformWidthMin, platformWidthMax); // ensure first platform is large enough
 
     const platform = level.platforms.createPlatform(nextX, nextY, nextWidth);
 

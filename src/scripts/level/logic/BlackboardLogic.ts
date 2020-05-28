@@ -1,6 +1,5 @@
 import { LevelController } from '../LevelController';
 import { LevelLogic } from './LevelLogic';
-import { IntroPart } from '../parts/IntroPart';
 
 /**
  * Adds a blackboard with questions.
@@ -25,7 +24,7 @@ export class BlackboardLogic extends LevelLogic {
     this.blackboard = level.scene.add.image(this.x, this.y, 'learn.blackboard');
     this.blackboard.setOrigin(0.5, 1);
     this.blackboard.setDepth(-100);
-    this.teacher = level.scene.add.image(-250 - IntroPart.RIGHT_OFFSET, 0, 'learn.teacher');
+    this.teacher = level.scene.add.image(this.x - 250, this.y + 100, 'learn.teacher');
     this.teacher.setOrigin(0.5, 1);
     this.teacher.setDepth(-10);
 
