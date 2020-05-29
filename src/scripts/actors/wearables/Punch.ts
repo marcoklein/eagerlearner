@@ -59,17 +59,15 @@ export class Punch extends Wearable {
           if (this.hits.indexOf(body) !== -1) return; // already hit
           const actor = body.gameObject;
           if (!(actor instanceof Actor)) return; // hit only Actors
-          
+
           this.hits.push(body);
           if (!GlobalConfig.monsters.killEachOther && actor instanceof Monster && this.hands?.body instanceof Monster)
             return; // monsters dont hit monsters
-
 
           // hit effect => throw back and reduce life
           let vel = 300;
           body.velocity.x += hands.body.flipX ? -vel : vel;
           body.velocity.y += -vel * 0.1;
-
 
           actor.reduceLife();
         });

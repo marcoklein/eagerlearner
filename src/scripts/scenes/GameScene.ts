@@ -28,6 +28,6 @@ export class GameScene extends Phaser.Scene {
     // this.backgroundColor.fillStyle(0x121212, 0.5);
     // this.backgroundColor.fillRect(0, 0, this.cameras.main.width, this.cameras.main.height);
     // this.backgroundColor.setDepth(-100);
-    this.cameras.main.setBackgroundColor(0xDFDFEF);
+    this.cameras.main.setBackgroundColor(0xdfdfef);
   }
 }

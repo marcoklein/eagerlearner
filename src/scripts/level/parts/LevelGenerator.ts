@@ -31,13 +31,36 @@ export const BASE_SECTION_PARAMS: SectionGenerationParams = {
   sections: [
     combinePartParams(BASE_PART_PARAMS, { platformTexture: 'platform.blue' }), // long platforms
     combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformTexture: 'platform.orange' }), // short platforms
-    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 500, platformGapYMax: 300, platformTexture: 'platform.green' }), // goes downards
-    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformGapYMin: -150, platformGapXMax: 50, platformTexture: 'platform.red' }), // short and up
-    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 500, platformGapYMax: 300, platformTexture: 'platform.blue'}),
-    combinePartParams(BASE_PART_PARAMS, { platformTexture: 'platform.orange'}),
-    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformGapYMin: -150, platformGapXMax: 50, platformTexture: 'platform.green'}),
-    combinePartParams(BASE_PART_PARAMS, { platformTexture: 'platform.red'}),
-    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformGapYMin: -150, platformGapXMax: 50, platformTexture: 'platform.blue'}),
+    combinePartParams(BASE_PART_PARAMS, {
+      platformWidthMax: 500,
+      platformGapYMax: 300,
+      platformTexture: 'platform.green',
+    }), // goes downards
+    combinePartParams(BASE_PART_PARAMS, {
+      platformWidthMax: 250,
+      platformGapYMin: -150,
+      platformGapXMax: 50,
+      platformTexture: 'platform.red',
+    }), // short and up
+    combinePartParams(BASE_PART_PARAMS, {
+      platformWidthMax: 500,
+      platformGapYMax: 300,
+      platformTexture: 'platform.blue',
+    }),
+    combinePartParams(BASE_PART_PARAMS, { platformTexture: 'platform.orange' }),
+    combinePartParams(BASE_PART_PARAMS, {
+      platformWidthMax: 250,
+      platformGapYMin: -150,
+      platformGapXMax: 50,
+      platformTexture: 'platform.green',
+    }),
+    combinePartParams(BASE_PART_PARAMS, { platformTexture: 'platform.red' }),
+    combinePartParams(BASE_PART_PARAMS, {
+      platformWidthMax: 250,
+      platformGapYMin: -150,
+      platformGapXMax: 50,
+      platformTexture: 'platform.blue',
+    }),
   ],
 };
 
