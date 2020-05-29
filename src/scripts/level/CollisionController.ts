@@ -4,6 +4,7 @@ import { Projectile } from '../actors/projectile/Projectile';
 import { LevelController } from './LevelController';
 import { Actor } from '../actors/Actor';
 import { ObjectCache } from '../ObjectCache';
+import { Item } from '../actors/items/Item';
 
 export class CollisionController {
   constructor(level: LevelController) {
@@ -32,8 +33,8 @@ export class CollisionController {
       if (a instanceof Projectile && b instanceof Projectile) {
         if (a.owner !== b.owner) {
           // dont destroy own projectiles
-          a.destroy();
-          b.destroy();
+          if (!(a.projectileType instanceof Item)) a.destroy(); // do not destroy items
+          if (!(b.projectileType instanceof Item)) b.destroy();
         }
       } else {
         throw new Error('Wrong type during collision');

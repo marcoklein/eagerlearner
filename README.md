@@ -40,7 +40,7 @@
 * [x] dont let bullets kill yourself
 
 ## After first playing experience
-* [ ] BUG: answer boxes can be destroyed by bullets
+* [x] BUG: answer boxes can be destroyed by bullets
 * [x] add modulare level design for one long running level
 * [x] make levels more interesting .. e.g create jumping monsters or other logics .. yes you could add much more color and stuff now !
 * [x] highscore should relate to monster kills
@@ -50,6 +50,7 @@
 * [x] sounds
 * [x] kill monster if player jumps on it / move it downward
 * [x] BUG: Sometimes you get stuck on a monster instead of killing it -> change collision check for monster jump kill
+* [ ] mute music button
 * [ ] pick weapon instead of question
 * [ ] add a death message reason
 * [ ] add some background elements / decoration
