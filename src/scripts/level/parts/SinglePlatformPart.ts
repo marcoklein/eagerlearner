@@ -31,7 +31,7 @@ export class SinglePlatformPart extends LevelPart {
     let nextY = rnd(prevPlatformY + platformGapYMin, prevPlatformY + platformGapYMax);
     let nextWidth = rnd(platformWidthMin, platformWidthMax); // ensure first platform is large enough
 
-    const platform = level.platforms.createPlatform(nextX, nextY, nextWidth);
+    const platform = level.platforms.createPlatform(nextX, nextY, params.platformTexture, nextWidth);
 
     // spawn monster
 

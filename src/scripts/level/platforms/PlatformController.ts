@@ -1,5 +1,6 @@
 import { GlobalConfig } from '../../Globals';
 import { Platform } from './Platform';
+import { Random } from '../Random';
 
 export class PlatformController {
   scene: Phaser.Scene;
@@ -13,8 +14,8 @@ export class PlatformController {
     });
   }
 
-  createPlatform(x: number, y: number, width?: number, height?: number) {
-    const platform = this.scene.physics.add.staticSprite(x, y, 'world.platform');
+  createPlatform(x: number, y: number, platformTexture: string, width?: number, height?: number) {
+    const platform = this.scene.physics.add.staticSprite(x, y, platformTexture);
     platform.setOrigin(0, 0);
     if (width) platform.displayWidth = width;
     if (height) platform.displayHeight = height;

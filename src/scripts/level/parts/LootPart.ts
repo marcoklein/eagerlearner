@@ -21,7 +21,7 @@ export class LootPart extends LevelPart {
 
   append(level: LevelController, params: PartGenerationParams, prevPlatformX: number, prevPlatformY: number) {
     prevPlatformX += Random.between(50, 100);
-    this.base = level.platforms.createPlatform(prevPlatformX, prevPlatformY);
+    this.base = level.platforms.createPlatform(prevPlatformX, prevPlatformY, 'world.platform');
 
     const blackboard = new BlackboardLogic(this.base.getTopCenter().x, this.base.getTopCenter().y - 100);
     const answerBoxLogic = new AnswerBoxLogic(blackboard);

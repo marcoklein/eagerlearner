@@ -26,7 +26,7 @@ export class IntroPart extends LevelPart {
    * @param prevPlatformY
    */
   append(level: LevelController, params: PartGenerationParams, prevPlatformX: number, prevPlatformY: number) {
-    this.base = level.platforms.createPlatform(-350 - IntroPart.RIGHT_OFFSET, 0, 800);
+    this.base = level.platforms.createPlatform(-350 - IntroPart.RIGHT_OFFSET, 0, 'world.platform', 800);
 
     const playedAlready = !!level.highscore;
 

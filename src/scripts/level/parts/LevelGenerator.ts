@@ -24,15 +24,20 @@ export const BASE_PART_PARAMS: PartGenerationParams = {
   platformWidthMin: 100,
   platformWidthMax: 600,
   monsters: [],
+  platformTexture: 'platform.blue',
 };
 
 export const BASE_SECTION_PARAMS: SectionGenerationParams = {
   sections: [
-    combinePartParams(BASE_PART_PARAMS, {}), // long platforms
-    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250 }), // short platforms
-    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 500, platformGapYMax: 300 }), // goes downards
-    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformGapYMin: -150, platformGapXMax: 50 }), // short and up
-    combinePartParams(BASE_PART_PARAMS, {}),
+    combinePartParams(BASE_PART_PARAMS, { platformTexture: 'platform.blue' }), // long platforms
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformTexture: 'platform.orange' }), // short platforms
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 500, platformGapYMax: 300, platformTexture: 'platform.green' }), // goes downards
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformGapYMin: -150, platformGapXMax: 50, platformTexture: 'platform.red' }), // short and up
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 500, platformGapYMax: 300, platformTexture: 'platform.blue'}),
+    combinePartParams(BASE_PART_PARAMS, { platformTexture: 'platform.orange'}),
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformGapYMin: -150, platformGapXMax: 50, platformTexture: 'platform.green'}),
+    combinePartParams(BASE_PART_PARAMS, { platformTexture: 'platform.red'}),
+    combinePartParams(BASE_PART_PARAMS, { platformWidthMax: 250, platformGapYMin: -150, platformGapXMax: 50, platformTexture: 'platform.blue'}),
   ],
 };
 
@@ -105,25 +110,25 @@ export class LevelGenerator extends LevelLogic {
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[1] })
         .givesScore(2)
-        .equip(WearableFactory.createSigmaGun())
-        .logic(new LookToPlayerLogic())
-        .logic(new PatrolLogic())
-        .logic(new AttackOnPlayerSight(4000, 8000)),
-      // lvl 3
-      MonsterSpawner.create(level.spawner)
-        .texture({ key: monsterTextures[2] })
-        .givesScore(3)
         .equip(WearableFactory.createPunch())
         .logic(new LookToPlayerLogic())
         .logic(new PatrolLogic())
         .logic(new AttackOnPlayerSight(1500, 3000)),
+      // lvl 3
+      MonsterSpawner.create(level.spawner)
+        .texture({ key: monsterTextures[2] })
+        .givesScore(3)
+        .equip(WearableFactory.createEqualGun())
+        .logic(new LookToPlayerLogic())
+        .logic(new PatrolLogic())
+        .logic(new AttackOnPlayerSight(2000, 4000)),
       // lvl 4
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[3] })
         .givesScore(4)
-        .equip(WearableFactory.createEqualGun())
+        .equip(WearableFactory.createSigmaGun())
         .logic(new LookToPlayerLogic())
-        .logic(new AttackOnPlayerSight(5000, 8000)),
+        .logic(new AttackOnPlayerSight(3000, 5000)),
       // lvl 5
       MonsterSpawner.create(level.spawner)
         .texture({ key: monsterTextures[4] })

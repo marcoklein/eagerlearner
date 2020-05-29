@@ -32,6 +32,10 @@ export class PreloadScene extends Phaser.Scene {
 
     this.load.image('world.door', 'assets/sprites/door.png');
     this.load.image('world.platform', 'assets/sprites/platform.png');
+    this.load.image('platform.blue', 'assets/sprites/platform-blue.png');
+    this.load.image('platform.green', 'assets/sprites/platform-green.png');
+    this.load.image('platform.orange', 'assets/sprites/platform-orange.png');
+    this.load.image('platform.red', 'assets/sprites/platform-red.png');
 
     this.load.image('learn.blackboard', 'assets/sprites/blackboard.png');
     this.load.image('learn.teacher', 'assets/sprites/teacher.png');

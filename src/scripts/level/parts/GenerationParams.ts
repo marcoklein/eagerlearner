@@ -16,6 +16,7 @@ export interface PartGenerationParams {
   platformWidthMin: number;
   platformWidthMax: number;
   monsters: MonsterSpawner[];
+  platformTexture: string;
 }
 
 export type PartialGenerationParams = Partial<PartGenerationParams>;
