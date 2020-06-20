@@ -51,10 +51,10 @@ export class PlayerControlComponent {
     const pads = this.scene.input.gamepad.gamepads;
     const pad = pads.length ? pads[0] : undefined;
 
-    if (this.controlKeys.primary.isDown || (pad && pad.A)) {
+    if (this.controlKeys.primary.isDown || (pad && pad.B)) {
       this.player.hands.action();
     }
-    if ((this.controlKeys.jump.isDown || (pad && pad.B)) && this.player.body.touching.down) {
+    if ((this.controlKeys.jump.isDown || (pad && pad.A)) && this.player.body.touching.down) {
       this.player.jump();
     }
 
