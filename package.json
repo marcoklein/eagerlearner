@@ -1,6 +1,6 @@
 {
   "name": "roguelike",
-  "version": "1.3.0",
+  "version": "1.4.2",
   "description": "Phaser 3 starter template with TypeScript and webpack.",
   "homepage": "https://github.com/yandeu/phaser-project-template#readme",
   "main": "index.js",
@@ -8,7 +8,8 @@
     "start": "webpack-dev-server --config webpack/webpack.dev.js",
     "build": "webpack --config webpack/webpack.prod.js",
     "deploy": "npm run build && gh-pages -d dist",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "version": "npm run deploy"
   },
   "lint-staged": {
     "src/**/*.ts": "prettier --write"

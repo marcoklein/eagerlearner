@@ -15,7 +15,9 @@ export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
   }
 
   jump() {
-    this.setVelocityY(-GlobalConfig.player.jumpVelocity);
+    if (this.body.touching.down) {
+      this.setVelocityY(-GlobalConfig.player.jumpVelocity);
+    }
   }
 
   move(speed: number, directionLeftOrRight: boolean = this.flipX) {
@@ -39,8 +41,12 @@ export abstract class Actor extends Phaser.Physics.Arcade.Sprite {
   reduceLife() {
     this.life--;
     if (this.life < 0) {
-      this.destroy();
+      this.die();
     }
+  }
+
+  die() {
+    this.destroy();
   }
 
   destroy() {

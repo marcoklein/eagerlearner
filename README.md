@@ -39,30 +39,25 @@
 * [x] player falls through door and then level
 * [x] dont let bullets kill yourself
 
+## After first playing experience
+* [x] BUG: answer boxes can be destroyed by bullets
+* [x] add modulare level design for one long running level
+* [x] make levels more interesting .. e.g create jumping monsters or other logics .. yes you could add much more color and stuff now !
+* [x] highscore should relate to monster kills
+
 ## For more
 * [x] lobby music (probably easiest)
 * [x] sounds
 * [x] kill monster if player jumps on it / move it downward
-* [ ] BUG: Sometimes you get stuck on a monster instead of killing it -> change collision check for monster jump kill
-* [ ] cycle through weapons that you already picked up or make choose dialog after quetions.. then you can choose
-* [ ] add different question types (e.g. count enemies)
-* [ ] make levels more interesting .. e.g create jumping monsters or other logics .. yes you could add much more color and stuff now !
+* [x] BUG: Sometimes you get stuck on a monster instead of killing it -> change collision check for monster jump kill
+* [ ] mute music button
+* [ ] pick weapon instead of question
 * [ ] add a death message reason
-* [ ] add something to bottom as ground so player knows whats happening
-* [ ] add a timer to questions
-* [ ] add a "closed door" where the player spawns in a new level - there you can also reset physics and stuff
 * [ ] add some background elements / decoration
 * [ ] make teacher interactable / spawn as monster class with ai
 * [ ] refactor item stuff
 
-# Music created with Beepbox
-* [Title Music](https://beepbox.co/#8n31s0k0l00e01t2mm0a7g0dj07i0r1o3210T1v1L4u9aq3d5fay1z0C0c0AcF8BeV8Q0259PffffE8543T3v1L4ud8q1d4f9y1z1C0SU006050woha9999T1v1L4uf1q3d5f7y0zjC0c0A1F0B0V1Q1845Pe354E034aT4v1L4uf0q1z6666ji8k8k3jSBKSJJAArriiiiii07JCABrzrrrrrrr00YrkqHrsrrrrjr005zrAqzrjzrrqr1jRjrqGGrrzsrsA099ijrABJJJIAzrrtirqrqjqixzsrAjrqjiqaqqysttAJqjikikrizrHtBJJAzArzrIsRCITKSS099ijrAJS____Qg99habbCAYrDzh00b4h400000014h0000000x4g0000004h40000000p1R0arnXA4SnESFH-04LjnYBZ1vgnQi-1bW2-wLE0FEN0OWjbEcKwOM0)
-
-* [In Game](https://beepbox.co/#8n31s0k0l00e05t2mm0a7g0fj07i0r1o3210T1v3L4u83q3d1f8y1z2C0c2AbF6B2V3Q0572P9995E0001T1v1L4u76q1d1fay0z1C1c2A0F9B3V1Q1000Pdbc0E0191T1v1L4uf1q3d5f7y0zjC0c0A1F0B0V1Q1845Pe354E034aT3v1L4uf8q1d5f8y3ziC0S-Iqiiiiiiiiiiiib4i4O0000000i4z800000014h4g0000004i4h0000000p22bnd7MBRlllleq_GGOGGCq8UegGGGGGOGHaGGGEzQVBllllpllBllcQtC1jhYk9HZ8LOqc1bWi-tfAkkpejghwFBU5E5jnYo2bgbAo2bgbAkOo2CL9bQQphMujACnOi_98V0OYHa8Wyc0)
-
-* [Experimenting](https://beepbox.co/#8n31s0k0l00e01t2mm0a7g0fj07i0r1o3210T3v1L4uaeq1d2f8y2z9C0Sp99f9c9Vppbaa9gT1v1L4ua8q3d4f7y1z1C0c1AbFhB2V2Q2ae1Pa514E0001T0v1L4u14q1d6f9y2z1C0w5c1h2T2v1L4u15q0d1f8y0z1C2w0b4140000000010g000000014h000000004h400000000p1ZFBZ5E5whqxo615F5G5HI5E5F5G5HI5F5G5H0kOYyQ2M8JoI30yQyR2RDjw000)
-
-# To Change
+## To Change till v1.3.0
 * highscore should also relate to monster kills
 * monsters should not kill each other!
 * **Add a wall to learning level**
@@ -86,3 +81,18 @@
 
 * make learning system within level / dont change level! => one large side scroller
  * highscore 
+
+### Idea log
+* [ ] cycle through weapons that you already picked up or make choose dialog after quetions.. then you can choose
+* [ ] add different question types (e.g. count enemies)
+* [ ] add something to bottom as ground so player knows whats happening
+* [ ] add a timer to questions
+* [ ] add a "closed door" where the player spawns in a new level - there you can also reset physics and stuff
+
+
+# Music created with Beepbox
+* [Title Music](https://beepbox.co/#8n31s0k0l00e01t2mm0a7g0dj07i0r1o3210T1v1L4u9aq3d5fay1z0C0c0AcF8BeV8Q0259PffffE8543T3v1L4ud8q1d4f9y1z1C0SU006050woha9999T1v1L4uf1q3d5f7y0zjC0c0A1F0B0V1Q1845Pe354E034aT4v1L4uf0q1z6666ji8k8k3jSBKSJJAArriiiiii07JCABrzrrrrrrr00YrkqHrsrrrrjr005zrAqzrjzrrqr1jRjrqGGrrzsrsA099ijrABJJJIAzrrtirqrqjqixzsrAjrqjiqaqqysttAJqjikikrizrHtBJJAzArzrIsRCITKSS099ijrAJS____Qg99habbCAYrDzh00b4h400000014h0000000x4g0000004h40000000p1R0arnXA4SnESFH-04LjnYBZ1vgnQi-1bW2-wLE0FEN0OWjbEcKwOM0)
+
+* [In Game](https://beepbox.co/#8n31s0k0l00e05t2mm0a7g0fj07i0r1o3210T1v3L4u83q3d1f8y1z2C0c2AbF6B2V3Q0572P9995E0001T1v1L4u76q1d1fay0z1C1c2A0F9B3V1Q1000Pdbc0E0191T1v1L4uf1q3d5f7y0zjC0c0A1F0B0V1Q1845Pe354E034aT3v1L4uf8q1d5f8y3ziC0S-Iqiiiiiiiiiiiib4i4O0000000i4z800000014h4g0000004i4h0000000p22bnd7MBRlllleq_GGOGGCq8UegGGGGGOGHaGGGEzQVBllllpllBllcQtC1jhYk9HZ8LOqc1bWi-tfAkkpejghwFBU5E5jnYo2bgbAo2bgbAkOo2CL9bQQphMujACnOi_98V0OYHa8Wyc0)
+
+* [Experimenting](https://beepbox.co/#8n31s0k0l00e01t2mm0a7g0fj07i0r1o3210T3v1L4uaeq1d2f8y2z9C0Sp99f9c9Vppbaa9gT1v1L4ua8q3d4f7y1z1C0c1AbFhB2V2Q2ae1Pa514E0001T0v1L4u14q1d6f9y2z1C0w5c1h2T2v1L4u15q0d1f8y0z1C2w0b4140000000010g000000014h000000004h400000000p1ZFBZ5E5whqxo615F5G5HI5E5F5G5HI5F5G5H0kOYyQ2M8JoI30yQyR2RDjw000)

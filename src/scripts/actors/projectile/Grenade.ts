@@ -3,7 +3,7 @@ import { Projectile } from './Projectile';
 import { ShotgunFireLogic } from '../wearables/logics/ShotgunFireLogic';
 import { TextureKey, GlobalConfig } from '../../Globals';
 import { ObjectCache } from '../../ObjectCache';
-import { Random } from '../../level/generator/Random';
+import { Random } from '../../level/Random';
 import { ThrowBackEffect } from './effects/ThrowBackEffect';
 import { NoGravityBullet } from './NoGravityBullet';
 

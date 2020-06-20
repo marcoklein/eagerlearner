@@ -3,7 +3,7 @@ import { Punch } from './Punch';
 import { StraightGunShot } from './logics/StraightGunShot';
 import { ShotgunFireLogic } from './logics/ShotgunFireLogic';
 import { GrenadeFireLogic } from './logics/GrenadeFireLogic';
-import { Random } from '../../level/generator/Random';
+import { Random } from '../../level/Random';
 
 export abstract class WearableFactory {
   // TODO add generators for random gun :)

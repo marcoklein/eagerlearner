@@ -43,7 +43,7 @@ export class AnswerBoxLogic extends LevelLogic {
     const center = this.blackboard.blackboard.getBottomCenter();
 
     // fix until item system is there
-    const god = new Monster(this.level, -1000000000, -1000000000, { key: 'god' });
+    const god = new Monster(this.level, -1000000000, -1000000000, { key: 'god' }, 0);
     god.destroy();
 
     // left

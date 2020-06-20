@@ -3,6 +3,8 @@ import { Monster } from '../actors/Monster';
 import { Projectile } from '../actors/projectile/Projectile';
 import { LevelController } from './LevelController';
 import { Actor } from '../actors/Actor';
+import { ObjectCache } from '../ObjectCache';
+import { Item } from '../actors/items/Item';
 
 export class CollisionController {
   constructor(level: LevelController) {
@@ -14,11 +16,12 @@ export class CollisionController {
     scene.physics.add.collider(scene.level.heroGroup, scene.level.platforms.group);
     scene.physics.add.collider(scene.level.spawner.group, scene.level.platforms.group);
     scene.physics.add.collider(scene.level.spawner.group, scene.level.heroGroup, (a, b) => {
+      // monster - player collision
       if (a instanceof Actor && b instanceof Actor) {
-        if (a.y < b.body.top && a.body.touching.down) {
+        if (a.getBottomCenter().y < b.getTopCenter().y + 4) {
           a.jump();
-          a.reduceLife();
-        } else if (b.y < a.body.top && b.body.touching.down) {
+          b.reduceLife();
+        } else if (b.getBottomCenter().y < a.getTopCenter().y + 4) {
           b.jump();
           a.reduceLife();
         }
@@ -30,8 +33,8 @@ export class CollisionController {
       if (a instanceof Projectile && b instanceof Projectile) {
         if (a.owner !== b.owner) {
           // dont destroy own projectiles
-          a.destroy();
-          b.destroy();
+          if (!(a.projectileType instanceof Item)) a.destroy(); // do not destroy items
+          if (!(b.projectileType instanceof Item)) b.destroy();
         }
       } else {
         throw new Error('Wrong type during collision');

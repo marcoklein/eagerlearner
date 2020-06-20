@@ -1,20 +1,20 @@
-import { Monster } from '../../Monster';
 import { MonsterLogic } from './MonsterLogic';
+import { Monster } from '../../Monster';
 import { Random } from '../../../level/Random';
 
 /**
- * Shoots :)
+ * Jumps :)
  */
-export class AttackOnPlayerSight extends MonsterLogic {
+export class JumpLogic extends MonsterLogic {
   cooldown = 0;
   speed: number;
   minSpeed: number;
   maxSpeed: number;
 
-  constructor(attackSpeedMin: number, attackSpeedMax: number) {
+  constructor(jumpSpeedMin: number, jumpSpeedMax: number) {
     super();
-    this.minSpeed = attackSpeedMin;
-    this.maxSpeed = attackSpeedMax;
+    this.minSpeed = jumpSpeedMin;
+    this.maxSpeed = jumpSpeedMax;
   }
 
   onAttach(monster: Monster) {
@@ -28,7 +28,7 @@ export class AttackOnPlayerSight extends MonsterLogic {
   update(monster: Monster, time: number, delta: number) {
     if (this.cooldown <= 0) {
       this.cooldown = this.speed;
-      monster.hands.action();
+      monster.jump();
     } else {
       this.cooldown -= delta;
     }
