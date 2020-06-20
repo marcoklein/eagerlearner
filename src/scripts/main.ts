@@ -24,6 +24,9 @@ const config: Phaser.Types.Core.GameConfig = {
       overlapBias: 16,
     },
   },
+  input: {
+    gamepad: true,
+  },
 };
 
 window.addEventListener('load', () => {

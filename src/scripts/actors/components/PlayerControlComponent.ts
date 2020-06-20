@@ -15,10 +15,13 @@ export type ControlActionsType = {
   [P in keyof IControlKeys]: () => void;
 };
 
+const GAMEPAD_AXIS_THRESHOLD = 0.3;
+
 /**
  * Controls a player.
  */
 export class PlayerControlComponent {
+
   scene: Phaser.Scene;
   player: Hero;
 
@@ -45,10 +48,13 @@ export class PlayerControlComponent {
   }
 
   update(time: number, delta: number) {
-    if (this.controlKeys.primary.isDown) {
+    const pads = this.scene.input.gamepad.gamepads;
+    const pad = pads.length ? pads[0] : undefined;
+
+    if (this.controlKeys.primary.isDown || (pad && pad.A)) {
       this.player.hands.action();
     }
-    if (this.controlKeys.jump.isDown && this.player.body.touching.down) {
+    if ((this.controlKeys.jump.isDown || (pad && pad.B)) && this.player.body.touching.down) {
       this.player.jump();
     }
 
@@ -58,10 +64,10 @@ export class PlayerControlComponent {
     // movement speed may be adjusted from 110 directly to -110 for example
     const controllableSpeedRange = maxSpeed * 1.2;
     let directionVel = 0;
-    if (this.controlKeys.left.isDown) {
+    if (this.controlKeys.left.isDown || (pad && pad.getAxisValue(0) < -GAMEPAD_AXIS_THRESHOLD)) {
       directionVel -= maxSpeed;
     }
-    if (this.controlKeys.right.isDown) {
+    if (this.controlKeys.right.isDown || (pad && pad.getAxisValue(0) > GAMEPAD_AXIS_THRESHOLD)) {
       directionVel += maxSpeed;
     }
 
