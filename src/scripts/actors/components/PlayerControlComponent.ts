@@ -4,9 +4,9 @@ import { GlobalConfig } from '../../Globals';
 export type ControlNames = 'left' | 'right';
 
 export interface IControlKeys {
-  left: Phaser.Input.Keyboard.Key;
-  right: Phaser.Input.Keyboard.Key;
-  jump: Phaser.Input.Keyboard.Key;
+  left: Phaser.Input.Keyboard.Key[];
+  right: Phaser.Input.Keyboard.Key[];
+  jump: Phaser.Input.Keyboard.Key[];
   primary: Phaser.Input.Keyboard.Key;
   secondary: Phaser.Input.Keyboard.Key;
 }
@@ -21,7 +21,6 @@ const GAMEPAD_AXIS_THRESHOLD = 0.3;
  * Controls a player.
  */
 export class PlayerControlComponent {
-
   scene: Phaser.Scene;
   player: Hero;
 
@@ -39,9 +38,9 @@ export class PlayerControlComponent {
     console.log('player input keyboard init');
     const keyboard = this.scene.input.keyboard;
     this.controlKeys = {
-      left: keyboard.addKey('A'),
-      right: keyboard.addKey('D'),
-      jump: keyboard.addKey('W'),
+      left: [keyboard.addKey('A'), keyboard.addKey('LEFT')],
+      right: [keyboard.addKey('D'), keyboard.addKey('RIGHT')],
+      jump: [keyboard.addKey('W'), keyboard.addKey('UP')],
       primary: keyboard.addKey('SPACE'),
       secondary: keyboard.addKey('Q'),
     };
@@ -54,7 +53,7 @@ export class PlayerControlComponent {
     if (this.controlKeys.primary.isDown || (pad && pad.B)) {
       this.player.hands.action();
     }
-    if ((this.controlKeys.jump.isDown || (pad && pad.A)) && this.player.body.touching.down) {
+    if ((this.controlKeys.jump.find((key) => key.isDown) || (pad && pad.A)) && this.player.body.touching.down) {
       this.player.jump();
     }
 
@@ -64,10 +63,10 @@ export class PlayerControlComponent {
     // movement speed may be adjusted from 110 directly to -110 for example
     const controllableSpeedRange = maxSpeed * 1.2;
     let directionVel = 0;
-    if (this.controlKeys.left.isDown || (pad && pad.getAxisValue(0) < -GAMEPAD_AXIS_THRESHOLD)) {
+    if (this.controlKeys.left.find((key) => key.isDown) || (pad && pad.getAxisValue(0) < -GAMEPAD_AXIS_THRESHOLD)) {
       directionVel -= maxSpeed;
     }
-    if (this.controlKeys.right.isDown || (pad && pad.getAxisValue(0) > GAMEPAD_AXIS_THRESHOLD)) {
+    if (this.controlKeys.right.find((key) => key.isDown) || (pad && pad.getAxisValue(0) > GAMEPAD_AXIS_THRESHOLD)) {
       directionVel += maxSpeed;
     }
 
